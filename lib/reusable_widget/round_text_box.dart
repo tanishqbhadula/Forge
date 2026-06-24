@@ -6,7 +6,8 @@ class RoundTextBox extends StatelessWidget {
     super.key,
     this.controller,
     required this.hintText,
-    required this.icon,
+    required this.pre_icon,
+    this.suf_icon,
     this.margin,
     this.inputType,
     this.obscureText = false,
@@ -14,7 +15,8 @@ class RoundTextBox extends StatelessWidget {
 
   final TextEditingController? controller;
   final String hintText;
-  final Icon icon;
+  final Icon pre_icon;
+  final Widget? suf_icon;
   final EdgeInsets? margin;
   final TextInputType? inputType;
   final bool obscureText;
@@ -42,7 +44,8 @@ class RoundTextBox extends StatelessWidget {
           hintText: hintText,
           hintStyle: TextStyle(color: Colors.grey, fontSize: 16),
           alignLabelWithHint: true,
-          prefixIcon: icon,
+          prefixIcon: pre_icon,
+          suffix: suf_icon
         ),
       ),
     );
