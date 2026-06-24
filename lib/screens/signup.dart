@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:forge/reusable_widget/round_text_box.dart';
+import 'package:forge/services/signup_api_service.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
@@ -9,7 +10,13 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
-  PageController controller = PageController();
+  //PageController controller = PageController();
+  final TextEditingController firstnameController = TextEditingController();
+  final TextEditingController lastnameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
+  final api = SignupApiService();
   bool isChecked = false;
 
   @override
@@ -47,21 +54,25 @@ class _SignUpState extends State<SignUp> {
                 RoundTextBox(
                   hintText: 'First name',
                   pre_icon: Icon(Icons.person),
+                  controller: firstnameController,
                 ),
                 SizedBox(height: media.width * 0.04),
                 RoundTextBox(
                   hintText: 'Last name',
                   pre_icon: Icon(Icons.person),
+                  controller: lastnameController,
                 ),
                 SizedBox(height: media.width * 0.04),
                 RoundTextBox(
                   hintText: 'Email',
                   pre_icon: Icon(Icons.email),
                   inputType: TextInputType.emailAddress,
+                  controller: emailController,
                 ),
                 SizedBox(height: media.width * 0.04),
                 RoundTextBox(
                   hintText: 'Password',
+                  controller: passwordController,
                   pre_icon: Icon(Icons.lock_outline_rounded),
                   obscureText: true,
                   suf_icon: TextButton(
@@ -93,13 +104,21 @@ class _SignUpState extends State<SignUp> {
                 ),
                 SizedBox(height: media.width * 0.04),
                 Container(
+                  //margin: EdgeInsets.only(top:30),
                   width: media.width,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(25),
                     color: Colors.blue.shade200,
                   ),
                   child: MaterialButton(
-                    onPressed: () {},
+                    onPressed: () async {
+                      await api.registerUser({
+                        "first_name" : firstnameController.text,
+                        "last_name" : lastnameController.text,
+                        "email" :  emailController.text,
+                        "password" : passwordController.text,
+                      });
+                    },
                     height: 50,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadiusGeometry.circular(25),
@@ -113,6 +132,104 @@ class _SignUpState extends State<SignUp> {
                         fontSize: 16,
                       ),
                     ),
+                  ),
+                ),
+                SizedBox(height: media.width*0.05,),
+                Row(
+                  children: [
+                    Expanded(
+                      child: Container(
+                        height: 1,
+                        color: Colors.grey.withValues(alpha:0.5),
+                      )
+                    ),
+                    Text(
+                      "  Or  ",
+                      style: TextStyle(color: Colors.black, fontSize: 12),
+                    ),
+                    Expanded(
+                      child: Container(
+                        height: 1,
+                        color: Colors.grey.withValues(alpha:0.5),
+                      )
+                    ),
+                  ],
+                ),
+                SizedBox(height: media.width*0.04,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    GestureDetector(
+                      onTap: () {},
+                      child: Container(
+                        width: 40,
+                        height: 40,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          border: Border.all(
+                            width: 1,
+                            color: Colors.grey.withValues(alpha: 0.5),
+                          ),
+                          borderRadius: BorderRadius.circular(25),
+                        ),
+                        child: ClipRRect(
+                          borderRadius: BorderRadiusGeometry.circular(25),
+                          child: Image.asset(
+                            'images/google logo.png',
+                            fit: BoxFit.fill,
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: media.width*0.04,),
+                    GestureDetector(
+                      onTap: () {},
+                      child: Container(
+                        width: 40,
+                        height: 40,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          border: Border.all(
+                            width: 1,
+                            color: Colors.grey.withValues(alpha: 0.5),
+                          ),
+                          borderRadius: BorderRadius.circular(25),
+                        ),
+                        child: ClipRRect(
+                          borderRadius: BorderRadiusGeometry.circular(25),
+                          child: Image.asset(
+                            'images/Facebook logo.png',
+                            fit: BoxFit.fill,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: media.width*0.02,),
+                TextButton(
+                  onPressed: (){},
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Already have an account? ',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 14,
+                        ),
+                      ),
+                      Text(
+                        'Login',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 15,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ],
