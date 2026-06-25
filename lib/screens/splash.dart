@@ -17,7 +17,7 @@ class _SplashState extends State<Splash> {
   }
   @override
   Widget build(BuildContext context) {
-    var media = MediaQuery.of(context).size;
+    //var media = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.blue.shade100,
       body: Container(

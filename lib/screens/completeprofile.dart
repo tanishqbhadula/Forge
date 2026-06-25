@@ -47,6 +47,43 @@ class _CompleteProfileState extends State<CompleteProfile> {
                 SizedBox(
                   height: media.width*0.05,
                 ),
+                Container(
+                  decoration: BoxDecoration(
+                    color: Colors.grey.shade100,
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 4),
+                    child: Expanded(
+                      child: DropdownButtonHideUnderline(
+                        child: DropdownButton(
+                          items: ["Male","Female","Others"].map(
+                            (name) => DropdownMenuItem(
+                              value: name,
+                              child: Text(
+                                name,
+                                style: TextStyle(
+                                  color: Colors.grey,
+                                  fontSize: 16,
+                                ),
+                              )
+                            )
+                          ).toList(), 
+                          onChanged: (value) {},
+                          isExpanded: true,
+                          icon: Icon(Icons.people),
+                          hint: Text(
+                            'Choose Gender', 
+                            style: TextStyle(color: Colors.grey, fontSize: 16, fontWeight: FontWeight.normal),
+                          ),
+                        )
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: media.width*0.04,
+                ),
                 RoundTextBox(hintText: 'Date of Birth', pre_icon: Icon(Icons.date_range)),
                 SizedBox(
                   height: media.width*0.04,
