@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:forge/screens/completeprofile.dart';
 import 'package:forge/screens/homepage.dart';
 import 'package:forge/screens/on_boarding.dart';
 import 'package:forge/screens/signup.dart';
@@ -15,8 +16,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: SignUp(),
-      //home: Splash(),
+      //home: CompleteProfile(),
+      home: Splash()
     );
   }
 }

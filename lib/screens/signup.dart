@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:forge/reusable_widget/round_text_box.dart';
+import 'package:forge/screens/completeprofile.dart';
 import 'package:forge/services/signup_api_service.dart';
 
 class SignUp extends StatefulWidget {
@@ -108,16 +109,31 @@ class _SignUpState extends State<SignUp> {
                   width: media.width,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(25),
-                    color: Colors.blue.shade200,
+                    color: Colors.blue.shade500,
                   ),
                   child: MaterialButton(
-                    onPressed: () async {
-                      await api.registerUser({
-                        "first_name" : firstnameController.text,
-                        "last_name" : lastnameController.text,
-                        "email" :  emailController.text,
-                        "password" : passwordController.text,
-                      });
+                    // onPressed: () async { // API CALL
+                    //   await api.registerUser({
+                    //     "first_name" : firstnameController.text,
+                    //     "last_name" : lastnameController.text,
+                    //     "email" :  emailController.text,
+                    //     "password" : passwordController.text,
+                    //   });
+                    // },
+                    onPressed: () {
+                      if(isChecked) {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(builder: (context) => CompleteProfile())
+                        );
+                      }
+                      else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text("Please agree to terms and conditions"),
+                          ),
+                        );
+                      }
                     },
                     height: 50,
                     shape: RoundedRectangleBorder(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:forge/screens/signup.dart';
 
 class OnBoarding extends StatefulWidget {
   const OnBoarding({super.key});
@@ -13,9 +14,9 @@ class _OnBoardingState extends State<OnBoarding> {
   Widget build(BuildContext context) {
     var media = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-      ),
+      // appBar: AppBar(
+      //   backgroundColor: Colors.white,
+      // ),
       backgroundColor: Colors.white,
       body: Stack(
         children: [
@@ -29,7 +30,7 @@ class _OnBoardingState extends State<OnBoarding> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Image.asset(
-                      'images/signup 1.jpg',
+                      'images/onboarding_1.png',
                       width: media.width,
                       fit: BoxFit.fitWidth
                     ),
@@ -72,8 +73,13 @@ class _OnBoardingState extends State<OnBoarding> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: (){},
-        backgroundColor: Colors.blue.shade100,
+        onPressed: () {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (context) => SignUp())
+          );
+        },
+        backgroundColor: Colors.blue.shade500,
         foregroundColor: Colors.white,
         elevation: 5,
         child: Icon(Icons.navigate_next_rounded),
