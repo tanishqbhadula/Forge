@@ -66,8 +66,8 @@ class _CompleteProfileState extends State<CompleteProfile> {
                                   color: Colors.grey,
                                   fontSize: 16,
                                 ),
-                              )
-                            )
+                              ),
+                            ),
                           ).toList(), 
                           onChanged: (value) {},
                           isExpanded: true,
