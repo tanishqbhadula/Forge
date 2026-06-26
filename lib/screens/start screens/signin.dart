@@ -1,41 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:forge/reusable_widget/round_text_box.dart';
-import 'package:forge/screens/start%20screens/completeprofile.dart';
-import 'package:forge/screens/start%20screens/signin.dart';
-import 'package:forge/services/signup_api_service.dart';
+import 'package:forge/screens/homepage.dart';
+import 'package:forge/screens/start%20screens/signup.dart';
 
-class SignUp extends StatefulWidget {
-  const SignUp({super.key});
-  State<SignUp> createState() {
-    return _SignUpState();
+class SignIn extends StatefulWidget {
+  const SignIn({super.key});
+  State<SignIn> createState() {
+    return _SignInState();
   }
 }
 
-class _SignUpState extends State<SignUp> {
-  //PageController controller = PageController();
-  final TextEditingController firstnameController = TextEditingController();
-  final TextEditingController lastnameController = TextEditingController();
+class _SignInState extends State<SignIn> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-
-  final api = SignupApiService();
-  bool isChecked = false;
-
   @override
   Widget build(BuildContext context) {
     var media = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        // title: Text('Welcome'),
-        // titleTextStyle: TextStyle(
-        //   fontWeight: FontWeight.bold, fontSize: 22, color: Colors.black
-        // ),
       ),
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: SafeArea(
-          child: Padding(
+          child: Container(
+            width: media.width,
+            //height: media.height,
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -45,7 +35,7 @@ class _SignUpState extends State<SignUp> {
                   style: TextStyle(color: Colors.grey, fontSize: 16),
                 ),
                 Text(
-                  'Create an Account',
+                  'Welcome Back',
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 20,
@@ -53,18 +43,6 @@ class _SignUpState extends State<SignUp> {
                   ),
                 ),
                 SizedBox(height: media.width * 0.05),
-                RoundTextBox(
-                  hintText: 'First name',
-                  pre_icon: Icon(Icons.person),
-                  controller: firstnameController,
-                ),
-                SizedBox(height: media.width * 0.04),
-                RoundTextBox(
-                  hintText: 'Last name',
-                  pre_icon: Icon(Icons.person),
-                  controller: lastnameController,
-                ),
-                SizedBox(height: media.width * 0.04),
                 RoundTextBox(
                   hintText: 'Email',
                   pre_icon: Icon(Icons.email),
@@ -83,28 +61,23 @@ class _SignUpState extends State<SignUp> {
                   ),
                 ),
                 SizedBox(height: media.width * 0.04),
+                //const Spacer(),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    IconButton(
-                      onPressed: () {
-                        setState(() {
-                          isChecked = !isChecked;
-                        });
-                      },
-                      icon: isChecked
-                          ? Icon(Icons.check_box)
-                          : Icon(Icons.check_box_outline_blank),
-                      color: Colors.black,
-                    ),
-                    Expanded(
-                      child: Text(
-                        'By continuing you agree to accept our private policy and terms of use',
-                        style: TextStyle(color: Colors.grey, fontSize: 14),
+                    Padding(
+                      padding: const EdgeInsets.only(top:6.0),
+                      child: Expanded(
+                        child: Text(
+                          'Forgot password?',
+                          style: TextStyle(color: Colors.grey, fontSize: 14, fontWeight: FontWeight.w600, decoration: TextDecoration.underline),
+                        ),
                       ),
                     ),
                   ],
                 ),
-                SizedBox(height: media.width * 0.04),
+                //const Spacer(),
+                SizedBox(height: media.width * 0.6),
                 Container(
                   //margin: EdgeInsets.only(top:30),
                   width: media.width,
@@ -122,19 +95,13 @@ class _SignUpState extends State<SignUp> {
                     //   });
                     // },
                     onPressed: () {
-                      if(isChecked) {
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(builder: (context) => CompleteProfile())
-                        );
-                      }
-                      else {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text("Please agree to terms and conditions"),
-                          ),
-                        );
-                      }
+                      //validate password
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => HomePage(),
+                        )
+                      );
                     },
                     height: 50,
                     shape: RoundedRectangleBorder(
@@ -142,7 +109,7 @@ class _SignUpState extends State<SignUp> {
                     ),
                     textColor: Colors.white,
                     child: Text(
-                      'Register',
+                      'Sign In',
                       style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.w600,
@@ -231,7 +198,7 @@ class _SignUpState extends State<SignUp> {
                     Navigator.push(
                       context, 
                       MaterialPageRoute(
-                        builder: (context) => SignIn(),
+                        builder: (context) => SignUp(),
                       )
                     );
                   },
@@ -239,14 +206,14 @@ class _SignUpState extends State<SignUp> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        'Already have an account? ',
+                        'Dont have an account yet? ',
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 14,
                         ),
                       ),
                       Text(
-                        'Login',
+                        'Register',
                         style: TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.bold,

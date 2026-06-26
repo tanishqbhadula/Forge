@@ -3,6 +3,7 @@ import 'package:forge/screens/start%20screens/completeprofile.dart';
 import 'package:forge/screens/start%20screens/goal.dart';
 import 'package:forge/screens/homepage.dart';
 import 'package:forge/screens/start%20screens/on_boarding.dart';
+import 'package:forge/screens/start%20screens/signin.dart';
 import 'package:forge/screens/start%20screens/signup.dart';
 import 'package:forge/screens/start%20screens/splash.dart';
 import 'package:forge/screens/start%20screens/welome.dart';
@@ -18,8 +19,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      //home: Welcome(),
-      home: Splash()
+      home: SignIn(),
+      //home: Splash()
     );
   }
 }
