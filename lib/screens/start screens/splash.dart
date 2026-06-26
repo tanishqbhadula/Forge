@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:forge/screens/on_boarding.dart';
+import 'package:forge/screens/start%20screens/on_boarding.dart';
 
 class Splash extends StatefulWidget {
   const Splash({super.key});

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:forge/reusable_widget/round_text_box.dart';
-import 'package:forge/screens/completeprofile.dart';
+import 'package:forge/screens/start%20screens/completeprofile.dart';
 import 'package:forge/services/signup_api_service.dart';
 
 class SignUp extends StatefulWidget {

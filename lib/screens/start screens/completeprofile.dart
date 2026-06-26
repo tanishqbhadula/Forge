@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:forge/reusable_widget/round_text_box.dart';
+import 'package:forge/screens/start%20screens/goal.dart';
 
 class CompleteProfile extends StatefulWidget {
   const CompleteProfile({super.key});
@@ -150,7 +151,14 @@ class _CompleteProfileState extends State<CompleteProfile> {
                     color: Colors.blue.shade500,
                   ),
                   child: MaterialButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => Goal()
+                          )
+                      );
+                    },
                     height: 50,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadiusGeometry.circular(25),

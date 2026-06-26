@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:forge/screens/start%20screens/welome.dart';
 
 class Goal extends StatefulWidget {
   const Goal({super.key});
@@ -118,6 +119,14 @@ class _GoalState extends State<Goal> {
                               const SnackBar(
                                 content: Text('Please select a goal'),
                               ),
+                            );
+                          }
+                          else {
+                            Navigator.pushReplacement(
+                              context, 
+                              MaterialPageRoute(
+                                builder: (context) => Welcome()
+                              )
                             );
                           }
                         },

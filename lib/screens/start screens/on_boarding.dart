@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:forge/screens/signup.dart';
+import 'package:forge/screens/start%20screens/signup.dart';
 
 class OnBoarding extends StatefulWidget {
   const OnBoarding({super.key});
