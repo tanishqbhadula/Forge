@@ -11,9 +11,10 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
+    var media = MediaQuery.of(context).size;
     return Scaffold(
       body: Container(
-        child: Text('home page')
+        child: SingleChildScrollView(child: SafeArea(child: Text('home'))),
       ),
     );
   }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:forge/screens/homepage.dart';
+import 'package:forge/screens/home/homepage.dart';
 
 class Welcome extends StatefulWidget {
   const Welcome({super.key});
