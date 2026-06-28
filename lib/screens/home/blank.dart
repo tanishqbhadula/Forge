@@ -1,0 +1,17 @@
+import 'package:flutter/material.dart';
+
+class Blank extends StatefulWidget {
+  const Blank({super.key});
+  State<Blank> createState() {
+    return _BlankState();
+  }
+}
+
+class _BlankState extends State<Blank> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.red,
+    );
+  }
+}

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:forge/reusable_widget/tab_button.dart';
+import 'package:forge/screens/home/blank.dart';
 import 'package:forge/screens/home/homepage.dart';
 
 class MainTab extends StatefulWidget {
@@ -11,10 +12,12 @@ class MainTab extends StatefulWidget {
 
 class _MainTabState extends State<MainTab> {
   int selectTab = 0;
+  Widget currentTab = const HomePage();
+  final PageStorageBucket pageBucket = PageStorageBucket();
   @override
   Widget build(BuildContext context) {
-    Widget currentTab = const HomePage();
     return Scaffold(
+      body: PageStorage(bucket: pageBucket, child: currentTab),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: SizedBox(
         width: 70,
@@ -25,15 +28,13 @@ class _MainTabState extends State<MainTab> {
             width: 65,
             height: 65,
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(35),
-                color: Colors.blue,
-                boxShadow: const [
-                  BoxShadow(
-                      color: Colors.black12,
-                      blurRadius: 2,)
-                ]
-              ),
-            child: Icon(Icons.search,color: Colors.white, size: 35, ),
+              borderRadius: BorderRadius.circular(35),
+              color: Colors.blue,
+              boxShadow: const [
+                BoxShadow(color: Colors.black12, blurRadius: 2),
+              ],
+            ),
+            child: Icon(Icons.search, color: Colors.white, size: 35),
           ),
         ),
       ),
@@ -67,13 +68,13 @@ class _MainTabState extends State<MainTab> {
                 isActive: selectTab == 1,
                 onTap: () {
                   selectTab = 1;
-                  //currentTab = const SelectView();
+                  currentTab = const Blank();
                   if (mounted) {
                     setState(() {});
                   }
                 },
               ),
-              const SizedBox(width: 70,),
+              const SizedBox(width: 70),
               const Spacer(),
               TabButton(
                 icon: Icons.camera_alt,
@@ -81,7 +82,7 @@ class _MainTabState extends State<MainTab> {
                 isActive: selectTab == 2,
                 onTap: () {
                   selectTab = 2;
-                  //currentTab = const PhotoProgressView();
+                  currentTab = const Blank();
                   if (mounted) {
                     setState(() {});
                   }
@@ -94,7 +95,7 @@ class _MainTabState extends State<MainTab> {
                 isActive: selectTab == 3,
                 onTap: () {
                   selectTab = 3;
-                  //currentTab = const ProfileView();
+                  currentTab = const Blank();
                   if (mounted) {
                     setState(() {});
                   }
