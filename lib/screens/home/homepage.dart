@@ -14,9 +14,63 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  List<int> showingTooltipOnSpots = [21];
+  List<FlSpot> get allSpots => const [
+    FlSpot(0, 20),
+    FlSpot(1, 25),
+    FlSpot(2, 40),
+    FlSpot(3, 50),
+    FlSpot(4, 35),
+    FlSpot(5, 40),
+    FlSpot(6, 30),
+    FlSpot(7, 20),
+    FlSpot(8, 25),
+    FlSpot(9, 40),
+    FlSpot(10, 50),
+    FlSpot(11, 35),
+    FlSpot(12, 50),
+    FlSpot(13, 60),
+    FlSpot(14, 40),
+    FlSpot(15, 50),
+    FlSpot(16, 20),
+    FlSpot(17, 25),
+    FlSpot(18, 40),
+    FlSpot(19, 50),
+    FlSpot(20, 35),
+    FlSpot(21, 80),
+    FlSpot(22, 30),
+    FlSpot(23, 20),
+    FlSpot(24, 25),
+    FlSpot(25, 40),
+    FlSpot(26, 50),
+    FlSpot(27, 35),
+    FlSpot(28, 50),
+    FlSpot(29, 60),
+    FlSpot(30, 40),
+  ];
   @override
   Widget build(BuildContext context) {
     var media = MediaQuery.of(context).size;
+    final lineBarsData = [
+      LineChartBarData(
+        showingIndicators: showingTooltipOnSpots,
+        spots: allSpots,
+        isCurved: false,
+        barWidth: 1.8,
+        belowBarData: BarAreaData(
+          show: true,
+          gradient: LinearGradient(
+            colors: [Colors.blue.shade200, Colors.deepPurple.shade300],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
+        ),
+        dotData: FlDotData(show: false),
+        gradient: LinearGradient(colors: [Colors.blue, Colors.deepPurple]),
+      ),
+    ];
+
+    final tooltipsOnBar = lineBarsData[0];
     return Scaffold(
       extendBodyBehindAppBar: false,
       backgroundColor: Colors.white,
@@ -267,11 +321,138 @@ class _HomePageState extends State<HomePage> {
                                 child: Stack(
                                   children: [
                                     // LOAD GRAPH
-                                    Image.asset(
-                                      'images/graph-removebg-preview.png',
-                                      fit: BoxFit.fill,
-                                      width: double.maxFinite,
-                                      //height: media.width * 0.3,
+                                    SizedBox(
+                                      child: LineChart(
+                                        LineChartData(
+                                          showingTooltipIndicators:
+                                              showingTooltipOnSpots.map((
+                                                index,
+                                              ) {
+                                                return ShowingTooltipIndicators(
+                                                  [
+                                                    LineBarSpot(
+                                                      tooltipsOnBar,
+                                                      lineBarsData.indexOf(
+                                                        tooltipsOnBar,
+                                                      ),
+                                                      tooltipsOnBar
+                                                          .spots[index],
+                                                    ),
+                                                  ],
+                                                );
+                                              }).toList(),
+                                          lineTouchData: LineTouchData(
+                                            enabled: true,
+                                            handleBuiltInTouches: false,
+                                            touchCallback:
+                                                (
+                                                  FlTouchEvent event,
+                                                  LineTouchResponse? response,
+                                                ) {
+                                                  if (response == null ||
+                                                      response.lineBarSpots ==
+                                                          null) {
+                                                    return;
+                                                  }
+                                                  if (event is FlTapUpEvent) {
+                                                    final spotIndex = response
+                                                        .lineBarSpots!
+                                                        .first
+                                                        .spotIndex;
+                                                    showingTooltipOnSpots
+                                                        .clear();
+                                                    setState(() {
+                                                      showingTooltipOnSpots.add(
+                                                        spotIndex,
+                                                      );
+                                                    });
+                                                  }
+                                                },
+                                            mouseCursorResolver:
+                                                (
+                                                  FlTouchEvent event,
+                                                  LineTouchResponse? response,
+                                                ) {
+                                                  if (response == null ||
+                                                      response.lineBarSpots ==
+                                                          null) {
+                                                    return SystemMouseCursors
+                                                        .basic;
+                                                  }
+                                                  return SystemMouseCursors
+                                                      .click;
+                                                },
+                                            getTouchedSpotIndicator:
+                                                (
+                                                  LineChartBarData barData,
+                                                  List<int> spotIndexes,
+                                                ) {
+                                                  return spotIndexes.map((
+                                                    index,
+                                                  ) {
+                                                    return TouchedSpotIndicatorData(
+                                                      FlLine(color: Colors.red),
+                                                      FlDotData(
+                                                        show: true,
+                                                        getDotPainter:
+                                                            (
+                                                              spot,
+                                                              percent,
+                                                              barData,
+                                                              index,
+                                                            ) =>
+                                                                FlDotCirclePainter(
+                                                                  radius: 3,
+                                                                  color: Colors
+                                                                      .white,
+                                                                  strokeWidth:
+                                                                      3,
+                                                                  strokeColor:
+                                                                      Colors
+                                                                          .blue,
+                                                                ),
+                                                      ),
+                                                    );
+                                                  }).toList();
+                                                },
+                                            touchTooltipData: LineTouchTooltipData(
+                                              tooltipBorderRadius: BorderRadius.circular(2),
+                                              //tooltipBgColor: TColor.secondaryColor1,
+                                              //tooltipRoundedRadius: 20,
+                                              getTooltipItems:
+                                                  (
+                                                    List<LineBarSpot>
+                                                    lineBarsSpot,
+                                                  ) {
+                                                    return lineBarsSpot.map((
+                                                      lineBarSpot,
+                                                    ) {
+                                                      return LineTooltipItem(
+                                                        "${lineBarSpot.x.toInt()} mins ago",
+                                                        const TextStyle(
+                                                          color: Colors.white,
+                                                          fontSize: 10,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                        ),
+                                                      );
+                                                    }).toList();
+                                                  },
+                                            ),
+                                          ),
+                                          lineBarsData: lineBarsData,
+                                          minY: 0,
+                                          maxY: 130,
+                                          titlesData: FlTitlesData(show: false),
+                                          gridData: FlGridData(show: false),
+                                          borderData: FlBorderData(
+                                            show: true,
+                                            border: Border.all(
+                                              color: Colors.transparent,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.all(25),
@@ -491,7 +672,7 @@ class _HomePageState extends State<HomePage> {
                                                   ),
                                                 ),
                                                 Container(
-                                                  height: media.height*0.1,
+                                                  height: media.height * 0.1,
                                                   alignment: Alignment.center,
                                                   child:
                                                       CircularProgressIndicator(
@@ -531,7 +712,7 @@ class _HomePageState extends State<HomePage> {
                               ],
                             ),
                           ),
-                          // GRAPH 
+                          // GRAPH
                         ],
                       ),
                     ),
