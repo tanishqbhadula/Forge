@@ -17,6 +17,7 @@ class _MainTabState extends State<MainTab> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: PageStorage(bucket: pageBucket, child: currentTab),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: SizedBox(
@@ -39,8 +40,6 @@ class _MainTabState extends State<MainTab> {
         ),
       ),
       bottomNavigationBar: BottomAppBar(
-        //surfaceTintColor: Colors.blueGrey,
-        shape: CircularNotchedRectangle(),
         shadowColor: Colors.black,
         color: Colors.white,
         child: Container(

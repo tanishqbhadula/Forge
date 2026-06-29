@@ -49,6 +49,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.9"
+  dotted_dashed_line:
+    dependency: "direct main"
+    description:
+      name: dotted_dashed_line
+      sha256: da3678819f4522c982eb256d2bc80d032fd2a3e7b437841ea83987c67c00cda5
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.3"
   fake_async:
     dependency: transitive
     description:
@@ -72,6 +80,11 @@ packages:
     version: "6.0.0"
   flutter_test:
     dependency: "direct dev"
+    description: flutter
+    source: sdk
+    version: "0.0.0"
+  flutter_web_plugins:
+    dependency: transitive
     description: flutter
     source: sdk
     version: "0.0.0"
@@ -155,6 +168,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.9.1"
+  simple_circular_progress_bar:
+    dependency: "direct main"
+    description:
+      name: simple_circular_progress_bar
+      sha256: e661ca942fbc617298e975b41fde19003d995de73ca6c2a1526c54d52f07151b
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.2"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -240,6 +261,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.1"
+  wiggly_loaders:
+    dependency: "direct main"
+    description:
+      name: wiggly_loaders
+      sha256: f207eb086a4520cc8d5548d4a2a98e230b0974a856dfc08a24ee10d29d52d1ef
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.9.0"
 sdks:
   dart: ">=3.12.0 <4.0.0"
   flutter: ">=3.18.0-18.0.pre.54"
