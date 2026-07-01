@@ -60,10 +60,11 @@ class _HomePageState extends State<HomePage> {
         belowBarData: BarAreaData(
           show: true,
           gradient: LinearGradient(
-            colors: [Colors.blue.shade200, Colors.deepPurple.shade300],
+            colors: [Colors.blue.shade100, Colors.deepPurple.shade100],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
+          //color: Colors.blue.shad100,
         ),
         dotData: FlDotData(show: false),
         gradient: LinearGradient(colors: [Colors.blue, Colors.deepPurple]),
@@ -85,13 +86,11 @@ class _HomePageState extends State<HomePage> {
               onPressed: () {},
               icon: Icon(Icons.arrow_back_rounded),
             ),
+            
             floating: false,
-            pinned: false,
+            pinned: true,
             //elevation: 25,
             shadowColor: Colors.black,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadiusGeometry.circular(16),
-            ),
           ),
           SliverList(
             delegate: SliverChildListDelegate([
@@ -555,7 +554,7 @@ class _HomePageState extends State<HomePage> {
                                           ),
                                           SizedBox(
                                             width: media.width * 0.9,
-                                            child: Expanded(
+                                            //child: Expanded(
                                               child: WigglyLinearLoader(
                                                 progress: 0.75,
                                                 height: media.width * 0.065,
@@ -568,7 +567,7 @@ class _HomePageState extends State<HomePage> {
                                                     .withValues(alpha: 0.6),
                                                 borderRadius: 14,
                                               ),
-                                            ),
+                                            //),
                                           ),
                                         ],
                                       ),
@@ -707,12 +706,56 @@ class _HomePageState extends State<HomePage> {
                                     color: Colors.black,
                                   ),
                                 ),
-                                // DROP DOWN BUTTON
-                                //DropdownButton(items: , onChanged: onChanged)
+                                Container(
+                                  height: media.width*0.08,
+                                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                                  decoration: BoxDecoration(
+                                    color: Colors.blue,
+                                    borderRadius: BorderRadius.circular(15),
+                                  ),
+                                  child: DropdownButtonHideUnderline(
+                                    child: DropdownButton(
+                                      items: ["Weekly","Monthly"].map(
+                                        (name) => DropdownMenuItem(
+                                          value: name,
+                                          child: Text(
+                                            name,
+                                            style: TextStyle(
+                                              color: Colors.grey, fontSize: 14,
+                                            ),
+                                          )
+                                        )
+                                      ).toList(), 
+                                      onChanged: (value) {},
+                                      icon: Icon(Icons.expand_more_rounded, color: Colors.white,),
+                                      hint: Text(
+                                        'Weekly',
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          color: Colors.white, fontSize: 12,
+                                        ),
+                                      ),
+                                    )
+                                  ),
+                                ),
                               ],
                             ),
                           ),
+                          SizedBox(
+                            height: media.width*0.03,
+                          ),
                           // GRAPH
+                          Container(
+                            height: media.width*0.2,
+                            width: media.width,
+                            padding: EdgeInsets.all(8),
+                            decoration: BoxDecoration(
+                              color: Colors.grey.shade100,
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            child: Text('graph'),
+                          ),
+                          SizedBox(height: media.width*0.1,)
                         ],
                       ),
                     ),
