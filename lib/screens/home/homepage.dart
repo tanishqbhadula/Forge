@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:forge/reusable_widget/workout_row.dart';
 //import 'package:simple_animation_progress_bar/simple_animation_progress_bar.dart';
 import 'package:simple_circular_progress_bar/simple_circular_progress_bar.dart';
 //import 'package:dotted_dashed_line/dotted_dashed_line.dart';
@@ -14,6 +15,30 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  // LATEST WORKOUT LIST
+  List lastWorkoutArr = [
+    {
+      'name': 'Fullbody Workout',
+      'image': 'images/Workout1.png',
+      'kcal': '180',
+      'time': '25',
+      'progress': '0.5',
+    },
+    {
+      'name': 'Lowerbody Workout',
+      'image': 'images/Workout2.png',
+      'kcal': '250',
+      'time': '40',
+      'progress': '0.75',
+    },
+    {
+      'name': 'Ab Workout',
+      'image': 'images/Workout3.png',
+      'kcal': '120',
+      'time': '30',
+      'progress': '0.3',
+    },
+  ];
   // HEART RATE GRAPH
   List<int> showingTooltipOnSpots = [21];
   List<FlSpot> get allSpots => const [
@@ -375,7 +400,7 @@ class _HomePageState extends State<HomePage> {
                                   style: TextStyle(
                                     color: Colors.black,
                                     fontSize: 16,
-                                    fontWeight: FontWeight.w600,
+                                    fontWeight: FontWeight.w700,
                                   ),
                                 ),
                                 Container(
@@ -384,6 +409,7 @@ class _HomePageState extends State<HomePage> {
                                     borderRadius: BorderRadius.circular(25),
                                   ),
                                   child: MaterialButton(
+                                    padding: EdgeInsets.zero,
                                     onPressed: () {},
                                     shape: RoundedRectangleBorder(
                                       borderRadius:
@@ -870,16 +896,6 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ),
                           SizedBox(height: media.width * 0.03),
-                          // Container(
-                          //   height: media.width*0.2,
-                          //   width: media.width,
-                          //   padding: EdgeInsets.all(8),
-                          //   decoration: BoxDecoration(
-                          //     color: Colors.grey.shade100,
-                          //     borderRadius: BorderRadius.circular(20),
-                          //   ),
-                          //   child: Text('graph'),
-                          // ),
 
                           // WORKOUT PROGRESS GRAPH
                           Container(
@@ -1018,7 +1034,46 @@ class _HomePageState extends State<HomePage> {
                               ),
                             ),
                           ),
-                          //SizedBox(height: media.width * 0.05),
+                          SizedBox(height: media.width * 0.05),
+                          Padding(
+                            padding: EdgeInsets.only(left: 8,),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  'Latest Workout',
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 20,
+                                  ),
+                                ),
+                                MaterialButton(
+                                  padding: EdgeInsets.zero,
+                                  onPressed: () {},
+                                  child: Text(
+                                    'see more',
+                                    style: TextStyle(
+                                      color: Colors.grey,
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 14,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          //SizedBox(height: media.width * 0.01),
+                          ListView.builder(
+                            padding: EdgeInsets.zero,
+                            itemCount: lastWorkoutArr.length,
+                            physics: NeverScrollableScrollPhysics(),
+                            shrinkWrap: true,
+                            itemBuilder: (context, index) {
+                              var wObj = lastWorkoutArr[index] as Map? ?? {};
+                              return WorkoutRow(wObj: wObj);
+                            },
+                          ),
                           SizedBox(height: media.width * 0.1),
                         ],
                       ),
