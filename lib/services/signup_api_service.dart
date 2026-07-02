@@ -12,11 +12,11 @@ class SignupApiService {
       body: jsonEncode(userData)
     );
     if(response.statusCode == 201) {
-      print('user created');
-      print(response.body);
+      //print('user created');
+      //print(response.body);
     }
     else {
-      print('failed');
+      //print('failed');
     }
   }
 }

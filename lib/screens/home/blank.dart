@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class Blank extends StatefulWidget {
   const Blank({super.key});
+  @override
   State<Blank> createState() {
     return _BlankState();
   }

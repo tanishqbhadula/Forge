@@ -6,6 +6,7 @@ import 'package:forge/services/signup_api_service.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
+  @override
   State<SignUp> createState() {
     return _SignUpState();
   }

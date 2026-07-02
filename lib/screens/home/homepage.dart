@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:forge/reusable_widget/workout_row.dart';
-//import 'package:simple_animation_progress_bar/simple_animation_progress_bar.dart';
+import 'package:forge/screens/home/notification.dart';
 import 'package:simple_circular_progress_bar/simple_circular_progress_bar.dart';
-//import 'package:dotted_dashed_line/dotted_dashed_line.dart';
 import 'package:wiggly_loaders/wiggly_loaders.dart';
 import 'package:fl_chart/fl_chart.dart';
 
@@ -225,7 +224,7 @@ class _HomePageState extends State<HomePage> {
             scrolledUnderElevation: 0,
             leading: IconButton(
               onPressed: () {},
-              icon: Icon(Icons.arrow_back_rounded),
+              icon: Icon(Icons.arrow_back_ios_new_rounded),
             ),
 
             floating: false,
@@ -261,7 +260,7 @@ class _HomePageState extends State<HomePage> {
                                     ),
                                   ),
                                   Text(
-                                    'Username',
+                                    'username',
                                     style: TextStyle(
                                       color: Colors.black,
                                       fontSize: 28,
@@ -272,7 +271,14 @@ class _HomePageState extends State<HomePage> {
                                 ],
                               ),
                               IconButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.push(
+                                    context, 
+                                    MaterialPageRoute(
+                                      builder: (context) => NotificationScreen()
+                                    )
+                                  );
+                                },
                                 icon: Icon(Icons.notifications),
                                 iconSize: media.width * 0.09,
                               ),
@@ -1035,8 +1041,9 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ),
                           SizedBox(height: media.width * 0.05),
+                          //LATEST WORKOUT TEXT + SEE MORE BUTTON
                           Padding(
-                            padding: EdgeInsets.only(left: 8,),
+                            padding: EdgeInsets.only(left: 8),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -1063,7 +1070,7 @@ class _HomePageState extends State<HomePage> {
                               ],
                             ),
                           ),
-                          //SizedBox(height: media.width * 0.01),
+                          // LATEST WORKOUT LIST
                           ListView.builder(
                             padding: EdgeInsets.zero,
                             itemCount: lastWorkoutArr.length,

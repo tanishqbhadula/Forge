@@ -8,13 +8,12 @@ class WorkoutRow extends StatelessWidget {
   Widget build(BuildContext context) {
     var media = MediaQuery.of(context).size;
     return Container(
-      padding: EdgeInsets.only(top: 6, bottom: 10, left: 12, right: 2),
+      padding: EdgeInsets.only(top: 6, bottom: 10, left: 12,),
       margin: EdgeInsets.symmetric(vertical: 6),
       width: media.width,
       decoration: BoxDecoration(
-        //gradient: LinearGradient(colors: [])
         color: Colors.white,
-        borderRadius: BorderRadius.circular(media.width * 0.05),
+        borderRadius: BorderRadius.circular(media.width * 0.065),
         boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 2)],
       ),
       child: Row(
@@ -69,6 +68,7 @@ class WorkoutRow extends StatelessWidget {
           ),
           //Spacer(),
           IconButton(
+            padding: EdgeInsets.zero,
             onPressed: () {},
             icon: Icon(Icons.navigate_next_outlined),
           ),
