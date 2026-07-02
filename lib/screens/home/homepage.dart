@@ -14,6 +14,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  // HEART RATE GRAPH
   List<int> showingTooltipOnSpots = [21];
   List<FlSpot> get allSpots => const [
     FlSpot(0, 20),
@@ -48,6 +49,122 @@ class _HomePageState extends State<HomePage> {
     FlSpot(29, 60),
     FlSpot(30, 40),
   ];
+  List<LineChartBarData> get lineBarsData1 => [
+    lineChartBarData1_1,
+    lineChartBarData1_2,
+  ];
+  // WORKOUT PROGRESS GRAPH LINE 1
+  LineChartBarData get lineChartBarData1_1 => LineChartBarData(
+    isCurved: true,
+    //gradient: LinearGradient(colors: [Colors.blue.shade300, Colors.deepPurple.shade300]),
+    color: Colors.blue.shade600.withValues(alpha: 0.6),
+    barWidth: 2.5,
+    isStrokeCapRound: true,
+    dotData: const FlDotData(show: false),
+    belowBarData: BarAreaData(show: false),
+    spots: const [
+      FlSpot(1, 35),
+      FlSpot(2, 70),
+      FlSpot(3, 40),
+      FlSpot(4, 80),
+      FlSpot(5, 25),
+      FlSpot(6, 70),
+      FlSpot(7, 35),
+    ],
+  );
+  // WORKOUT PROGRESS GRAPH LINE 2
+  LineChartBarData get lineChartBarData1_2 => LineChartBarData(
+    isCurved: true,
+    // gradient: LinearGradient(
+    //   colors: [Colors.cyan, Colors.blueGrey],
+    // ),
+    color: Colors.deepPurple.shade300.withValues(alpha: 0.9),
+    barWidth: 2,
+    isStrokeCapRound: true,
+    dotData: const FlDotData(show: false),
+    belowBarData: BarAreaData(show: false),
+    spots: const [
+      FlSpot(1, 80),
+      FlSpot(2, 50),
+      FlSpot(3, 90),
+      FlSpot(4, 40),
+      FlSpot(5, 80),
+      FlSpot(6, 35),
+      FlSpot(7, 60),
+    ],
+  );
+  // WORKOUT PROGRESS GRAPH PERCENTAGE TILES Y-AXIS
+  SideTitles get rightTitles => SideTitles(
+    showTitles: true,
+    interval: 20,
+    reservedSize: 40,
+    getTitlesWidget: rightTitleWidgets,
+  );
+  Widget rightTitleWidgets(double value, TitleMeta meta) {
+    String text;
+    switch (value.toInt()) {
+      case 0:
+        text = '0%';
+        break;
+      case 20:
+        text = '20%';
+        break;
+      case 40:
+        text = '40%';
+        break;
+      case 60:
+        text = '60%';
+        break;
+      case 80:
+        text = '80%';
+        break;
+      case 100:
+        text = '100%';
+        break;
+      default:
+        return const SizedBox.shrink();
+    }
+    return Text(text, style: const TextStyle(color: Colors.grey, fontSize: 12));
+  }
+
+  // WORKOUT PROGRESS GRAPH DAYS TILES X-AXIS
+  SideTitles get bottomTitles => SideTitles(
+    showTitles: true,
+    reservedSize: 32,
+    interval: 1,
+    getTitlesWidget: bottomTitleWidgets,
+  );
+  Widget bottomTitleWidgets(double value, TitleMeta meta) {
+    const style = TextStyle(color: Colors.grey, fontSize: 12);
+    Widget text;
+    switch (value.toInt()) {
+      case 1:
+        text = const Text('Sun', style: style);
+        break;
+      case 2:
+        text = const Text('Mon', style: style);
+        break;
+      case 3:
+        text = const Text('Tue', style: style);
+        break;
+      case 4:
+        text = const Text('Wed', style: style);
+        break;
+      case 5:
+        text = const Text('Thu', style: style);
+        break;
+      case 6:
+        text = const Text('Fri', style: style);
+        break;
+      case 7:
+        text = const Text('Sat', style: style);
+        break;
+      default:
+        text = const Text('');
+    }
+    return SideTitleWidget(meta: meta, space: 10, child: text);
+  }
+
   @override
   Widget build(BuildContext context) {
     var media = MediaQuery.of(context).size;
@@ -70,7 +187,6 @@ class _HomePageState extends State<HomePage> {
         gradient: LinearGradient(colors: [Colors.blue, Colors.deepPurple]),
       ),
     ];
-
     final tooltipsOnBar = lineBarsData[0];
     return Scaffold(
       extendBodyBehindAppBar: false,
@@ -86,7 +202,7 @@ class _HomePageState extends State<HomePage> {
               onPressed: () {},
               icon: Icon(Icons.arrow_back_rounded),
             ),
-            
+
             floating: false,
             pinned: true,
             //elevation: 25,
@@ -302,8 +418,8 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ),
                           SizedBox(height: media.width * 0.02),
+                          // main outer col of activity status
                           Column(
-                            // main outer col of activity status
                             children: [
                               Container(
                                 // heart rate
@@ -415,7 +531,8 @@ class _HomePageState extends State<HomePage> {
                                                   }).toList();
                                                 },
                                             touchTooltipData: LineTouchTooltipData(
-                                              tooltipBorderRadius: BorderRadius.circular(2),
+                                              tooltipBorderRadius:
+                                                  BorderRadius.circular(2),
                                               //tooltipBgColor: TColor.secondaryColor1,
                                               //tooltipRoundedRadius: 20,
                                               getTooltipItems:
@@ -491,6 +608,7 @@ class _HomePageState extends State<HomePage> {
                                 ),
                               ),
                               SizedBox(height: media.width * 0.04),
+                              // water intake, sleep, cals grey box
                               Container(
                                 decoration: BoxDecoration(
                                   color: Colors.grey.shade100.withValues(
@@ -518,7 +636,7 @@ class _HomePageState extends State<HomePage> {
                                         ),
                                       ),
                                       child: Column(
-                                        // main water col
+                                        // water intake col
                                         children: [
                                           Padding(
                                             padding: const EdgeInsets.symmetric(
@@ -555,26 +673,26 @@ class _HomePageState extends State<HomePage> {
                                           SizedBox(
                                             width: media.width * 0.9,
                                             //child: Expanded(
-                                              child: WigglyLinearLoader(
-                                                progress: 0.75,
-                                                height: media.width * 0.065,
-                                                wiggleCount: 1,
-                                                progressEndColor:
-                                                    Colors.blue.shade400,
-                                                progressColor:
-                                                    Colors.deepPurple.shade300,
-                                                trackColor: Colors.blue.shade50
-                                                    .withValues(alpha: 0.6),
-                                                borderRadius: 14,
-                                              ),
+                                            child: WigglyLinearLoader(
+                                              progress: 0.75,
+                                              height: media.width * 0.065,
+                                              wiggleCount: 1,
+                                              progressEndColor:
+                                                  Colors.blue.shade400,
+                                              progressColor:
+                                                  Colors.deepPurple.shade300,
+                                              trackColor: Colors.blue.shade50
+                                                  .withValues(alpha: 0.6),
+                                              borderRadius: 14,
+                                            ),
                                             //),
                                           ),
                                         ],
                                       ),
                                     ),
                                     SizedBox(height: media.width * 0.03),
+                                    // sleep and cals row
                                     Row(
-                                      // sleep and cals row
                                       children: [
                                         Expanded(
                                           child: Container(
@@ -691,6 +809,7 @@ class _HomePageState extends State<HomePage> {
                             ],
                           ),
                           SizedBox(height: media.width * 0.06),
+                          // WORKOUT PROGRESS AND DURATION BUTTON
                           Padding(
                             padding: const EdgeInsets.symmetric(
                               horizontal: 8.0,
@@ -707,55 +826,200 @@ class _HomePageState extends State<HomePage> {
                                   ),
                                 ),
                                 Container(
-                                  height: media.width*0.08,
-                                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                                  height: media.width * 0.08,
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 8,
+                                  ),
                                   decoration: BoxDecoration(
                                     color: Colors.blue,
                                     borderRadius: BorderRadius.circular(15),
                                   ),
                                   child: DropdownButtonHideUnderline(
                                     child: DropdownButton(
-                                      items: ["Weekly","Monthly"].map(
-                                        (name) => DropdownMenuItem(
-                                          value: name,
-                                          child: Text(
-                                            name,
-                                            style: TextStyle(
-                                              color: Colors.grey, fontSize: 14,
+                                      items: ["Weekly", "Monthly"]
+                                          .map(
+                                            (name) => DropdownMenuItem(
+                                              value: name,
+                                              child: Text(
+                                                name,
+                                                style: TextStyle(
+                                                  color: Colors.grey,
+                                                  fontSize: 14,
+                                                ),
+                                              ),
                                             ),
                                           )
-                                        )
-                                      ).toList(), 
+                                          .toList(),
                                       onChanged: (value) {},
-                                      icon: Icon(Icons.expand_more_rounded, color: Colors.white,),
+                                      icon: Icon(
+                                        Icons.expand_more_rounded,
+                                        color: Colors.white,
+                                      ),
                                       hint: Text(
                                         'Weekly',
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
-                                          color: Colors.white, fontSize: 12,
+                                          color: Colors.white,
+                                          fontSize: 12,
                                         ),
                                       ),
-                                    )
+                                    ),
                                   ),
                                 ),
                               ],
                             ),
                           ),
-                          SizedBox(
-                            height: media.width*0.03,
-                          ),
-                          // GRAPH
+                          SizedBox(height: media.width * 0.03),
+                          // Container(
+                          //   height: media.width*0.2,
+                          //   width: media.width,
+                          //   padding: EdgeInsets.all(8),
+                          //   decoration: BoxDecoration(
+                          //     color: Colors.grey.shade100,
+                          //     borderRadius: BorderRadius.circular(20),
+                          //   ),
+                          //   child: Text('graph'),
+                          // ),
+
+                          // WORKOUT PROGRESS GRAPH
                           Container(
-                            height: media.width*0.2,
-                            width: media.width,
-                            padding: EdgeInsets.all(8),
-                            decoration: BoxDecoration(
-                              color: Colors.grey.shade100,
-                              borderRadius: BorderRadius.circular(20),
+                            padding: const EdgeInsets.only(left: 15),
+                            height: media.width * 0.5,
+                            width: double.maxFinite,
+                            child: LineChart(
+                              LineChartData(
+                                showingTooltipIndicators: showingTooltipOnSpots
+                                    .map((index) {
+                                      return ShowingTooltipIndicators([
+                                        LineBarSpot(
+                                          tooltipsOnBar,
+                                          lineBarsData.indexOf(tooltipsOnBar),
+                                          tooltipsOnBar.spots[index],
+                                        ),
+                                      ]);
+                                    })
+                                    .toList(),
+                                lineTouchData: LineTouchData(
+                                  enabled: true,
+                                  handleBuiltInTouches: false,
+                                  touchCallback:
+                                      (
+                                        FlTouchEvent event,
+                                        LineTouchResponse? response,
+                                      ) {
+                                        if (response == null ||
+                                            response.lineBarSpots == null) {
+                                          return;
+                                        }
+                                        if (event is FlTapUpEvent) {
+                                          final spotIndex = response
+                                              .lineBarSpots!
+                                              .first
+                                              .spotIndex;
+                                          showingTooltipOnSpots.clear();
+                                          setState(() {
+                                            showingTooltipOnSpots.add(
+                                              spotIndex,
+                                            );
+                                          });
+                                        }
+                                      },
+                                  mouseCursorResolver:
+                                      (
+                                        FlTouchEvent event,
+                                        LineTouchResponse? response,
+                                      ) {
+                                        if (response == null ||
+                                            response.lineBarSpots == null) {
+                                          return SystemMouseCursors.basic;
+                                        }
+                                        return SystemMouseCursors.click;
+                                      },
+                                  getTouchedSpotIndicator:
+                                      (
+                                        LineChartBarData barData,
+                                        List<int> spotIndexes,
+                                      ) {
+                                        return spotIndexes.map((index) {
+                                          return TouchedSpotIndicatorData(
+                                            FlLine(color: Colors.transparent),
+                                            FlDotData(
+                                              show: true,
+                                              getDotPainter:
+                                                  (
+                                                    spot,
+                                                    percent,
+                                                    barData,
+                                                    index,
+                                                  ) => FlDotCirclePainter(
+                                                    radius: 3,
+                                                    color: Colors.white,
+                                                    strokeWidth: 3,
+                                                    strokeColor: Colors
+                                                        .deepPurple
+                                                        .shade300,
+                                                  ),
+                                            ),
+                                          );
+                                        }).toList();
+                                      },
+                                  touchTooltipData: LineTouchTooltipData(
+                                    //tooltipBgColor: TColor.secondaryColor1,
+                                    //tooltipRoundedRadius: 20,
+                                    getTooltipItems:
+                                        (List<LineBarSpot> lineBarsSpot) {
+                                          return lineBarsSpot.map((
+                                            lineBarSpot,
+                                          ) {
+                                            return LineTooltipItem(
+                                              "${lineBarSpot.x.toInt()} mins ago",
+                                              const TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 10,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            );
+                                          }).toList();
+                                        },
+                                  ),
+                                ),
+                                lineBarsData: lineBarsData1,
+                                minY: -0.5,
+                                maxY: 110,
+                                titlesData: FlTitlesData(
+                                  show: true,
+                                  leftTitles: AxisTitles(),
+                                  topTitles: AxisTitles(),
+                                  bottomTitles: AxisTitles(
+                                    sideTitles: bottomTitles,
+                                  ),
+                                  rightTitles: AxisTitles(
+                                    sideTitles: rightTitles,
+                                  ),
+                                ),
+                                gridData: FlGridData(
+                                  show: true,
+                                  drawHorizontalLine: true,
+                                  horizontalInterval: 25,
+                                  drawVerticalLine: false,
+                                  getDrawingHorizontalLine: (value) {
+                                    return FlLine(
+                                      color: Colors.grey.withValues(
+                                        alpha: 0.15,
+                                      ),
+                                      strokeWidth: 2,
+                                    );
+                                  },
+                                ),
+                                borderData: FlBorderData(
+                                  show: true,
+                                  border: Border.all(color: Colors.transparent),
+                                ),
+                              ),
                             ),
-                            child: Text('graph'),
                           ),
-                          SizedBox(height: media.width*0.1,)
+                          //SizedBox(height: media.width * 0.05),
+                          SizedBox(height: media.width * 0.1),
                         ],
                       ),
                     ),
