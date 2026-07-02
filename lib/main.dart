@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:forge/screens/home/activity_tracker.dart';
 import 'package:forge/screens/home/homepage.dart';
 import 'package:forge/screens/home/notification.dart';
 import 'package:forge/screens/main_tab/maintab.dart';
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       //home: SignIn(),
-      home: HomePage()
+      home: ActivityTracker()
     );
   }
 }
