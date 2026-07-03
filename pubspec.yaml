@@ -40,6 +40,7 @@ dependencies:
   wiggly_loaders: ^0.9.0
   fl_chart: ^1.2.0
   progresso: ^0.3.0
+  flutter_animation_progress_bar: ^2.3.1
   
 dev_dependencies:
   flutter_test:
