@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:forge/reusable_widget/workout_row.dart';
+import 'package:forge/screens/home/activity_tracker.dart';
 import 'package:forge/screens/home/notification.dart';
 import 'package:simple_circular_progress_bar/simple_circular_progress_bar.dart';
 import 'package:wiggly_loaders/wiggly_loaders.dart';
@@ -416,7 +417,14 @@ class _HomePageState extends State<HomePage> {
                                   ),
                                   child: MaterialButton(
                                     padding: EdgeInsets.zero,
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      Navigator.push(
+                                        context, 
+                                        MaterialPageRoute(
+                                          builder: (context) => ActivityTracker(),
+                                          )
+                                      );
+                                    },
                                     shape: RoundedRectangleBorder(
                                       borderRadius:
                                           BorderRadiusGeometry.circular(25),

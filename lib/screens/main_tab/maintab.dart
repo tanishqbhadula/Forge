@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:forge/reusable_widget/tab_button.dart';
 import 'package:forge/screens/home/blank.dart';
 import 'package:forge/screens/home/homepage.dart';
+import 'package:forge/screens/home/profile.dart';
 
 class MainTab extends StatefulWidget {
   const MainTab({super.key});
@@ -54,7 +55,7 @@ class _MainTabState extends State<MainTab> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                TabButton(
+                TabButton( // HOME
                   icon: Icons.home_filled,
                   selectIcon: Icon(Icons.home),
                   isActive: selectTab == 0,
@@ -94,13 +95,13 @@ class _MainTabState extends State<MainTab> {
                   },
                 ),
                 const Spacer(),
-                TabButton(
+                TabButton( // PROFILE
                   icon: Icons.person_2,
                   selectIcon: Icon(Icons.person_2),
                   isActive: selectTab == 3,
                   onTap: () {
                     selectTab = 3;
-                    currentTab = const Blank();
+                    currentTab = const Profile();
                     if (mounted) {
                       setState(() {});
                     }

@@ -1,5 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:forge/reusable_widget/latest_activity_row.dart';
 import 'package:http/http.dart';
 import 'package:flutter_animation_progress_bar/flutter_animation_progress_bar.dart';
 import 'package:progresso/progresso.dart';
@@ -13,6 +14,18 @@ class ActivityTracker extends StatefulWidget {
 }
 
 class _ActivityTracker extends State<ActivityTracker> {
+  List latestActivityArr = [
+    {
+      "image": "images/pic_4.png",
+      "title": "Drinking 300ml Water",
+      "time": "About 1 minutes ago",
+    },
+    {
+      "image": "images/pic_5.png",
+      "title": "Eat Snack (Fitbar)",
+      "time": "About 3 hours ago",
+    },
+  ];
   int touchedIndex = -1;
   @override
   Widget build(BuildContext context) {
@@ -66,7 +79,12 @@ class _ActivityTracker extends State<ActivityTracker> {
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                   decoration: BoxDecoration(
-                    color: Colors.blue.shade50.withValues(alpha: 0.75),
+                    //color: Colors.blue.shade50.withValues(alpha: 0.75),
+                    gradient: LinearGradient(
+                      colors: [Colors.blue.shade50.withValues(alpha: 1), Colors.deepPurple.shade50.withValues(alpha: 1)],
+                      begin: AlignmentGeometry.bottomLeft,
+                      end: AlignmentGeometry.topRight
+                    ),
                     borderRadius: BorderRadius.circular(media.width * 0.1),
                   ),
                   child: Column(
@@ -206,7 +224,7 @@ class _ActivityTracker extends State<ActivityTracker> {
                     ],
                   ),
                 ),
-                SizedBox(height: media.width * 0.05),
+                SizedBox(height: media.width * 0.07),
                 // ACTIVITY PROGRESS GRAPH DAYS
                 Container(
                   padding: EdgeInsets.all(4),
@@ -268,12 +286,17 @@ class _ActivityTracker extends State<ActivityTracker> {
                       // GRAPH
                       Container(
                         height: media.width * 0.5,
-                        padding: EdgeInsets.only(left: 4, right: 4, top: 16, bottom: 4),
+                        padding: EdgeInsets.only(
+                          //left: 4,
+                          //right: 4,
+                          top: 16,
+                          bottom: 4,
+                        ),
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(15),
                           boxShadow: [
-                           BoxShadow(color: Colors.black12, blurRadius: 5),
+                            BoxShadow(color: Colors.black12, blurRadius: 5),
                           ],
                         ),
                         child: BarChart(
@@ -376,9 +399,46 @@ class _ActivityTracker extends State<ActivityTracker> {
                   ),
                 ),
                 SizedBox(height: media.width * 0.05),
-                Container(
-                  
+                Padding(
+                  padding: EdgeInsets.only(left: 8),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Latest Activity',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black,
+                        ),
+                      ),
+                      MaterialButton(
+                        padding: EdgeInsets.zero,
+                        onPressed: () {},
+                        child: Text(
+                          'see more',
+                          style: TextStyle(
+                            color: Colors.grey,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 14,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
+                //LATEST ACTIVITY LIST
+                ListView.builder(
+                  padding: EdgeInsets.zero,
+                  itemCount: latestActivityArr.length,
+                  physics: NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  itemBuilder: (context, index) {
+                    var wObj = latestActivityArr[index] as Map? ?? {};
+                    return LatestActivityRow(wObj: wObj);
+                  },
+                ),
+                SizedBox(height: media.width * 0.1),
               ],
             ),
           ),
@@ -427,31 +487,38 @@ class _ActivityTracker extends State<ActivityTracker> {
     switch (i) {
       case 0:
         return makeGroupData(0, 16, [
-          Colors.blue.shade300,Colors.blue.shade500,
+          Colors.blue.shade300,
+          Colors.blue.shade500,
         ], isTouched: i == touchedIndex);
       case 1:
         return makeGroupData(1, 17, [
-          Colors.deepPurple.shade500,Colors.deepPurple.shade200,
+          Colors.deepPurple.shade500,
+          Colors.deepPurple.shade200,
         ], isTouched: i == touchedIndex);
       case 2:
         return makeGroupData(2, 15, [
-          Colors.blue.shade300,Colors.blue.shade500,
+          Colors.blue.shade300,
+          Colors.blue.shade500,
         ], isTouched: i == touchedIndex);
       case 3:
         return makeGroupData(3, 17, [
-          Colors.deepPurple.shade500, Colors.deepPurple.shade200,
+          Colors.deepPurple.shade500,
+          Colors.deepPurple.shade200,
         ], isTouched: i == touchedIndex);
       case 4:
         return makeGroupData(4, 15, [
-          Colors.blue.shade300,Colors.blue.shade500,
+          Colors.blue.shade300,
+          Colors.blue.shade500,
         ], isTouched: i == touchedIndex);
       case 5:
         return makeGroupData(5, 12.5, [
-          Colors.deepPurple.shade500, Colors.deepPurple.shade200,
+          Colors.deepPurple.shade500,
+          Colors.deepPurple.shade200,
         ], isTouched: i == touchedIndex);
       case 6:
         return makeGroupData(6, 13, [
-          Colors.blue.shade300,Colors.blue.shade500, 
+          Colors.blue.shade300,
+          Colors.blue.shade500,
         ], isTouched: i == touchedIndex);
       default:
         return throw Error();
