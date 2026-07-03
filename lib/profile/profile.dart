@@ -371,6 +371,10 @@ class _ProfileState extends State<Profile> {
                               )
                             ),
                             Switch(
+                              activeThumbColor: Colors.white,
+                              activeTrackColor: Colors.blue,
+                              inactiveThumbColor: Colors.grey.shade700,
+                              inactiveTrackColor: Colors.grey.shade100,
                               value: _notificationsEnabled, 
                               onChanged: (bool value) {
                                 setState(() {

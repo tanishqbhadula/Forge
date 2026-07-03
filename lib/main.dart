@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:forge/screens/home/activity_tracker.dart';
 import 'package:forge/screens/home/homepage.dart';
 import 'package:forge/screens/home/notification.dart';
-import 'package:forge/screens/home/profile.dart';
+import 'package:forge/profile/profile.dart';
 import 'package:forge/screens/main_tab/maintab.dart';
 
 void main() {

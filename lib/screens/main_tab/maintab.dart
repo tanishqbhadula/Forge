@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:forge/reusable_widget/tab_button.dart';
 import 'package:forge/screens/home/blank.dart';
 import 'package:forge/screens/home/homepage.dart';
-import 'package:forge/screens/home/profile.dart';
+import 'package:forge/profile/profile.dart';
 
 class MainTab extends StatefulWidget {
   const MainTab({super.key});
