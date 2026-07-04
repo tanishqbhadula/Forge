@@ -9,6 +9,7 @@ class Profile extends StatefulWidget {
 
 class _ProfileState extends State<Profile> {
   var _notificationsEnabled = true;
+  var _darkModeEnabled = false;
   @override
   Widget build(BuildContext context) {
     var media = MediaQuery.of(context).size;
@@ -379,6 +380,63 @@ class _ProfileState extends State<Profile> {
                               onChanged: (bool value) {
                                 setState(() {
                                   _notificationsEnabled = !_notificationsEnabled;
+                                });
+                              } 
+                            )
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(height: media.width * 0.04),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 6, vertical: 4),
+                  child: Container(
+                    padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                    width: media.width,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(media.width * 0.04),
+                      boxShadow: [
+                        BoxShadow(color: Colors.black12, blurRadius: 1),
+                      ],
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Theme',
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w700,
+                            color: Colors.black,
+                          ),
+                        ),
+                        SizedBox(height: media.width*0.03,),
+                        Row(
+                          children: [
+                            Icon(Icons.dark_mode, color: Colors.grey.shade900,),
+                            SizedBox(width: media.width*0.02,),
+                            Expanded(
+                              child: Text(
+                                'Dark Mode',
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.grey.shade800,
+                                ),
+                              )
+                            ),
+                            Switch(
+                              activeThumbColor: Colors.white,
+                              activeTrackColor: Colors.blue,
+                              inactiveThumbColor: Colors.grey.shade700,
+                              inactiveTrackColor: Colors.grey.shade100,
+                              value: _darkModeEnabled, 
+                              onChanged: (bool value) {
+                                setState(() {
+                                  _darkModeEnabled = !_darkModeEnabled;
                                 });
                               } 
                             )

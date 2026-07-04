@@ -32,7 +32,7 @@ class _MainTabState extends State<MainTab> {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(35),
               //color: Colors.blue,
-              gradient: LinearGradient(colors: [Colors.lightBlue.shade200,Colors.blue.shade400]),
+              gradient: LinearGradient(colors: [Colors.lightBlue.shade300,Colors.blue.shade400, Colors.lightBlue.shade600]),
               // boxShadow: const [
               //   BoxShadow(color: Colors.black12, blurRadius: 2, blurStyle: BlurStyle.outer),
               // ],
