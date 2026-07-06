@@ -18,9 +18,11 @@ class _FinishedWorkout extends State<FinishedWorkout> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              const SizedBox(height: 20),
+              SizedBox(
+                height: media.width*0.08,
+              ),
               Image.asset(
-                "assets/img/complete_workout.png",
+                'images/complete_workout.png',
                 height: media.width * 0.8,
                 fit: BoxFit.fitHeight,
               ),
@@ -54,16 +56,35 @@ class _FinishedWorkout extends State<FinishedWorkout> {
               ),
 
               const Spacer(),
-
-              //  RoundButton(
-              //     title: "Back To Home",
-              //     onPressed: () {
-              //       Navigator.pop(context);
-              //     }),
-
-              //    const SizedBox(
-              //   height: 8,
-              // ),
+              
+              Container(
+                width: media.width,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(25),
+                  color: Colors.blue,
+                ),
+                child: MaterialButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  height: 50,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadiusGeometry.circular(15),
+                  ),
+                  textColor: Colors.white,
+                  child: Text(
+                    'Back to home',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 16,
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: media.width*0.05,
+              ),
             ],
           ),
         ),
