@@ -43,7 +43,7 @@ class _ProfileState extends State<Profile> {
               height: 40,
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: Colors.transparent,
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Icon(Icons.more_horiz_rounded, color: Colors.black),

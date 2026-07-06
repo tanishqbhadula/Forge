@@ -289,7 +289,7 @@ class _HomePageState extends State<HomePage> {
                           Container(
                             // bmi box
                             //padding: EdgeInsets.all(16),
-                            //height: media.width * 0.4,
+                            height: media.width * 0.4,
                             width: media.width,
                             decoration: BoxDecoration(
                               gradient: LinearGradient(
@@ -306,79 +306,83 @@ class _HomePageState extends State<HomePage> {
                               children: [
                                 Image.asset(
                                   'images/bg_dots.png',
-                                  fit: BoxFit.fitHeight,
+                                  fit: BoxFit.cover,
                                   width: double.maxFinite,
                                   height: media.width * 0.4,
                                 ),
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 16,
-                                    vertical: 25,
-                                  ),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            'BMI (Body Mass Index)',
-                                            style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.w700,
-                                            ),
-                                          ),
-                                          Text(
-                                            'You have a normal weight',
-                                            style: TextStyle(
-                                              color: Colors.white.withValues(
-                                                alpha: 0.7,
+                                Container(
+                                  alignment: AlignmentGeometry.center,
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 16,
+                                      vertical: 25,
+                                    ),
+                                    child: Row(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Column(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              'BMI (Body Mass Index)',
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w700,
                                               ),
-                                              fontSize: 14,
                                             ),
-                                          ),
-                                          SizedBox(height: media.width * 0.05),
-                                          SizedBox(
-                                            width: 120,
-                                            height: 35,
-                                            child: Container(
-                                              decoration: BoxDecoration(
-                                                gradient: LinearGradient(
-                                                  colors: [
-                                                    Colors.pink.shade400,
-                                                    Colors.deepPurple.shade400,
-                                                  ],
+                                            Text(
+                                              'You have a normal weight',
+                                              style: TextStyle(
+                                                color: Colors.white.withValues(
+                                                  alpha: 0.7,
                                                 ),
-                                                borderRadius:
-                                                    BorderRadius.circular(25),
+                                                fontSize: 14,
                                               ),
-                                              child: MaterialButton(
-                                                onPressed: () {},
-                                                height: 50,
-                                                shape: RoundedRectangleBorder(
+                                            ),
+                                            SizedBox(height: media.width * 0.05),
+                                            SizedBox(
+                                              width: 120,
+                                              height: 35,
+                                              child: Container(
+                                                decoration: BoxDecoration(
+                                                  gradient: LinearGradient(
+                                                    colors: [
+                                                      Colors.pink.shade400,
+                                                      Colors.deepPurple.shade400,
+                                                    ],
+                                                  ),
                                                   borderRadius:
-                                                      BorderRadiusGeometry.circular(
-                                                        25,
-                                                      ),
+                                                      BorderRadius.circular(25),
                                                 ),
-                                                textColor: Colors.white,
-                                                child: Text(
-                                                  'View More',
-                                                  style: TextStyle(
-                                                    color: Colors.white,
-                                                    fontWeight: FontWeight.w600,
-                                                    fontSize: 14,
+                                                child: MaterialButton(
+                                                  onPressed: () {},
+                                                  height: 50,
+                                                  shape: RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadiusGeometry.circular(
+                                                          25,
+                                                        ),
+                                                  ),
+                                                  textColor: Colors.white,
+                                                  child: Text(
+                                                    'View More',
+                                                    style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontWeight: FontWeight.w600,
+                                                      fontSize: 14,
+                                                    ),
                                                   ),
                                                 ),
                                               ),
                                             ),
-                                          ),
-                                        ],
-                                      ),
-                                    ],
+                                          ],
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ],

@@ -540,7 +540,7 @@ class _WorkoutTrackerState extends State<WorkoutTracker> {
                     shrinkWrap: true,
                     itemBuilder: (context, index) {
                       var wObj = wantToTrainArr[index] as Map? ?? {};
-                      return WantToTrainRow(wObj:wObj);
+                      return WantToTrainRow(wObj: wObj);
                     },
                   ),
                   SizedBox(height: media.width*0.1,),
