@@ -3,6 +3,7 @@ import 'package:forge/reusable_widget/tab_button.dart';
 import 'package:forge/screens/home/blank.dart';
 import 'package:forge/screens/home/homepage.dart';
 import 'package:forge/profile/profile.dart';
+import 'package:forge/workout/workout_tracker.dart';
 
 class MainTab extends StatefulWidget {
   const MainTab({super.key});
@@ -74,7 +75,7 @@ class _MainTabState extends State<MainTab> {
                   isActive: selectTab == 1,
                   onTap: () {
                     selectTab = 1;
-                    currentTab = const Blank();
+                    currentTab = const WorkoutTracker();
                     if (mounted) {
                       setState(() {});
                     }

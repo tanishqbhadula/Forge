@@ -7,6 +7,7 @@ import 'package:forge/screens/home/notification.dart';
 import 'package:forge/profile/profile.dart';
 import 'package:forge/screens/main_tab/maintab.dart';
 import 'package:forge/workout/finished_workout.dart';
+import 'package:forge/workout/workout_tracker.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       //home: SignIn(),
-      home: FinishedWorkout()
+      home: MainTab()
     );
   }
 }

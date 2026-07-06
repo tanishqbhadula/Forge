@@ -12,7 +12,7 @@ class _BlankState extends State<Blank> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.red,
+      backgroundColor: Colors.white,
     );
   }
 }
