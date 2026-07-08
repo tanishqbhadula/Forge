@@ -224,8 +224,8 @@ class _HomePageState extends State<HomePage> {
         scrolledUnderElevation: 8,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(
-            bottom: Radius.circular(media.width*0.06),
-          )
+            bottom: Radius.circular(media.width * 0.06),
+          ),
         ),
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -261,7 +261,7 @@ class _HomePageState extends State<HomePage> {
                   MaterialPageRoute(builder: (context) => NotificationScreen()),
                 );
               },
-              icon: Icon(Icons.notifications, color: Colors.grey.shade900,),
+              icon: Icon(Icons.notifications, color: Colors.grey.shade900),
               iconSize: media.width * 0.08,
             ),
           ],
@@ -376,7 +376,7 @@ class _HomePageState extends State<HomePage> {
                 SizedBox(height: media.width * 0.06),
                 Container(
                   width: media.width,
-                  padding: EdgeInsets.symmetric(horizontal: 22, vertical: 8),
+                  padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                   decoration: BoxDecoration(
                     color: Colors.blue.shade100.withValues(alpha: 0.2),
                     borderRadius: BorderRadius.circular(media.width * 0.07),
@@ -542,7 +542,7 @@ class _HomePageState extends State<HomePage> {
                                           ) {
                                             return LineTooltipItem(
                                               "${lineBarSpot.x.toInt()} mins ago",
-                                              const TextStyle(
+                                                const TextStyle(
                                                 color: Colors.white,
                                                 fontSize: 10,
                                                 fontWeight: FontWeight.bold,

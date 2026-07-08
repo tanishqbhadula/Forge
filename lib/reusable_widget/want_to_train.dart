@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:forge/workout/workout_details.dart';
 
 class WantToTrainRow extends StatefulWidget {
   final Map wObj;
@@ -55,7 +56,14 @@ class _WantToTrainRowState extends State<WantToTrainRow> {
                   ),
                   child: MaterialButton(
                     padding: EdgeInsets.zero,
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context, 
+                        MaterialPageRoute(
+                          builder: (_) => WorkoutDetails(),
+                        )
+                      );
+                    },
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadiusGeometry.circular(25),
                     ),

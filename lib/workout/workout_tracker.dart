@@ -43,7 +43,7 @@ class _WorkoutTrackerState extends State<WorkoutTracker> {
       "time": "20mins",
     },
   ];
-  List<int> showingTooltipOnSpots = [21];
+  //List<int> showingTooltipOnSpots = [21];
   List<FlSpot> get allSpots => const [
     FlSpot(0, 20),
     FlSpot(1, 25),
@@ -119,7 +119,7 @@ class _WorkoutTrackerState extends State<WorkoutTracker> {
       FlSpot(4, 40),
       FlSpot(5, 80),
       FlSpot(6, 35),
-      FlSpot(7, 60),
+      FlSpot(7, 90),
     ],
   );
   // WORKOUT PROGRESS GRAPH PERCENTAGE TILES Y-AXIS
@@ -210,7 +210,7 @@ class _WorkoutTrackerState extends State<WorkoutTracker> {
     var media = MediaQuery.of(context).size;
     final lineBarsData = [
       LineChartBarData(
-        showingIndicators: showingTooltipOnSpots,
+        //showingIndicators: showingTooltipOnSpots,
         spots: allSpots,
         isCurved: false,
         barWidth: 1.8,
@@ -294,17 +294,17 @@ class _WorkoutTrackerState extends State<WorkoutTracker> {
                 alignment: AlignmentGeometry.center,
                 child: LineChart(
                   LineChartData(
-                    showingTooltipIndicators: showingTooltipOnSpots.map((
-                      index,
-                    ) {
-                      return ShowingTooltipIndicators([
-                        LineBarSpot(
-                          tooltipsOnBar,
-                          lineBarsData.indexOf(tooltipsOnBar),
-                          tooltipsOnBar.spots[index],
-                        ),
-                      ]);
-                    }).toList(),
+                    // showingTooltipIndicators: showingTooltipOnSpots.map((
+                    //   index,
+                    // ) {
+                    //   return ShowingTooltipIndicators([
+                    //     LineBarSpot(
+                    //       tooltipsOnBar,
+                    //       lineBarsData.indexOf(tooltipsOnBar),
+                    //       tooltipsOnBar.spots[index],
+                    //     ),
+                    //   ]);
+                    // }).toList(),
                     lineTouchData: LineTouchData(
                       enabled: true,
                       handleBuiltInTouches: false,
@@ -436,7 +436,7 @@ class _WorkoutTrackerState extends State<WorkoutTracker> {
                   SizedBox(height: media.width * 0.08),
                   Container(
                     width: media.width,
-                    padding: EdgeInsets.symmetric(horizontal: 22, vertical: 8),
+                    padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                     decoration: BoxDecoration(
                       color: Colors.blue.shade100.withValues(alpha: 0.2),
                       borderRadius: BorderRadius.circular(media.width * 0.07),
@@ -510,7 +510,7 @@ class _WorkoutTrackerState extends State<WorkoutTracker> {
                   ),
                   // UPCOMING WORKOUTS
                   ListView.builder(
-                    padding: EdgeInsets.zero,
+                    padding: EdgeInsets.symmetric(horizontal: 4),
                     itemCount: upcomingWorkoutArr.length,
                     physics: NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
@@ -534,7 +534,7 @@ class _WorkoutTrackerState extends State<WorkoutTracker> {
 
                   // WHAT DO YOU WANT TO TRAIN
                   ListView.builder(
-                    padding: EdgeInsets.zero,
+                    padding: EdgeInsets.symmetric(horizontal: 4,),
                     itemCount: wantToTrainArr.length,
                     physics: NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
@@ -543,7 +543,7 @@ class _WorkoutTrackerState extends State<WorkoutTracker> {
                       return WantToTrainRow(wObj: wObj);
                     },
                   ),
-                  SizedBox(height: media.width*0.1,),
+                  SizedBox(height: media.width * 0.1),
                 ],
               ),
             ),

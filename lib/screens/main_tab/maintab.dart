@@ -74,8 +74,8 @@ class _MainTabState extends State<MainTab> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  // 1. HOME
                   TabButton(
-                    // HOME
                     icon: Icons.home_filled,
                     selectIcon: Icon(Icons.home),
                     isActive: selectTab == 0,
@@ -88,8 +88,9 @@ class _MainTabState extends State<MainTab> {
                     },
                   ),
                   const Spacer(),
+                  // 2. WORKOUT TRACKER
                   TabButton(
-                    icon: Icons.local_activity,
+                    icon: Icons.timer,
                     selectIcon: Icon(Icons.local_activity),
                     isActive: selectTab == 1,
                     onTap: () {
