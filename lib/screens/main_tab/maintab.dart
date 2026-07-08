@@ -18,6 +18,7 @@ class _MainTabState extends State<MainTab> {
   final PageStorageBucket pageBucket = PageStorageBucket();
   @override
   Widget build(BuildContext context) {
+    var media = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.white,
       body: PageStorage(bucket: pageBucket, child: currentTab),
@@ -33,7 +34,13 @@ class _MainTabState extends State<MainTab> {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(35),
               //color: Colors.blue,
-              gradient: LinearGradient(colors: [Colors.lightBlue.shade300,Colors.blue.shade400, Colors.lightBlue.shade600]),
+              gradient: LinearGradient(
+                colors: [
+                  Colors.lightBlue.shade300,
+                  Colors.blue.shade400,
+                  Colors.lightBlue.shade600,
+                ],
+              ),
               // boxShadow: const [
               //   BoxShadow(color: Colors.black12, blurRadius: 2, blurStyle: BlurStyle.outer),
               // ],
@@ -44,71 +51,85 @@ class _MainTabState extends State<MainTab> {
       ),
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
-          boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.2), blurRadius: 10)]
+          //color: Colors.white,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: 0.2),
+              blurRadius: 10,
+            ),
+          ],
         ),
-        child: BottomAppBar(
-          elevation: 5,
-          shadowColor: Colors.black,
-          color: Colors.white,
-          child: Container(
-            height: kToolbarHeight,
-            padding: EdgeInsets.symmetric(horizontal: 10),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                TabButton( // HOME
-                  icon: Icons.home_filled,
-                  selectIcon: Icon(Icons.home),
-                  isActive: selectTab == 0,
-                  onTap: () {
-                    selectTab = 0;
-                    currentTab = const HomePage();
-                    if (mounted) {
-                      setState(() {});
-                    }
-                  },
-                ),
-                const Spacer(),
-                TabButton(
-                  icon: Icons.local_activity,
-                  selectIcon: Icon(Icons.local_activity),
-                  isActive: selectTab == 1,
-                  onTap: () {
-                    selectTab = 1;
-                    currentTab = const WorkoutTracker();
-                    if (mounted) {
-                      setState(() {});
-                    }
-                  },
-                ),
-                const SizedBox(width: 70),
-                const Spacer(),
-                TabButton(
-                  icon: Icons.camera_alt,
-                  selectIcon: Icon(Icons.camera_alt),
-                  isActive: selectTab == 2,
-                  onTap: () {
-                    selectTab = 2;
-                    currentTab = const Blank();
-                    if (mounted) {
-                      setState(() {});
-                    }
-                  },
-                ),
-                const Spacer(),
-                TabButton( // PROFILE
-                  icon: Icons.person_2,
-                  selectIcon: Icon(Icons.person_2),
-                  isActive: selectTab == 3,
-                  onTap: () {
-                    selectTab = 3;
-                    currentTab = const Profile();
-                    if (mounted) {
-                      setState(() {});
-                    }
-                  },
-                ),
-              ],
+        child: ClipRRect(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(media.width*0.06),
+            topRight: Radius.circular(media.width*0.06),
+          ),
+          child: BottomAppBar(
+            //elevation: 2,
+            //shadowColor: Colors.black12,
+            color: Colors.white,
+            child: Container(
+              height: kToolbarHeight,
+              padding: EdgeInsets.symmetric(horizontal: 10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  TabButton(
+                    // HOME
+                    icon: Icons.home_filled,
+                    selectIcon: Icon(Icons.home),
+                    isActive: selectTab == 0,
+                    onTap: () {
+                      selectTab = 0;
+                      currentTab = const HomePage();
+                      if (mounted) {
+                        setState(() {});
+                      }
+                    },
+                  ),
+                  const Spacer(),
+                  TabButton(
+                    icon: Icons.local_activity,
+                    selectIcon: Icon(Icons.local_activity),
+                    isActive: selectTab == 1,
+                    onTap: () {
+                      selectTab = 1;
+                      currentTab = const WorkoutTracker();
+                      if (mounted) {
+                        setState(() {});
+                      }
+                    },
+                  ),
+                  const SizedBox(width: 70),
+                  const Spacer(),
+                  TabButton(
+                    icon: Icons.camera_alt,
+                    selectIcon: Icon(Icons.camera_alt),
+                    isActive: selectTab == 2,
+                    onTap: () {
+                      selectTab = 2;
+                      currentTab = const Blank();
+                      if (mounted) {
+                        setState(() {});
+                      }
+                    },
+                  ),
+                  const Spacer(),
+                  TabButton(
+                    // PROFILE
+                    icon: Icons.person_2,
+                    selectIcon: Icon(Icons.person_2),
+                    isActive: selectTab == 3,
+                    onTap: () {
+                      selectTab = 3;
+                      currentTab = const Profile();
+                      if (mounted) {
+                        setState(() {});
+                      }
+                    },
+                  ),
+                ],
+              ),
             ),
           ),
         ),

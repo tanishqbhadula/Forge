@@ -16,8 +16,16 @@ class _ProfileState extends State<Profile> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        shadowColor: Colors.black12,
+        shadowColor: Colors.black26,
         backgroundColor: Colors.white,
+        surfaceTintColor: Colors.white,
+        elevation: 4,
+        scrolledUnderElevation: 8,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+            bottom: Radius.circular(media.width*0.06),
+          )
+        ),
         title: Text(
           'Profile',
           style: TextStyle(
@@ -27,29 +35,28 @@ class _ProfileState extends State<Profile> {
           ),
         ),
         centerTitle: true,
-        elevation: 0,
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: Icon(Icons.arrow_back_ios_rounded, color: Colors.black),
-        ),
-        actions: [
-          InkWell(
-            onTap: () {},
-            child: Container(
-              padding: EdgeInsets.all(8),
-              width: 40,
-              height: 40,
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                color: Colors.transparent,
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Icon(Icons.more_horiz_rounded, color: Colors.black),
-            ),
-          ),
-        ],
+        // leading: IconButton(
+        //   onPressed: () {
+        //     Navigator.pop(context);
+        //   },
+        //   icon: Icon(Icons.arrow_back_ios_rounded, color: Colors.black),
+        // ),
+        // actions: [
+        //   InkWell(
+        //     onTap: () {},
+        //     child: Container(
+        //       padding: EdgeInsets.all(8),
+        //       width: 40,
+        //       height: 40,
+        //       alignment: Alignment.center,
+        //       decoration: BoxDecoration(
+        //         color: Colors.transparent,
+        //         borderRadius: BorderRadius.circular(10),
+        //       ),
+        //       child: Icon(Icons.more_horiz_rounded, color: Colors.black),
+        //     ),
+        //   ),
+        // ],
       ),
       body: SingleChildScrollView(
         child: SafeArea(
