@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:forge/reusable_widget/exercise_set_section.dart';
+import 'package:forge/workout/exercise_step_details.dart';
 
 class WorkoutDetails extends StatefulWidget {
   const WorkoutDetails({super.key});
@@ -13,6 +15,38 @@ class _WorkoutDetailsState extends State<WorkoutDetails> {
     {"image": "images/skipping_rope.png", "title": "Skipping Rope"},
     {"image": "images/bottle.png", "title": "Bottle 1 Liters"},
   ];
+  List exercisesArr = [
+    {
+      "name": "Set 1",
+      "set": [
+        {"image": "images/img_1.png", "title": "Warm Up", "value": "05:00"},
+        {"image": "images/img_2.png", "title": "Jumping Jacks", "value": "12x"},
+        {"image": "images/img_1.png", "title": "Skipping", "value": "15x"},
+        {"image": "images/img_2.png", "title": "Squats", "value": "20x"},
+        {"image": "images/img_1.png", "title": "Arm Raises", "value": "00:53"},
+        {
+          "image": "images/img_2.png",
+          "title": "Rest and Drink",
+          "value": "02:00",
+        },
+      ],
+    },
+    {
+      "name": "Set 2",
+      "set": [
+        {"image": "images/img_1.png", "title": "Warm Up", "value": "05:00"},
+        {"image": "images/img_2.png", "title": "Jumping Jacks", "value": "12x"},
+        {"image": "images/img_1.png", "title": "Skipping", "value": "15x"},
+        {"image": "images/img_2.png", "title": "Squats", "value": "20x"},
+        {"image": "images/img_1.png", "title": "Arm Raises", "value": "00:53"},
+        {
+          "image": "images/img_2.png",
+          "title": "Rest and Drink",
+          "value": "02:00",
+        },
+      ],
+    },
+  ];
   var _isFavorite = false;
   @override
   Widget build(BuildContext context) {
@@ -20,8 +54,12 @@ class _WorkoutDetailsState extends State<WorkoutDetails> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        surfaceTintColor: Colors.white,
+        elevation: 10,
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pop(context);
+          },
           icon: Icon(
             Icons.arrow_back_ios_new_rounded,
             color: Colors.grey.shade800,
@@ -92,7 +130,7 @@ class _WorkoutDetailsState extends State<WorkoutDetails> {
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Icon(Icons.calendar_month, color: Colors.grey.shade800),
+                      Icon(Icons.calendar_month, color: Colors.black),
                       SizedBox(width: media.width * 0.02),
                       //Spacer(),
                       Expanded(
@@ -116,6 +154,7 @@ class _WorkoutDetailsState extends State<WorkoutDetails> {
                         style: TextStyle(
                           color: Colors.grey.shade900,
                           fontSize: 16,
+                          fontWeight: FontWeight.w600,
                         ),
                       ),
                       //Spacer(),
@@ -124,7 +163,7 @@ class _WorkoutDetailsState extends State<WorkoutDetails> {
                         onPressed: () {},
                         icon: Icon(
                           Icons.navigate_next_rounded,
-                          color: Colors.grey.shade800,
+                          color: Colors.black,
                         ),
                       ),
                     ],
@@ -142,7 +181,7 @@ class _WorkoutDetailsState extends State<WorkoutDetails> {
                     children: [
                       Icon(
                         Icons.insert_chart_outlined_sharp,
-                        color: Colors.grey.shade800,
+                        color: Colors.black,
                       ),
                       SizedBox(width: media.width * 0.02),
                       //Spacer(),
@@ -165,6 +204,7 @@ class _WorkoutDetailsState extends State<WorkoutDetails> {
                         style: TextStyle(
                           color: Colors.grey.shade900,
                           fontSize: 16,
+                          fontWeight: FontWeight.w600
                         ),
                       ),
                       //Spacer(),
@@ -173,7 +213,7 @@ class _WorkoutDetailsState extends State<WorkoutDetails> {
                         onPressed: () {},
                         icon: Icon(
                           Icons.navigate_next_rounded,
-                          color: Colors.grey.shade800,
+                          color: Colors.black,
                         ),
                       ),
                     ],
@@ -224,8 +264,8 @@ class _WorkoutDetailsState extends State<WorkoutDetails> {
                                 borderRadius: BorderRadius.circular(15),
                                 border: BoxBorder.all(
                                   color: Colors.black12,
-                                  width: 1.5
-                                )
+                                  width: 1.5,
+                                ),
                               ),
                               alignment: Alignment.center,
                               child: Image.asset(
@@ -236,13 +276,16 @@ class _WorkoutDetailsState extends State<WorkoutDetails> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 4),
+                              padding: const EdgeInsets.symmetric(
+                                vertical: 8.0,
+                                horizontal: 4,
+                              ),
                               child: Text(
                                 yObj["title"].toString(),
                                 style: TextStyle(
                                   color: Colors.black,
                                   fontSize: 13,
-                                  fontWeight: FontWeight.w600
+                                  fontWeight: FontWeight.w600,
                                 ),
                               ),
                             ),
@@ -252,17 +295,37 @@ class _WorkoutDetailsState extends State<WorkoutDetails> {
                     },
                   ),
                 ),
-                SizedBox(height: media.width*0.01,),
+                SizedBox(height: media.width * 0.01),
                 Text(
                   'Exercises',
                   style: TextStyle(
                     fontSize: 20,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.black,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.black,
                   ),
                 ),
-
-                
+                //SizedBox(height: media.width * 0.01),
+                ListView.builder(
+                  padding: EdgeInsets.zero,
+                  physics: const NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  itemCount: exercisesArr.length,
+                  itemBuilder: (context, index) {
+                    var sObj = exercisesArr[index] as Map? ?? {};
+                    return ExercisesSetSection(
+                      sObj: sObj,
+                      onPressed: (obj) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                ExercisesStepDetails(eObj: obj),
+                          ),
+                        );
+                      },
+                    );
+                  },
+                ),
               ],
             ),
           ),
