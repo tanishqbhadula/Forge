@@ -41,6 +41,7 @@ dependencies:
   fl_chart: ^1.2.0
   progresso: ^0.3.0
   flutter_animation_progress_bar: ^2.3.1
+  calendar_agenda: ^0.0.2+3
   
 dev_dependencies:
   flutter_test:

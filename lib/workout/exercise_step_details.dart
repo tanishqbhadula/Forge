@@ -16,25 +16,25 @@ class _ExercisesStepDetailsState extends State<ExercisesStepDetails> {
       "no": "01",
       "title": "Spread Your Arms",
       "detail":
-          "To make the gestures feel more relaxed, stretch your arms as you start this movement. No bending of hands."
+          "To make the gestures feel more relaxed, stretch your arms as you start this movement. No bending of hands.",
     },
     {
       "no": "02",
       "title": "Rest at The Toe",
       "detail":
-          "The basis of this movement is jumping. Now, what needs to be considered is that you have to use the tips of your feet"
+          "The basis of this movement is jumping. Now, what needs to be considered is that you have to use the tips of your feet",
     },
     {
       "no": "03",
       "title": "Adjust Foot Movement",
       "detail":
-          "Jumping Jack is not just an ordinary jump. But, you also have to pay close attention to leg movements."
+          "Jumping Jack is not just an ordinary jump. But, you also have to pay close attention to leg movements.",
     },
     {
       "no": "04",
       "title": "Clapping Both Hands",
       "detail":
-          "This cannot be taken lightly. You see, without realizing it, the clapping of your hands helps you to keep your rhythm while doing the Jumping Jack"
+          "This cannot be taken lightly. You see, without realizing it, the clapping of your hands helps you to keep your rhythm while doing the Jumping Jack",
     },
   ];
 
@@ -59,13 +59,14 @@ class _ExercisesStepDetailsState extends State<ExercisesStepDetails> {
             width: 40,
             alignment: Alignment.center,
             decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(10)),
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(10),
+            ),
             child: IconButton(
               onPressed: () {
                 Navigator.pop(context);
               },
-              icon: Icon(Icons.close_rounded, color: Colors.black,),
+              icon: Icon(Icons.close_rounded, color: Colors.black),
             ),
           ),
         ),
@@ -78,11 +79,12 @@ class _ExercisesStepDetailsState extends State<ExercisesStepDetails> {
               width: 40,
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(10)),
-              child: Icon(Icons.more_horiz_rounded, color: Colors.black,),
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Icon(Icons.more_horiz_rounded, color: Colors.black),
             ),
-          )
+          ),
         ],
       ),
       backgroundColor: Colors.white,
@@ -100,7 +102,7 @@ class _ExercisesStepDetailsState extends State<ExercisesStepDetails> {
                     height: media.width * 0.43,
                     decoration: BoxDecoration(
                       color: Colors.blue.shade100,
-                      borderRadius: BorderRadius.circular(20)
+                      borderRadius: BorderRadius.circular(20),
                     ),
                     child: Image.asset(
                       "images/video_temp.png",
@@ -113,8 +115,9 @@ class _ExercisesStepDetailsState extends State<ExercisesStepDetails> {
                     width: media.width,
                     height: media.width * 0.43,
                     decoration: BoxDecoration(
-                        color: Colors.grey.shade800.withValues(alpha: 0.2),
-                        borderRadius: BorderRadius.circular(20)),
+                      color: Colors.grey.shade800.withValues(alpha: 0.2),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
                   ),
                   IconButton(
                     onPressed: () {},
@@ -122,40 +125,34 @@ class _ExercisesStepDetailsState extends State<ExercisesStepDetails> {
                   ),
                 ],
               ),
-              const SizedBox(
-                height: 15,
-              ),
+              const SizedBox(height: 15),
               Text(
                 widget.eObj["title"].toString(),
                 style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w700),
+                  color: Colors.black,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w700,
+                ),
               ),
-              const SizedBox(
-                height: 4,
-              ),
+              const SizedBox(height: 4),
               Text(
                 "Easy | 390 Calories Burn",
                 style: TextStyle(
                   color: Colors.grey.shade600,
                   fontSize: 12,
-                  fontWeight: FontWeight.w600
+                  fontWeight: FontWeight.w600,
                 ),
               ),
-              const SizedBox(
-                height: 15,
-              ),
+              const SizedBox(height: 15),
               Text(
                 "Descriptions",
                 style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w700),
+                  color: Colors.black,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w700,
+                ),
               ),
-              const SizedBox(
-                height: 4,
-              ),
+              const SizedBox(height: 4),
               Text(
                 'A jumping jack, also known as a star jump and called a side-straddle hop in the US military, is a physical jumping exercise performed by jumping to a position with the legs spread wide A jumping jack, also known as a star jump and called a side-straddle hop in the US military, is a physical jumping exercise performed by jumping to a position with the legs spread wide',
                 maxLines: 5,
@@ -172,28 +169,29 @@ class _ExercisesStepDetailsState extends State<ExercisesStepDetails> {
                 // moreStyle:
                 //     const TextStyle(fontSize: 12, fontWeight: FontWeight.w700),
               ),
-              const SizedBox(
-                height: 15,
-              ),
+              const SizedBox(height: 15),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
                     "How To Do It",
                     style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w700),
-                  ),
-                  TextButton(
-                    onPressed: () {},
-                    child: Text(
-                      "${stepArr.length} Sets",
-                      style: TextStyle(color: Colors.grey, fontSize: 12, fontWeight: FontWeight.w600),
+                      color: Colors.black,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w700,
                     ),
-                  )
+                  ),
+                  Text(
+                    "${stepArr.length} Sets",
+                    style: TextStyle(
+                      color: Colors.grey,
+                      fontSize: 12,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
                 ],
               ),
+              SizedBox(height: media.width*0.03,),
               ListView.builder(
                 physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
@@ -209,9 +207,10 @@ class _ExercisesStepDetailsState extends State<ExercisesStepDetails> {
               Text(
                 "Custom Repetitions",
                 style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w700),
+                  color: Colors.black,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w700,
+                ),
               ),
               SizedBox(
                 height: 150,
@@ -223,9 +222,14 @@ class _ExercisesStepDetailsState extends State<ExercisesStepDetails> {
                     decoration: BoxDecoration(
                       //color: Colors.grey.shade100,
                       border: Border(
-                        top: BorderSide(color: Colors.grey.withValues(alpha: 0.2), width: 1),
+                        top: BorderSide(
+                          color: Colors.grey.withValues(alpha: 0.2),
+                          width: 1,
+                        ),
                         bottom: BorderSide(
-                            color: Colors.grey.withValues(alpha: 0.2), width: 1),
+                          color: Colors.grey.withValues(alpha: 0.2),
+                          width: 1,
+                        ),
                       ),
                     ),
                   ),
@@ -236,7 +240,7 @@ class _ExercisesStepDetailsState extends State<ExercisesStepDetails> {
                     return Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(Icons.local_fire_department, color:Colors.red,),
+                        Icon(Icons.local_fire_department, color: Colors.red),
                         Text(
                           " ${(index + 1) * 15} Calories Burnt",
                           style: TextStyle(color: Colors.grey, fontSize: 10),
@@ -244,21 +248,22 @@ class _ExercisesStepDetailsState extends State<ExercisesStepDetails> {
                         Text(
                           " ${index + 1} ",
                           style: TextStyle(
-                              color: Colors.grey,
-                              fontSize: 24,
-                              fontWeight: FontWeight.w500),
+                            color: Colors.grey,
+                            fontSize: 24,
+                            fontWeight: FontWeight.w500,
+                          ),
                         ),
                         Text(
                           " times",
                           style: TextStyle(color: Colors.grey, fontSize: 16),
-                        )
+                        ),
                       ],
                     );
                   },
                 ),
               ),
               //Spacer(),
-              SizedBox(height: media.width*0.02,),
+              SizedBox(height: media.width * 0.02),
               Container(
                 width: media.width,
                 decoration: BoxDecoration(
