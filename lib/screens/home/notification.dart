@@ -23,6 +23,7 @@ class _NotificationState extends State<NotificationScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        surfaceTintColor: Colors.white,
         shadowColor: Colors.black12,
         backgroundColor: Colors.white,
         title: Text(
@@ -34,8 +35,9 @@ class _NotificationState extends State<NotificationScreen> {
           ),
         ),
         centerTitle: true,
-        elevation: 0,
+        elevation: 10,
         leading: IconButton(
+          padding: EdgeInsets.zero,
           onPressed: () {
             Navigator.pop(context);
           },
@@ -50,7 +52,7 @@ class _NotificationState extends State<NotificationScreen> {
               height: 40,
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: Colors.transparent,
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Icon(Icons.more_horiz_rounded, color: Colors.black,),

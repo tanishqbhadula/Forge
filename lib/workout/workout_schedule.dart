@@ -146,10 +146,6 @@ class _WorkoutScheduleState extends State<WorkoutSchedule> {
             backgroundColor: Colors.blue.shade800,
             calendarBackground: Colors.blue.shade800,
             controller: _calendarAgendaController,
-            // leading: IconButton(
-            //   onPressed: () {},
-            //   icon: Icon(Icons.arrow_back_ios_new_rounded),
-            // ),
             fullCalendar: true,
             fullCalendarScroll: FullCalendarScroll.horizontal,
             calendarEventColor: Colors.blue.shade900,

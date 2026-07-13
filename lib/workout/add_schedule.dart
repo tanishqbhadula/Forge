@@ -70,7 +70,12 @@ class _AddScheduleViewState extends State<AddSchedule> {
       backgroundColor: Colors.white,
       body: SafeArea(
         child: Container(
-          padding: const EdgeInsets.only(top: 15, bottom: 5, left: 25, right: 25),
+          padding: const EdgeInsets.only(
+            top: 15,
+            bottom: 5,
+            left: 25,
+            right: 25,
+          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -88,7 +93,7 @@ class _AddScheduleViewState extends State<AddSchedule> {
                   ),
                 ],
               ),
-              SizedBox(height: media.width*0.05),
+              SizedBox(height: media.width * 0.05),
               Text(
                 "Select Time",
                 style: TextStyle(
@@ -137,7 +142,7 @@ class _AddScheduleViewState extends State<AddSchedule> {
               IconTitleNextRow(
                 icon: Icons.fitness_center_outlined,
                 title: "Custom Repetitions",
-                time: "",
+                time: "10",
                 color: Colors.grey.shade100,
                 onPressed: () {},
               ),
@@ -145,7 +150,7 @@ class _AddScheduleViewState extends State<AddSchedule> {
               IconTitleNextRow(
                 icon: Icons.fitness_center_outlined,
                 title: "Custom Weights",
-                time: "",
+                time: "15",
                 color: Colors.grey.shade100,
                 onPressed: () {},
               ),

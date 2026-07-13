@@ -378,7 +378,8 @@ class _HomePageState extends State<HomePage> {
                   width: media.width,
                   padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                   decoration: BoxDecoration(
-                    color: Colors.blue.shade100.withValues(alpha: 0.2),
+                    //color: Colors.blue.shade100.withValues(alpha: 0.2),
+                    color: Colors.grey.shade100.withValues(alpha: 0.75),
                     borderRadius: BorderRadius.circular(media.width * 0.07),
                   ),
                   child: Row(
@@ -450,158 +451,161 @@ class _HomePageState extends State<HomePage> {
                         color: Colors.blue.shade50.withValues(alpha: 0.5),
                         borderRadius: BorderRadius.circular(media.width * 0.1),
                       ),
-                      child: Stack(
-                        children: [
-                          // LOAD GRAPH
-                          SizedBox(
-                            child: LineChart(
-                              LineChartData(
-                                showingTooltipIndicators: showingTooltipOnSpots
-                                    .map((index) {
-                                      return ShowingTooltipIndicators([
-                                        LineBarSpot(
-                                          tooltipsOnBar,
-                                          lineBarsData.indexOf(tooltipsOnBar),
-                                          tooltipsOnBar.spots[index],
-                                        ),
-                                      ]);
-                                    })
-                                    .toList(),
-                                lineTouchData: LineTouchData(
-                                  enabled: true,
-                                  handleBuiltInTouches: false,
-                                  touchCallback:
-                                      (
-                                        FlTouchEvent event,
-                                        LineTouchResponse? response,
-                                      ) {
-                                        if (response == null ||
-                                            response.lineBarSpots == null) {
-                                          return;
-                                        }
-                                        if (event is FlTapUpEvent) {
-                                          final spotIndex = response
-                                              .lineBarSpots!
-                                              .first
-                                              .spotIndex;
-                                          showingTooltipOnSpots.clear();
-                                          setState(() {
-                                            showingTooltipOnSpots.add(
-                                              spotIndex,
-                                            );
-                                          });
-                                        }
-                                      },
-                                  mouseCursorResolver:
-                                      (
-                                        FlTouchEvent event,
-                                        LineTouchResponse? response,
-                                      ) {
-                                        if (response == null ||
-                                            response.lineBarSpots == null) {
-                                          return SystemMouseCursors.basic;
-                                        }
-                                        return SystemMouseCursors.click;
-                                      },
-                                  getTouchedSpotIndicator:
-                                      (
-                                        LineChartBarData barData,
-                                        List<int> spotIndexes,
-                                      ) {
-                                        return spotIndexes.map((index) {
-                                          return TouchedSpotIndicatorData(
-                                            FlLine(color: Colors.red),
-                                            FlDotData(
-                                              show: true,
-                                              getDotPainter:
-                                                  (
-                                                    spot,
-                                                    percent,
-                                                    barData,
-                                                    index,
-                                                  ) => FlDotCirclePainter(
-                                                    radius: 3,
-                                                    color: Colors.white,
-                                                    strokeWidth: 3,
-                                                    strokeColor: Colors.blue,
-                                                  ),
-                                            ),
-                                          );
-                                        }).toList();
-                                      },
-                                  touchTooltipData: LineTouchTooltipData(
-                                    tooltipBorderRadius: BorderRadius.circular(
-                                      2,
-                                    ),
-                                    //tooltipBgColor: TColor.secondaryColor1,
-                                    //tooltipRoundedRadius: 20,
-                                    getTooltipItems:
-                                        (List<LineBarSpot> lineBarsSpot) {
-                                          return lineBarsSpot.map((
-                                            lineBarSpot,
-                                          ) {
-                                            return LineTooltipItem(
-                                              "${lineBarSpot.x.toInt()} mins ago",
-                                                const TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 10,
-                                                fontWeight: FontWeight.bold,
+                      child: ClipRRect(
+                        borderRadius: BorderRadiusGeometry.circular(media.width*0.1),
+                        child: Stack(
+                          children: [
+                            // LOAD GRAPH
+                            SizedBox(
+                              child: LineChart(
+                                LineChartData(
+                                  showingTooltipIndicators: showingTooltipOnSpots
+                                      .map((index) {
+                                        return ShowingTooltipIndicators([
+                                          LineBarSpot(
+                                            tooltipsOnBar,
+                                            lineBarsData.indexOf(tooltipsOnBar),
+                                            tooltipsOnBar.spots[index],
+                                          ),
+                                        ]);
+                                      })
+                                      .toList(),
+                                  lineTouchData: LineTouchData(
+                                    enabled: true,
+                                    handleBuiltInTouches: false,
+                                    touchCallback:
+                                        (
+                                          FlTouchEvent event,
+                                          LineTouchResponse? response,
+                                        ) {
+                                          if (response == null ||
+                                              response.lineBarSpots == null) {
+                                            return;
+                                          }
+                                          if (event is FlTapUpEvent) {
+                                            final spotIndex = response
+                                                .lineBarSpots!
+                                                .first
+                                                .spotIndex;
+                                            showingTooltipOnSpots.clear();
+                                            setState(() {
+                                              showingTooltipOnSpots.add(
+                                                spotIndex,
+                                              );
+                                            });
+                                          }
+                                        },
+                                    mouseCursorResolver:
+                                        (
+                                          FlTouchEvent event,
+                                          LineTouchResponse? response,
+                                        ) {
+                                          if (response == null ||
+                                              response.lineBarSpots == null) {
+                                            return SystemMouseCursors.basic;
+                                          }
+                                          return SystemMouseCursors.click;
+                                        },
+                                    getTouchedSpotIndicator:
+                                        (
+                                          LineChartBarData barData,
+                                          List<int> spotIndexes,
+                                        ) {
+                                          return spotIndexes.map((index) {
+                                            return TouchedSpotIndicatorData(
+                                              FlLine(color: Colors.red),
+                                              FlDotData(
+                                                show: true,
+                                                getDotPainter:
+                                                    (
+                                                      spot,
+                                                      percent,
+                                                      barData,
+                                                      index,
+                                                    ) => FlDotCirclePainter(
+                                                      radius: 3,
+                                                      color: Colors.white,
+                                                      strokeWidth: 3,
+                                                      strokeColor: Colors.blue,
+                                                    ),
                                               ),
                                             );
                                           }).toList();
                                         },
+                                    touchTooltipData: LineTouchTooltipData(
+                                      tooltipBorderRadius: BorderRadius.circular(
+                                        2,
+                                      ),
+                                      //tooltipBgColor: TColor.secondaryColor1,
+                                      //tooltipRoundedRadius: 20,
+                                      getTooltipItems:
+                                          (List<LineBarSpot> lineBarsSpot) {
+                                            return lineBarsSpot.map((
+                                              lineBarSpot,
+                                            ) {
+                                              return LineTooltipItem(
+                                                "${lineBarSpot.x.toInt()} mins ago",
+                                                  const TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 10,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              );
+                                            }).toList();
+                                          },
+                                    ),
                                   ),
-                                ),
-                                lineBarsData: lineBarsData,
-                                minY: 0,
-                                maxY: 130,
-                                titlesData: FlTitlesData(show: false),
-                                gridData: FlGridData(show: false),
-                                borderData: FlBorderData(
-                                  show: true,
-                                  border: Border.all(color: Colors.transparent),
+                                  lineBarsData: lineBarsData,
+                                  minY: 0,
+                                  maxY: 130,
+                                  titlesData: FlTitlesData(show: false),
+                                  gridData: FlGridData(show: false),
+                                  borderData: FlBorderData(
+                                    show: true,
+                                    border: Border.all(color: Colors.transparent),
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(25),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'Heart Rate',
-                                      style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 16.5,
-                                        fontWeight: FontWeight.w700,
+                            Padding(
+                              padding: const EdgeInsets.all(25),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        'Heart Rate',
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w700,
+                                        ),
                                       ),
-                                    ),
-                                    Text(
-                                      '78 BPM',
-                                      style: TextStyle(
-                                        color: Colors.blue.shade900,
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.w700,
+                                      Text(
+                                        '78 BPM',
+                                        style: TextStyle(
+                                          color: Colors.blue.shade900,
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w700,
+                                        ),
                                       ),
-                                    ),
-                                    SizedBox(height: media.width * 0.05),
-                                  ],
-                                ),
-                              ],
+                                      SizedBox(height: media.width * 0.05),
+                                    ],
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                     SizedBox(height: media.width * 0.04),
                     // water intake, sleep, cals grey box
                     Container(
                       decoration: BoxDecoration(
-                        color: Colors.grey.shade100.withValues(alpha: 0.5),
+                        color: Colors.grey.shade100.withValues(alpha: 0.75),
                         borderRadius: BorderRadius.circular(media.width * 0.1),
                       ),
                       padding: EdgeInsets.symmetric(
@@ -636,7 +640,7 @@ class _HomePageState extends State<HomePage> {
                                       Text(
                                         'Water intake',
                                         style: TextStyle(
-                                          fontSize: 18,
+                                          fontSize: 17,
                                           fontWeight: FontWeight.w700,
                                           color: Colors.black,
                                         ),
@@ -645,7 +649,7 @@ class _HomePageState extends State<HomePage> {
                                       Text(
                                         '4 Liters',
                                         style: TextStyle(
-                                          fontSize: 18,
+                                          fontSize: 17,
                                           fontWeight: FontWeight.w600,
                                           color: Colors.blue.shade900,
                                         ),
@@ -697,7 +701,7 @@ class _HomePageState extends State<HomePage> {
                                       Text(
                                         'Sleep',
                                         style: TextStyle(
-                                          fontSize: 18,
+                                          fontSize: 17,
                                           fontWeight: FontWeight.w700,
                                           color: Colors.black,
                                         ),
@@ -711,7 +715,7 @@ class _HomePageState extends State<HomePage> {
                                           Text(
                                             '8h 20m',
                                             style: TextStyle(
-                                              fontSize: 18,
+                                              fontSize: 17,
                                               fontWeight: FontWeight.w600,
                                               color: Colors.blue.shade900,
                                             ),
@@ -747,7 +751,7 @@ class _HomePageState extends State<HomePage> {
                                       Text(
                                         'Cals',
                                         style: TextStyle(
-                                          fontSize: 18,
+                                          fontSize: 17,
                                           fontWeight: FontWeight.w700,
                                           color: Colors.black,
                                         ),
@@ -756,7 +760,7 @@ class _HomePageState extends State<HomePage> {
                                       Text(
                                         '2360 kCals',
                                         style: TextStyle(
-                                          fontSize: 18,
+                                          fontSize: 17,
                                           fontWeight: FontWeight.w600,
                                           color: Colors.blue.shade900,
                                         ),

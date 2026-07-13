@@ -69,25 +69,34 @@ class _WorkoutDetailsState extends State<WorkoutDetails> {
         centerTitle: true,
         backgroundColor: Colors.white,
         shadowColor: Colors.black26,
-        title: Padding(
-          padding: const EdgeInsets.all(0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              //Spacer(),
-              IconButton(
-                onPressed: () {
-                  setState(() {
-                    _isFavorite = !_isFavorite;
-                  });
-                },
-                icon: _isFavorite
-                    ? Icon(Icons.favorite, color: Colors.red)
-                    : Icon(Icons.favorite_border, color: Colors.grey.shade800),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 8.0),
+            child: InkWell(
+              onTap: () {},
+              child: Container(
+                //padding: EdgeInsets.all(8),
+                width: 40,
+                height: 40,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  color: Colors.transparent,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: IconButton(
+                  onPressed: () {
+                    setState(() {
+                      _isFavorite = !_isFavorite;
+                    });
+                  },
+                  icon: _isFavorite
+                      ? Icon(Icons.favorite, color: Colors.red)
+                      : Icon(Icons.favorite_border, color: Colors.grey.shade800),
+                ),
               ),
-            ],
+            ),
           ),
-        ),
+        ],
       ),
       body: SingleChildScrollView(
         child: SafeArea(
@@ -204,7 +213,7 @@ class _WorkoutDetailsState extends State<WorkoutDetails> {
                         style: TextStyle(
                           color: Colors.grey.shade900,
                           fontSize: 16,
-                          fontWeight: FontWeight.w600
+                          fontWeight: FontWeight.w600,
                         ),
                       ),
                       //Spacer(),
