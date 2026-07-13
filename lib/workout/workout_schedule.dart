@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
 import 'package:calendar_agenda/calendar_agenda.dart';
+import 'package:forge/workout/add_schedule.dart';
 import 'package:intl/intl.dart';
 
 class WorkoutSchedule extends StatefulWidget {
@@ -102,7 +103,7 @@ class _WorkoutScheduleState extends State<WorkoutSchedule> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         surfaceTintColor: Colors.white,
-        shadowColor: Colors.black26,
+        shadowColor: Colors.black,
         backgroundColor: Colors.white,
         title: Text(
           'Workout Schedule',
@@ -140,18 +141,22 @@ class _WorkoutScheduleState extends State<WorkoutSchedule> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          //SizedBox(height: media.width*0.03,),
           CalendarAgenda(
-            backgroundColor: Colors.transparent,
+            backgroundColor: Colors.blue.shade800,
             calendarBackground: Colors.blue.shade800,
             controller: _calendarAgendaController,
-            leading: IconButton(
-              onPressed: () {},
-              icon: Icon(Icons.arrow_back_ios_new_rounded),
-            ),
-            // fullCalendar: false,
+            // leading: IconButton(
+            //   onPressed: () {},
+            //   icon: Icon(Icons.arrow_back_ios_new_rounded),
+            // ),
+            fullCalendar: true,
+            fullCalendarScroll: FullCalendarScroll.horizontal,
+            calendarEventColor: Colors.blue.shade900,
+            calendarEventSelectedColor: Colors.white,
             selectedDayPosition: SelectedDayPosition.center,
-            dateColor: Colors.black,
-            selectedDateColor: Colors.blue.shade900,
+            dateColor: Colors.white,
+            selectedDateColor: Colors.blue.shade800,
             locale: 'en',
             weekDay: WeekDay.short,
             fullCalendarDay: WeekDay.short,
@@ -170,6 +175,7 @@ class _WorkoutScheduleState extends State<WorkoutSchedule> {
               });
             },
           ),
+          SizedBox(height: media.width*0.03,),
           Expanded(
             child: SingleChildScrollView(
               scrollDirection: Axis.horizontal,
@@ -208,7 +214,6 @@ class _WorkoutScheduleState extends State<WorkoutSchedule> {
                                   var min = (sObj["date"] as DateTime).minute;
                                   //(0 to 2)
                                   var pos = (min / 60) * 2 - 1;
-
                                   return Align(
                                     alignment: Alignment(pos, 0),
                                     child: InkWell(
@@ -438,6 +443,35 @@ class _WorkoutScheduleState extends State<WorkoutSchedule> {
             ),
           ),
         ],
+      ),
+      floatingActionButton: InkWell(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => AddSchedule(
+                    date: _selectedDateAppBBar,
+              )
+            )
+          );
+        },
+        child: Container(
+          width: 55,
+          height: 55,
+          decoration: BoxDecoration(
+              color: Colors.blue,
+              borderRadius: BorderRadius.circular(27.5),
+              boxShadow: const [
+                BoxShadow(
+                    color: Colors.black26, blurRadius: 8)
+              ]),
+          alignment: Alignment.center,
+          child: Icon(
+            Icons.add,
+            size: 20,
+            color: Colors.white,
+          ),
+        ),
       ),
     );
   }

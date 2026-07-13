@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       //home: SignIn(),
-      home: WorkoutSchedule()
+      home: MainTab()
     );
   }
 }

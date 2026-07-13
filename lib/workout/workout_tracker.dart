@@ -2,6 +2,7 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:forge/reusable_widget/upcoming_workout_row.dart';
 import 'package:forge/reusable_widget/want_to_train.dart';
+import 'package:forge/workout/workout_schedule.dart';
 
 class WorkoutTracker extends StatefulWidget {
   const WorkoutTracker({super.key});
@@ -461,7 +462,12 @@ class _WorkoutTrackerState extends State<WorkoutTracker> {
                           ),
                           child: MaterialButton(
                             padding: EdgeInsets.zero,
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.push(
+                                context, 
+                                MaterialPageRoute(builder: (_) => WorkoutSchedule())
+                              );
+                            },
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadiusGeometry.circular(25),
                             ),
