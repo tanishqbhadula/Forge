@@ -42,7 +42,8 @@ dependencies:
   progresso: ^0.3.0
   flutter_animation_progress_bar: ^2.3.1
   calendar_agenda: ^0.0.2+3
-  
+  intl: ^0.17.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
