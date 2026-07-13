@@ -158,7 +158,9 @@ class _AddScheduleViewState extends State<AddSchedule> {
                   color: Colors.blue.shade500,
                 ),
                 child: MaterialButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
                   height: 50,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadiusGeometry.circular(25),
