@@ -53,15 +53,15 @@ class _WorkoutScheduleState extends State<WorkoutSchedule> {
 
   Random random = new Random();
   List eventArr = [
-    {"name": "Ab Workout", "start_time": "25/05/2023 07:30 AM"},
-    {"name": "Upperbody Workout", "start_time": "25/05/2023 09:00 AM"},
-    {"name": "Lowerbody Workout", "start_time": "25/05/2023 03:00 PM"},
-    {"name": "Ab Workout", "start_time": "26/05/2023 07:30 AM"},
-    {"name": "Upperbody Workout", "start_time": "26/05/2023 09:00 AM"},
-    {"name": "Lowerbody Workout", "start_time": "26/05/2023 03:00 PM"},
-    {"name": "Ab Workout", "start_time": "27/05/2023 07:30 AM"},
-    {"name": "Upperbody Workout", "start_time": "27/05/2023 09:00 AM"},
-    {"name": "Lowerbody Workout", "start_time": "27/05/2023 03:00 PM"},
+    {"name": "Ab Workout", "start_time": "13/07/2026 07:30 AM"},
+    {"name": "Upperbody Workout", "start_time": "06/07/2026 09:00 AM"},
+    {"name": "Lowerbody Workout", "start_time": "06/07/2026 03:00 PM"},
+    {"name": "Ab Workout", "start_time": "14/07/2026 07:30 AM"},
+    {"name": "Upperbody Workout", "start_time": "08/07/2026 09:00 AM"},
+    {"name": "Lowerbody Workout", "start_time": "08/07/2026 03:00 PM"},
+    {"name": "Ab Workout", "start_time": "07/07/2026 07:30 AM"},
+    {"name": "Upperbody Workout", "start_time": "10/07/2026 09:00 AM"},
+    {"name": "Lowerbody Workout", "start_time": "10/07/2026 03:00 PM"},
   ];
 
   List selectDayEventArr = [];
@@ -167,7 +167,7 @@ class _WorkoutScheduleState extends State<WorkoutSchedule> {
             ),
             onDateSelected: (date) {
               setState(() {
-                _selectedDateNotAppBBar = date;
+                _selectedDateAppBBar = date;
               });
             },
           ),
