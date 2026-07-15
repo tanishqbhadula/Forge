@@ -60,8 +60,8 @@ class _WorkoutScheduleState extends State<WorkoutSchedule> {
     {"name": "Upperbody Workout", "start_time": "08/07/2026 09:00 AM"},
     {"name": "Lowerbody Workout", "start_time": "08/07/2026 03:00 PM"},
     {"name": "Ab Workout", "start_time": "07/07/2026 07:30 AM"},
-    {"name": "Upperbody Workout", "start_time": "10/07/2026 09:00 AM"},
-    {"name": "Lowerbody Workout", "start_time": "10/07/2026 03:00 PM"},
+    {"name": "Upperbody Workout", "start_time": "15/07/2026 09:00 AM"},
+    {"name": "Lowerbody Workout", "start_time": "15/07/2026 03:00 PM"},
   ];
 
   List selectDayEventArr = [];
@@ -168,10 +168,11 @@ class _WorkoutScheduleState extends State<WorkoutSchedule> {
             onDateSelected: (date) {
               setState(() {
                 _selectedDateAppBBar = date;
+                setDayEventWorkoutList();
               });
             },
           ),
-          SizedBox(height: media.width*0.03,),
+          SizedBox(height: media.width * 0.03),
           Expanded(
             child: SingleChildScrollView(
               scrollDirection: Axis.horizontal,
@@ -222,11 +223,11 @@ class _WorkoutScheduleState extends State<WorkoutSchedule> {
                                                   Colors.transparent,
                                               contentPadding: EdgeInsets.zero,
                                               content: Container(
-                                                padding:
-                                                    const EdgeInsets.symmetric(
-                                                      vertical: 15,
-                                                      horizontal: 20,
-                                                    ),
+                                                padding: EdgeInsets.symmetric(
+                                                  vertical: media.width * 0.04,
+                                                  horizontal:
+                                                      media.width * 0.05,
+                                                ),
                                                 decoration: BoxDecoration(
                                                   color: Colors.white,
                                                   borderRadius:
@@ -238,85 +239,76 @@ class _WorkoutScheduleState extends State<WorkoutSchedule> {
                                                   crossAxisAlignment:
                                                       CrossAxisAlignment.start,
                                                   children: [
-                                                    Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceBetween,
-                                                      children: [
-                                                        InkWell(
-                                                          onTap: () {
-                                                            Navigator.pop(
-                                                              context,
-                                                            );
-                                                          },
-                                                          child: Container(
-                                                            margin:
-                                                                const EdgeInsets.all(
-                                                                  8,
-                                                                ),
-                                                            height: 40,
-                                                            width: 40,
-                                                            alignment: Alignment
-                                                                .center,
-                                                            decoration:
-                                                                BoxDecoration(
-                                                                  color: Colors
-                                                                      .grey,
-                                                                  borderRadius:
-                                                                      BorderRadius.circular(
-                                                                        10,
-                                                                      ),
-                                                                ),
-                                                            child: Image.asset(
-                                                              "assets/img/closed_btn.png",
-                                                              width: 15,
-                                                              height: 15,
-                                                              fit: BoxFit
-                                                                  .contain,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                        Text(
-                                                          "Workout Schedule",
-                                                          style: TextStyle(
-                                                            color: Colors.black,
-                                                            fontSize: 16,
-                                                            fontWeight:
-                                                                FontWeight.w700,
-                                                          ),
-                                                        ),
-                                                        InkWell(
-                                                          onTap: () {},
-                                                          child: Container(
-                                                            margin:
-                                                                const EdgeInsets.all(
-                                                                  8,
-                                                                ),
-                                                            height: 40,
-                                                            width: 40,
-                                                            alignment: Alignment
-                                                                .center,
-                                                            decoration:
-                                                                BoxDecoration(
-                                                                  color: Colors
-                                                                      .grey,
-                                                                  borderRadius:
-                                                                      BorderRadius.circular(
-                                                                        10,
-                                                                      ),
-                                                                ),
-                                                            child: Image.asset(
-                                                              "assets/img/more_btn.png",
-                                                              width: 15,
-                                                              height: 15,
-                                                              fit: BoxFit
-                                                                  .contain,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                    const SizedBox(height: 15),
+                                                    // Row(
+                                                    //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                    //   children: [
+                                                    //     Icon(Icons.close_rounded),
+                                                    //     // InkWell(
+                                                    //     //   onTap: () {
+                                                    //     //     Navigator.pop(context,);
+                                                    //     //   },
+                                                    //     //   child: Container(
+                                                    //     //     margin:
+                                                    //     //         EdgeInsets.symmetric(horizontal: 2),
+                                                    //     //     height: 40,
+                                                    //     //     width: 40,
+                                                    //     //     alignment: Alignment.center,
+                                                    //     //     decoration:
+                                                    //     //         BoxDecoration(
+                                                    //     //           color: Colors.transparent,
+                                                    //     //           borderRadius:
+                                                    //     //               BorderRadius.circular(10,),
+                                                    //     //         ),
+                                                    //     //     child: Icon(Icons.close_rounded),
+                                                    //     //   ),
+                                                    //     // ),
+                                                    //     SizedBox(width: media.width*0.08),
+                                                    //     Container(
+                                                    //       alignment: Alignment.center,
+                                                    //       //width: media.width,
+                                                    //       child: Text(
+                                                    //         "Workout Schedule",
+                                                    //         style: TextStyle(
+                                                    //           color: Colors.black,
+                                                    //           fontSize: 16,
+                                                    //           fontWeight:
+                                                    //               FontWeight.w700,
+                                                    //         ),
+                                                    //       ),
+                                                    //     ),
+                                                    //     Spacer()
+                                                    //     // InkWell(
+                                                    //     //   onTap: () {},
+                                                    //     //   child: Container(
+                                                    //     //     margin:
+                                                    //     //         const EdgeInsets.all(
+                                                    //     //           8,
+                                                    //     //         ),
+                                                    //     //     height: 40,
+                                                    //     //     width: 40,
+                                                    //     //     alignment: Alignment
+                                                    //     //         .center,
+                                                    //     //     decoration:
+                                                    //     //         BoxDecoration(
+                                                    //     //           color: Colors
+                                                    //     //               .grey,
+                                                    //     //           borderRadius:
+                                                    //     //               BorderRadius.circular(
+                                                    //     //                 10,
+                                                    //     //               ),
+                                                    //     //         ),
+                                                    //     //     child: Image.asset(
+                                                    //     //       "assets/img/more_btn.png",
+                                                    //     //       width: 15,
+                                                    //     //       height: 15,
+                                                    //     //       fit: BoxFit
+                                                    //     //           .contain,
+                                                    //     //     ),
+                                                    //     //   ),
+                                                    //     // ),
+                                                    //   ],
+                                                    // ),
+                                                    // SizedBox(height: media.width*0.03),
                                                     Text(
                                                       sObj["name"].toString(),
                                                       style: TextStyle(
@@ -326,11 +318,13 @@ class _WorkoutScheduleState extends State<WorkoutSchedule> {
                                                             FontWeight.w700,
                                                       ),
                                                     ),
-                                                    const SizedBox(height: 4),
+                                                    SizedBox(
+                                                      height:
+                                                          media.width * 0.03,
+                                                    ),
                                                     Row(
                                                       children: [
-                                                        Container(
-                                                          //"assets/img/time_workout.png",
+                                                        SizedBox(
                                                           height: 20,
                                                           width: 20,
                                                           child: Icon(
@@ -342,18 +336,27 @@ class _WorkoutScheduleState extends State<WorkoutSchedule> {
                                                           width: 8,
                                                         ),
                                                         Text(
-                                                          "${getDayTitle(sObj["start_time"].toString())}|${getStringDateToOtherFormate(sObj["start_time"].toString(), outFormatStr: "h:mm aa")}",
+                                                          "${getDayTitle(sObj["start_time"].toString())} | ${getStringDateToOtherFormate(sObj["start_time"].toString(), outFormatStr: "h:mm aa")}",
                                                           style: TextStyle(
-                                                            color: Colors.grey,
+                                                            color: Colors
+                                                                .grey
+                                                                .shade600,
                                                             fontSize: 12,
+                                                            fontWeight:
+                                                                FontWeight.w600,
                                                           ),
                                                         ),
                                                       ],
                                                     ),
-
-                                                    const SizedBox(height: 15),
+                                                    SizedBox(
+                                                      height:
+                                                          media.width * 0.05,
+                                                    ),
                                                     Container(
+                                                      padding: EdgeInsets.zero,
                                                       width: media.width,
+                                                      height:
+                                                          media.width * 0.115,
                                                       decoration: BoxDecoration(
                                                         borderRadius:
                                                             BorderRadius.circular(
@@ -364,8 +367,12 @@ class _WorkoutScheduleState extends State<WorkoutSchedule> {
                                                             .shade500,
                                                       ),
                                                       child: MaterialButton(
-                                                        onPressed: () {},
-                                                        height: 50,
+                                                        onPressed: () {
+                                                          Navigator.pop(
+                                                            context,
+                                                          );
+                                                        },
+                                                        height: 30,
                                                         shape: RoundedRectangleBorder(
                                                           borderRadius:
                                                               BorderRadiusGeometry.circular(
@@ -393,16 +400,17 @@ class _WorkoutScheduleState extends State<WorkoutSchedule> {
                                       },
                                       child: Container(
                                         height: 35,
-                                        width: availWidth * 0.5,
+                                        //width: availWidth * 0.75,
+                                        width: availWidth * 0.65,
                                         padding: const EdgeInsets.symmetric(
                                           horizontal: 8,
                                         ),
-                                        alignment: Alignment.centerLeft,
+                                        alignment: Alignment.center,
                                         decoration: BoxDecoration(
                                           gradient: LinearGradient(
                                             colors: [
-                                              Colors.blue,
-                                              Colors.deepPurple,
+                                              Colors.blue.shade500,
+                                              Colors.deepPurple.shade500,
                                             ],
                                           ),
                                           borderRadius: BorderRadius.circular(
@@ -415,6 +423,7 @@ class _WorkoutScheduleState extends State<WorkoutSchedule> {
                                           style: TextStyle(
                                             color: Colors.white,
                                             fontSize: 12,
+                                            fontWeight: FontWeight.w600,
                                           ),
                                         ),
                                       ),
@@ -445,28 +454,20 @@ class _WorkoutScheduleState extends State<WorkoutSchedule> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => AddSchedule(
-                    date: _selectedDateAppBBar,
-              )
-            )
+              builder: (context) => AddSchedule(date: _selectedDateAppBBar),
+            ),
           );
         },
         child: Container(
           width: 55,
           height: 55,
           decoration: BoxDecoration(
-              color: Colors.blue,
-              borderRadius: BorderRadius.circular(27.5),
-              boxShadow: const [
-                BoxShadow(
-                    color: Colors.black26, blurRadius: 8)
-              ]),
-          alignment: Alignment.center,
-          child: Icon(
-            Icons.add,
-            size: 20,
-            color: Colors.white,
+            color: Colors.blue,
+            borderRadius: BorderRadius.circular(27.5),
+            boxShadow: const [BoxShadow(color: Colors.black26, blurRadius: 8)],
           ),
+          alignment: Alignment.center,
+          child: Icon(Icons.add, size: 20, color: Colors.white),
         ),
       ),
     );
