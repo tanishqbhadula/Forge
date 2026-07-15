@@ -104,10 +104,6 @@ class _WorkoutTrackerState extends State<WorkoutTracker> {
   // WORKOUT PROGRESS GRAPH LINE 2
   LineChartBarData get lineChartBarData1_2 => LineChartBarData(
     isCurved: true,
-    // gradient: LinearGradient(
-    //   colors: [Colors.cyan, Colors.blueGrey],
-    // ),
-    //color: Colors.deepPurple.shade300.withValues(alpha: 0.9),
     color: Colors.white,
     barWidth: 2.5,
     isStrokeCapRound: true,
@@ -315,14 +311,6 @@ class _WorkoutTrackerState extends State<WorkoutTracker> {
                                 response.lineBarSpots == null) {
                               return;
                             }
-                            // if (event is FlTapUpEvent) {
-                            //   final spotIndex =
-                            //       response.lineBarSpots!.first.spotIndex;
-                            //   showingTooltipOnSpots.clear();
-                            //   setState(() {
-                            //     showingTooltipOnSpots.add(spotIndex);
-                            //   });
-                            // }
                           },
                       mouseCursorResolver:
                           (FlTouchEvent event, LineTouchResponse? response) {

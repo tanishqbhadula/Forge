@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:forge/reusable_widget/workout_row.dart';
 import 'package:forge/screens/home/activity_tracker.dart';
 import 'package:forge/screens/home/notification.dart';
+import 'package:forge/screens/meal_planner/meal_planner.dart';
 import 'package:simple_circular_progress_bar/simple_circular_progress_bar.dart';
 import 'package:wiggly_loaders/wiggly_loaders.dart';
 import 'package:fl_chart/fl_chart.dart';
@@ -227,43 +228,48 @@ class _HomePageState extends State<HomePage> {
             bottom: Radius.circular(media.width * 0.06),
           ),
         ),
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+        title: Column(
           children: [
             Row(
-              textBaseline: TextBaseline.alphabetic,
-              crossAxisAlignment: CrossAxisAlignment.baseline,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
-                  'hi,',
-                  style: TextStyle(
-                    color: Colors.grey,
-                    fontSize: 17,
-                    fontWeight: FontWeight.w500,
-                  ),
+                Row(
+                  textBaseline: TextBaseline.alphabetic,
+                  crossAxisAlignment: CrossAxisAlignment.baseline,
+                  children: [
+                    Text(
+                      'hi,',
+                      style: TextStyle(
+                        color: Colors.grey,
+                        fontSize: 17,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    SizedBox(width: media.width * 0.012),
+                    Text(
+                      'Username',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 21,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
                 ),
-                SizedBox(width: media.width * 0.012),
-                Text(
-                  'Username',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 21,
-                    fontWeight: FontWeight.bold,
-                  ),
+                Spacer(),
+                IconButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => NotificationScreen()),
+                    );
+                  },
+                  icon: Icon(Icons.notifications, color: Colors.grey.shade900),
+                  iconSize: media.width * 0.08,
                 ),
               ],
             ),
-            Spacer(),
-            IconButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => NotificationScreen()),
-                );
-              },
-              icon: Icon(Icons.notifications, color: Colors.grey.shade900),
-              iconSize: media.width * 0.08,
-            ),
+            SizedBox(height: media.width*0.01,)
           ],
         ),
       ),
@@ -783,6 +789,60 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                   ],
+                ),
+                SizedBox(height: media.width * 0.06),
+                Container(
+                  width: media.width,
+                  padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                  decoration: BoxDecoration(
+                    //color: Colors.blue.shade100.withValues(alpha: 0.2),
+                    color: Colors.grey.shade100.withValues(alpha: 0.75),
+                    borderRadius: BorderRadius.circular(media.width * 0.07),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Meal Plan",
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                      Container(
+                        height: 40,
+                        width: 75,
+                        decoration: BoxDecoration(
+                          color: Colors.blue,
+                          borderRadius: BorderRadius.circular(25),
+                        ),
+                        child: MaterialButton(
+                          padding: EdgeInsets.zero,
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => MealPlanner(),
+                              ),
+                            );
+                          },
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadiusGeometry.circular(25),
+                          ),
+                          textColor: Colors.white,
+                          child: Text(
+                            'Check',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w500,
+                              fontSize: 14,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
                 SizedBox(height: media.width * 0.06),
                 // WORKOUT PROGRESS AND DURATION BUTTON

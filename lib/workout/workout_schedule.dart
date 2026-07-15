@@ -91,7 +91,7 @@ class _WorkoutScheduleState extends State<WorkoutSchedule> {
         })
         .toList();
 
-    if (mounted) {
+    if(mounted) {
       setState(() {});
     }
   }

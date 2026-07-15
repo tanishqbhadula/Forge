@@ -44,7 +44,7 @@ class _AddScheduleViewState extends State<AddSchedule> {
           ),
         ),
         title: Text(
-          "Schedule Workout",
+          "Schedule New Workout",
           style: TextStyle(
             color: Colors.black,
             fontSize: 20,
@@ -164,6 +164,7 @@ class _AddScheduleViewState extends State<AddSchedule> {
                 ),
                 child: MaterialButton(
                   onPressed: () {
+                    //TODO (ADD WORKOUT TO LIST)
                     Navigator.pop(context);
                   },
                   height: 50,
