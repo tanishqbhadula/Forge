@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
+import 'package:forge/reusable_widget/find_eat_cell.dart';
+import 'package:forge/reusable_widget/today_meal_row.dart';
+import 'package:forge/screens/meal_planner/meal_food_details.dart';
 
 class MealPlanner extends StatefulWidget {
   const MealPlanner({super.key});
@@ -9,6 +12,24 @@ class MealPlanner extends StatefulWidget {
 }
 
 class _MealPlannerState extends State<MealPlanner> {
+  List todayMealArr = [
+    {
+      "name": "Salmon Nigiri",
+      "image": "images/m_1.png",
+      "time": "28/05/2023 07:00 AM",
+    },
+    {
+      "name": "Lowfat Milk",
+      "image": "images/m_2.png",
+      "time": "28/05/2023 08:00 AM",
+    },
+  ];
+
+  List findEatArr = [
+    {"name": "Breakfast", "image": "images/m_3.png", "number": "120+ Foods"},
+    {"name": "Lunch", "image": "images/m_1.png", "number": "130+ Foods"},
+  ];
+
   List<FlSpot> get allSpots => const [
     FlSpot(0, 20),
     FlSpot(1, 25),
@@ -42,30 +63,13 @@ class _MealPlannerState extends State<MealPlanner> {
     FlSpot(29, 60),
     FlSpot(30, 40),
   ];
+
   List<LineChartBarData> get lineBarsData1 => [
     //lineChartBarData1_1,
     lineChartBarData1_2,
   ];
-  // WORKOUT PROGRESS GRAPH LINE 1
-  // LineChartBarData get lineChartBarData1_1 => LineChartBarData(
-  //   isCurved: true,
-  //   //gradient: LinearGradient(colors: [Colors.blue.shade300, Colors.deepPurple.shade300]),
-  //   color: Colors.blue.shade600.withValues(alpha: 0.6),
-  //   barWidth: 2.5,
-  //   isStrokeCapRound: true,
-  //   dotData: const FlDotData(show: false),
-  //   belowBarData: BarAreaData(show: false),
-  //   spots: const [
-  //     FlSpot(1, 35),
-  //     FlSpot(2, 70),
-  //     FlSpot(3, 40),
-  //     FlSpot(4, 80),
-  //     FlSpot(5, 25),
-  //     FlSpot(6, 70),
-  //     FlSpot(7, 35),
-  //   ],
-  // );
-  // WORKOUT PROGRESS GRAPH LINE 2
+
+  // WORKOUT PROGRESS GRAPH LINE
   LineChartBarData get lineChartBarData1_2 => LineChartBarData(
     isCurved: true,
     color: Colors.deepPurple.shade200,
@@ -188,6 +192,7 @@ class _MealPlannerState extends State<MealPlanner> {
         gradient: LinearGradient(colors: [Colors.blue, Colors.deepPurple]),
       ),
     ];
+
     final tooltipsOnBar = lineBarsData[0];
 
     return Scaffold(
@@ -387,7 +392,7 @@ class _MealPlannerState extends State<MealPlanner> {
                     ),
                   ),
                 ),
-                SizedBox(height: media.width*0.05,),
+                SizedBox(height: media.width * 0.05),
                 Container(
                   width: media.width,
                   padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
@@ -441,7 +446,7 @@ class _MealPlannerState extends State<MealPlanner> {
                     ],
                   ),
                 ),
-                SizedBox(height: media.width*0.05,),
+                SizedBox(height: media.width * 0.05),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   child: Row(
@@ -464,27 +469,34 @@ class _MealPlannerState extends State<MealPlanner> {
                         ),
                         child: DropdownButtonHideUnderline(
                           child: DropdownButton(
-                            items: ["Weekly", "Monthly"]
-                                .map(
-                                  (name) => DropdownMenuItem(
-                                    value: name,
-                                    child: Text(
-                                      name,
-                                      style: TextStyle(
-                                        color: Colors.grey,
-                                        fontSize: 14,
+                            items:
+                                [
+                                      "Breakfast",
+                                      "Lunch",
+                                      "Dinner",
+                                      "Snack",
+                                      "Dessert",
+                                    ]
+                                    .map(
+                                      (name) => DropdownMenuItem(
+                                        value: name,
+                                        child: Text(
+                                          name,
+                                          style: TextStyle(
+                                            color: Colors.grey,
+                                            fontSize: 14,
+                                          ),
+                                        ),
                                       ),
-                                    ),
-                                  ),
-                                )
-                                .toList(),
+                                    )
+                                    .toList(),
                             onChanged: (value) {},
                             icon: Icon(
                               Icons.expand_more_rounded,
                               color: Colors.white,
                             ),
                             hint: Text(
-                              'Weekly',
+                              'Breakfast',
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 color: Colors.white,
@@ -497,6 +509,55 @@ class _MealPlannerState extends State<MealPlanner> {
                     ],
                   ),
                 ),
+                SizedBox(height: media.width * 0.03),
+                ListView.builder(
+                  padding: EdgeInsets.zero,
+                  physics: const NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  itemCount: todayMealArr.length,
+                  itemBuilder: (context, index) {
+                    var mObj = todayMealArr[index] as Map? ?? {};
+                    return TodayMealRow(mObj: mObj);
+                  },
+                ),
+                SizedBox(height: media.width * 0.03),
+                Container(
+                  width: media.width,
+                  alignment: Alignment.centerLeft,
+                  padding: EdgeInsetsGeometry.symmetric(horizontal: media.width*0.03),
+                  child: Text(
+                    'Find something to eat',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: media.width * 0.55,
+                  child: ListView.builder(
+                    //padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                    scrollDirection: Axis.horizontal,
+                    itemCount: findEatArr.length,
+                    itemBuilder: (context, index) {
+                      var fObj = findEatArr[index] as Map? ?? {};
+                      return InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  MealFoodDetailsView(eObj: fObj),
+                            ),
+                          );
+                        },
+                        child: FindEatCell(fObj: fObj, index: index),
+                      );
+                    },
+                  ),
+                ),
+                SizedBox(height: media.width * 0.05),
               ],
             ),
           ),
