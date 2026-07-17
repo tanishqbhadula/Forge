@@ -69,6 +69,7 @@ class _MealFoodDetailsViewState extends State<MealFoodDetailsView> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
+        surfaceTintColor: Colors.white,
         centerTitle: true,
         elevation: 0,
         leading: InkWell(
@@ -81,7 +82,7 @@ class _MealFoodDetailsViewState extends State<MealFoodDetailsView> {
             width: 40,
             alignment: Alignment.center,
             decoration: BoxDecoration(
-              color: Colors.grey,
+              color: Colors.transparent,
               borderRadius: BorderRadius.circular(10),
             ),
             child: Icon(Icons.arrow_back_ios_new_rounded),
@@ -91,7 +92,7 @@ class _MealFoodDetailsViewState extends State<MealFoodDetailsView> {
           widget.eObj["name"].toString(),
           style: TextStyle(
             color: Colors.black,
-            fontSize: 16,
+            fontSize: 20,
             fontWeight: FontWeight.w700,
           ),
         ),
@@ -104,144 +105,157 @@ class _MealFoodDetailsViewState extends State<MealFoodDetailsView> {
               width: 40,
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                color: Colors.grey,
+                color: Colors.transparent,
                 borderRadius: BorderRadius.circular(10),
               ),
-              child: Icon(Icons.more_horiz_rounded),
+              child: Icon(Icons.more_horiz_rounded, color: Colors.black,),
             ),
           ),
         ],
       ),
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              margin: const EdgeInsets.symmetric(horizontal: 20),
-              padding: const EdgeInsets.symmetric(horizontal: 8),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(15),
-                boxShadow: const [
-                  BoxShadow(
-                    color: Colors.black12,
-                    blurRadius: 2,
-                    offset: Offset(0, 1),
-                  ),
-                ],
-              ),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: TextField(
-                      controller: txtSearch,
-                      decoration: InputDecoration(
-                        focusedBorder: InputBorder.none,
-                        enabledBorder: InputBorder.none,
-                        prefixIcon: Icon(Icons.search),
-                        hintText: "Search Pancake",
+        child: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 12.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 20),
+                  padding: const EdgeInsets.symmetric(horizontal: 8,),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(15),
+                    boxShadow: const [
+                      BoxShadow(
+                        color: Colors.black12,
+                        blurRadius: 8,
+                        //offset: Offset(0, 1),
                       ),
-                    ),
+                    ],
                   ),
-                  Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 8),
-                    width: 1,
-                    height: 25,
-                    color: Colors.grey.withValues(alpha: 0.3),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Expanded(
+                        child: TextField(
+                          textAlign: TextAlign.start,
+                          controller: txtSearch,
+                          decoration: InputDecoration(
+                            focusedBorder: InputBorder.none,
+                            enabledBorder: InputBorder.none,
+                            prefixIcon: Icon(Icons.search, color: Colors.black,),
+                            hintText: "Search Pancake",
+                            hintStyle: TextStyle(
+                              color: Colors.grey,
+                            )
+                          ),
+                        ),
+                      ),
+                      Container(
+                        margin: const EdgeInsets.symmetric(horizontal: 8),
+                        width: 1,
+                        height: 25,
+                        color: Colors.grey.withValues(alpha: 0.3),
+                      ),
+                      InkWell(onTap: () {}, child: Icon(Icons.filter_alt, color: Colors.black,)),
+                    ],
                   ),
-                  InkWell(onTap: () {}, child: Icon(Icons.filter_alt)),
-                ],
-              ),
-            ),
-            SizedBox(height: media.width * 0.05),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Category",
+                ),
+                SizedBox(height: media.width * 0.05),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Category",
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: media.width*0.01,),
+                SizedBox( 
+                  height: media.width *0.23,
+                  child: ListView.builder(
+                    padding: EdgeInsets.symmetric(horizontal: 15.0,),
+                    scrollDirection: Axis.horizontal,
+                    itemCount: categoryArr.length,
+                    itemBuilder: (context, index) {
+                      var cObj = categoryArr[index] as Map? ?? {};
+                      return MealCategoryCell(cObj: cObj, index: index);
+                    },
+                  ),
+                ),
+                SizedBox(height: media.width * 0.05),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                  child: Text(
+                    "Recommended",
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: 16,
                       fontWeight: FontWeight.w700,
                     ),
                   ),
-                ],
-              ),
-            ),
-            SizedBox(
-              height: 120,
-              child: ListView.builder(
-                padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                scrollDirection: Axis.horizontal,
-                itemCount: categoryArr.length,
-                itemBuilder: (context, index) {
-                  var cObj = categoryArr[index] as Map? ?? {};
-                  return MealCategoryCell(cObj: cObj, index: index);
-                },
-              ),
-            ),
-            SizedBox(height: media.width * 0.05),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0),
-              child: Text(
-                "Recommendation\nfor Diet",
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w700,
                 ),
-              ),
-            ),
-            SizedBox(
-              height: media.width * 0.6,
-              child: ListView.builder(
-                padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                scrollDirection: Axis.horizontal,
-                itemCount: recommendArr.length,
-                itemBuilder: (context, index) {
-                  var fObj = recommendArr[index] as Map? ?? {};
-                  return MealRecommendCell(fObj: fObj, index: index);
-                },
-              ),
-            ),
-            SizedBox(height: media.width * 0.05),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0),
-              child: Text(
-                "Popular",
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w700,
+                SizedBox(height: media.width*0.01,),
+                SizedBox(
+                  height: media.width * 0.57,
+                  child: ListView.builder(
+                    padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                    scrollDirection: Axis.horizontal,
+                    itemCount: recommendArr.length,
+                    itemBuilder: (context, index) {
+                      var fObj = recommendArr[index] as Map? ?? {};
+                      return MealRecommendCell(fObj: fObj, index: index);
+                    },
+                  ),
                 ),
-              ),
-            ),
-            ListView.builder(
-              padding: const EdgeInsets.symmetric(horizontal: 15.0),
-              physics: const NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-              itemCount: popularArr.length,
-              itemBuilder: (context, index) {
-                var fObj = popularArr[index] as Map? ?? {};
-                return InkWell(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) =>
-                            FoodInfoDetails(dObj: fObj, mObj: widget.eObj),
-                      ),
+                SizedBox(height: media.width * 0.05),
+                Padding( // HERE
+                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                  child: Text(
+                    "Popular",
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                ),
+                ListView.builder(
+                  padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                  physics: const NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  itemCount: popularArr.length,
+                  itemBuilder: (context, index) {
+                    var fObj = popularArr[index] as Map? ?? {};
+                    return InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                FoodInfoDetails(dObj: fObj, mObj: widget.eObj),
+                          ),
+                        );
+                      },
+                      child: PopularMealRow(mObj: fObj),
                     );
                   },
-                  child: PopularMealRow(mObj: fObj),
-                );
-              },
+                ),
+                SizedBox(height: media.width * 0.05),
+              ],
             ),
-            SizedBox(height: media.width * 0.05),
-          ],
+          ),
         ),
       ),
     );

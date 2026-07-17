@@ -8,16 +8,18 @@ class MealRecommendCell extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var media = MediaQuery.of(context).size;
-    bool isEvent = index % 2 == 0;
+    bool isEven = index % 2 == 0;
     return Container(
-      margin: const EdgeInsets.all(5),
+      margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 7),
       width: media.width * 0.5,
       decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: isEvent
-              ? [Colors.blue.shade300, Colors.blue]
-              : [Colors.deepPurple.shade300, Colors.deepPurple],
-        ),
+        // gradient: LinearGradient(
+        //   colors: isEvent
+        //       ? [Colors.blue.shade300, Colors.blue]
+        //       : [Colors.deepPurple.shade300, Colors.deepPurple],
+        // ),
+        color: isEven? Colors.blue.shade50 : Colors.deepPurple.shade50,
+        boxShadow: [BoxShadow(color: Colors.black26, blurRadius: 1,)],
         borderRadius: BorderRadius.circular(25),
       ),
       child: Column(
@@ -37,7 +39,7 @@ class MealRecommendCell extends StatelessWidget {
               style: TextStyle(
                 color: Colors.black,
                 fontSize: 14,
-                fontWeight: FontWeight.w500,
+                fontWeight: FontWeight.w700,
               ),
             ),
           ),
@@ -45,10 +47,10 @@ class MealRecommendCell extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 15),
             child: Text(
               "${fObj["size"]} | ${fObj["time"]} | ${fObj["kcal"]}",
-              style: TextStyle(color: Colors.grey, fontSize: 12),
+              style: TextStyle(color: Colors.grey.shade600, fontSize: 12, fontWeight: FontWeight.w600),
             ),
           ),
-          const SizedBox(height: 15),
+          SizedBox(height: media.width*0.03),
           // Padding(
           //   padding: const EdgeInsets.symmetric(horizontal: 15),
           //   child: SizedBox(
@@ -56,7 +58,7 @@ class MealRecommendCell extends StatelessWidget {
           //     height: 35,
           //     child: RoundButton(
           //         fontSize: 12,
-          //         type: isEvent
+          //         type: isEven
           //             ? RoundButtonType.bgGradient
           //             : RoundButtonType.bgSGradient,
           //         title: "View",
@@ -64,7 +66,7 @@ class MealRecommendCell extends StatelessWidget {
           //   ),
           // ),
           Container(
-            height: 40,
+            height: media.width*0.09,
             width: 75,
             decoration: BoxDecoration(
               color: Colors.blue,

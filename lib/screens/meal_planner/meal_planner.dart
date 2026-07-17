@@ -535,7 +535,7 @@ class _MealPlannerState extends State<MealPlanner> {
                   ),
                 ),
                 SizedBox(
-                  height: media.width * 0.55,
+                  height: media.width * 0.45,
                   child: ListView.builder(
                     //padding: const EdgeInsets.symmetric(horizontal: 15.0),
                     scrollDirection: Axis.horizontal,

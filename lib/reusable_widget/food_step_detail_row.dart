@@ -52,12 +52,12 @@ class FoodStepDetailRow extends StatelessWidget {
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 14,
-                  fontWeight: FontWeight.w500,
+                  fontWeight: FontWeight.w700,
                 ),
               ),
               Text(
                 sObj["detail"].toString(),
-                style: TextStyle(color: Colors.grey.shade200, fontSize: 12),
+                style: TextStyle(color: Colors.grey.shade500, fontSize: 12, fontWeight: FontWeight.w600),
               ),
             ],
           ),

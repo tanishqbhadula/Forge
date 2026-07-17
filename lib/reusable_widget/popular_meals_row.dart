@@ -7,12 +7,12 @@ class PopularMealRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 2),
-      padding: const EdgeInsets.all(10),
+      margin: const EdgeInsets.symmetric(vertical: 7, horizontal: 2),
+      padding: const EdgeInsets.only(left: 10, top: 8, bottom: 8),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Colors.grey.shade50,
         borderRadius: BorderRadius.circular(15),
-        boxShadow: const [BoxShadow(color: Colors.black12, blurRadius: 2)],
+        boxShadow: const [BoxShadow(color: Colors.black26, blurRadius: 1)],
       ),
       child: Row(
         children: [
@@ -32,12 +32,12 @@ class PopularMealRow extends StatelessWidget {
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 14,
-                    fontWeight: FontWeight.w500,
+                    fontWeight: FontWeight.w700,
                   ),
                 ),
                 Text(
                   "${mObj["size"]} | ${mObj["time"]} | ${mObj["kcal"]}",
-                  style: TextStyle(color: Colors.grey.shade200, fontSize: 12),
+                  style: TextStyle(color: Colors.grey.shade600, fontSize: 12, fontWeight: FontWeight.w600),
                 ),
               ],
             ),

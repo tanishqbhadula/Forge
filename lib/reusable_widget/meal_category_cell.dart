@@ -7,17 +7,20 @@ class MealCategoryCell extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool isEvent = index % 2 == 0;
+    bool isEven = index % 2 == 0;
     return Container(
-      margin: const EdgeInsets.all(4),
+      margin: const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
       width: 80,
+      padding: EdgeInsets.zero,
       decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: isEvent
-              ? [Colors.blue.shade300, Colors.blue]
-              : [Colors.deepPurple.shade300, Colors.deepPurple],
-        ),
+        // gradient: LinearGradient(
+        //   colors: isEven
+        //       ? [Colors.blue.shade100, Colors.blue.shade200]
+        //       : [Colors.deepPurple.shade300, Colors.deepPurple],
+        // ),
+        color: Colors.grey.shade100,
         borderRadius: BorderRadius.circular(15),
+        boxShadow: [BoxShadow(color: Colors.black26, blurRadius: 2)]
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -30,7 +33,6 @@ class MealCategoryCell extends StatelessWidget {
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(17.5),
               ),
-
               child: Image.asset(
                 cObj["image"].toString(),
                 width: 35,
@@ -47,7 +49,7 @@ class MealCategoryCell extends StatelessWidget {
               style: TextStyle(
                 color: Colors.black,
                 fontSize: 12,
-                fontWeight: FontWeight.w500,
+                fontWeight: FontWeight.w600,
               ),
             ),
           ),

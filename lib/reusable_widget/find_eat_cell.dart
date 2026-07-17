@@ -8,7 +8,7 @@ class FindEatCell extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var media = MediaQuery.of(context).size;
-    bool isEvent = index % 2 == 0;
+    bool isEven = index % 2 == 0;
     return Container(
       margin: const EdgeInsets.all(8),
       padding: EdgeInsets.only(left: 4, right: 4,),
@@ -18,7 +18,7 @@ class FindEatCell extends StatelessWidget {
         color: Colors.grey.shade100,
         boxShadow: [BoxShadow(color: Colors.black26, blurRadius: 2)],
         // gradient: LinearGradient(
-        //   colors: isEvent
+        //   colors: isEven
         //       ? [Colors.blue.shade300, Colors.blue]
         //       : [Colors.deepPurple.shade300, Colors.deepPurple],
         // ),
@@ -62,36 +62,36 @@ class FindEatCell extends StatelessWidget {
             ),
           ),
           //const SizedBox(height: 15),
-          SizedBox(height: media.width*0.02,),
-          Center(
-            child: Container(
-              //margin: EdgeInsets.only(top:30),
-              width: media.width*0.2,
-              height: media.width*0.1,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(25),
-                color: Colors.blue.shade500,
-              ),
-              child: MaterialButton(
-                onPressed: () {
-                  //Navigator.pop(context);
-                },
-                height: 10,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadiusGeometry.circular(25),
-                ),
-                textColor: Colors.white,
-                child: Text(
-                  'Select',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 12,
-                  ),
-                ),
-              ),
-            ),
-          ),
+          //SizedBox(height: media.width*0.02,),
+          // Center(
+          //   child: Container(
+          //     //margin: EdgeInsets.only(top:30),
+          //     width: media.width*0.2,
+          //     height: media.width*0.1,
+          //     decoration: BoxDecoration(
+          //       borderRadius: BorderRadius.circular(25),
+          //       color: Colors.blue.shade500,
+          //     ),
+          //     child: MaterialButton(
+          //       onPressed: () {
+          //         //Navigator.pop(context);
+          //       },
+          //       height: 10,
+          //       shape: RoundedRectangleBorder(
+          //         borderRadius: BorderRadiusGeometry.circular(25),
+          //       ),
+          //       textColor: Colors.white,
+          //       child: Text(
+          //         'Select',
+          //         style: TextStyle(
+          //           color: Colors.white,
+          //           fontWeight: FontWeight.w600,
+          //           fontSize: 12,
+          //         ),
+          //       ),
+          //     ),
+          //   ),
+          // ),
         ],
       ),
     );
