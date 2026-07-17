@@ -155,6 +155,22 @@ class _MealScheduleState extends State<MealSchedule> {
     var media = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.white,
+      floatingActionButton: SizedBox(
+        width: 58,
+        height: 58,
+        child: InkWell(
+          onTap: () {},
+          child: Container(
+            //width: 60,
+            //height: 60,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(35),
+              color: Colors.blue,
+            ),
+            child: Icon(Icons.add, color: Colors.white, size: 35,),
+          ),
+        ),
+      ),
       appBar: AppBar(
         shadowColor: Colors.black12,
         backgroundColor: Colors.white,
