@@ -3,6 +3,7 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:forge/reusable_widget/find_eat_cell.dart';
 import 'package:forge/reusable_widget/today_meal_row.dart';
 import 'package:forge/screens/meal_planner/meal_food_details.dart';
+import 'package:forge/screens/meal_planner/meal_schedule.dart';
 
 class MealPlanner extends StatefulWidget {
   const MealPlanner({super.key});
@@ -422,12 +423,12 @@ class _MealPlannerState extends State<MealPlanner> {
                         child: MaterialButton(
                           padding: EdgeInsets.zero,
                           onPressed: () {
-                            // Navigator.push(
-                            //   context,
-                            //   MaterialPageRoute(
-                            //     builder: (context) => MealPlanner(),
-                            //   ),
-                            // );
+                            Navigator.push(
+                              context, 
+                              MaterialPageRoute(
+                                builder: (_) => MealSchedule()
+                              )
+                            );
                           },
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadiusGeometry.circular(25),
