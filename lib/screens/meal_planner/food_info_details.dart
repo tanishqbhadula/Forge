@@ -368,9 +368,9 @@ class _FoodInfoDetailsViewState extends State<FoodInfoDetails> {
                         'Pancakes are some people\'s favorite breakfast, who doesn\'t like pancakes? Especially with the real honey splash on top of the pancakes, of course everyone loves that! besides being Pancakes are some people\'s favorite breakfast, who doesn\'t like pancakes? Especially with the real honey splash on top of the pancakes, of course everyone loves that! besides being',
                         maxLines: 4,
                         style: TextStyle(
-                          color: Colors.grey.shade500,
+                          color: Colors.grey.shade700,
                           fontSize: 14,
-                          fontWeight: FontWeight.w600,
+                          fontWeight: FontWeight.w400,
                         ),
                       ),
                     ),

@@ -108,7 +108,7 @@ class _MealFoodDetailsViewState extends State<MealFoodDetailsView> {
                 color: Colors.transparent,
                 borderRadius: BorderRadius.circular(10),
               ),
-              child: Icon(Icons.more_horiz_rounded, color: Colors.black,),
+              child: Icon(Icons.more_horiz_rounded, color: Colors.black),
             ),
           ),
         ],
@@ -123,7 +123,7 @@ class _MealFoodDetailsViewState extends State<MealFoodDetailsView> {
               children: [
                 Container(
                   margin: const EdgeInsets.symmetric(horizontal: 20),
-                  padding: const EdgeInsets.symmetric(horizontal: 8,),
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(15),
@@ -131,7 +131,6 @@ class _MealFoodDetailsViewState extends State<MealFoodDetailsView> {
                       BoxShadow(
                         color: Colors.black12,
                         blurRadius: 8,
-                        //offset: Offset(0, 1),
                       ),
                     ],
                   ),
@@ -139,18 +138,20 @@ class _MealFoodDetailsViewState extends State<MealFoodDetailsView> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
+                      SizedBox(width: media.width*0.005,),
+                      Icon(Icons.search, color: Colors.black,),
+                      SizedBox(width: media.width*0.025,),
                       Expanded(
                         child: TextField(
                           textAlign: TextAlign.start,
                           controller: txtSearch,
                           decoration: InputDecoration(
+                            contentPadding: EdgeInsets.symmetric(vertical: 15),
                             focusedBorder: InputBorder.none,
                             enabledBorder: InputBorder.none,
-                            prefixIcon: Icon(Icons.search, color: Colors.black,),
-                            hintText: "Search Pancake",
-                            hintStyle: TextStyle(
-                              color: Colors.grey,
-                            )
+                            //prefixIcon: Icon(Icons.search, color: Colors.black),
+                            hintText: "Search meals",
+                            hintStyle: TextStyle(color: Colors.grey),
                           ),
                         ),
                       ),
@@ -160,7 +161,10 @@ class _MealFoodDetailsViewState extends State<MealFoodDetailsView> {
                         height: 25,
                         color: Colors.grey.withValues(alpha: 0.3),
                       ),
-                      InkWell(onTap: () {}, child: Icon(Icons.filter_alt, color: Colors.black,)),
+                      InkWell(
+                        onTap: () {},
+                        child: Icon(Icons.filter_alt, color: Colors.black),
+                      ),
                     ],
                   ),
                 ),
@@ -181,11 +185,11 @@ class _MealFoodDetailsViewState extends State<MealFoodDetailsView> {
                     ],
                   ),
                 ),
-                SizedBox(height: media.width*0.01,),
-                SizedBox( 
-                  height: media.width *0.23,
+                SizedBox(height: media.width * 0.01),
+                SizedBox(
+                  height: media.width * 0.23,
                   child: ListView.builder(
-                    padding: EdgeInsets.symmetric(horizontal: 15.0,),
+                    padding: EdgeInsets.symmetric(horizontal: 15.0),
                     scrollDirection: Axis.horizontal,
                     itemCount: categoryArr.length,
                     itemBuilder: (context, index) {
@@ -206,7 +210,7 @@ class _MealFoodDetailsViewState extends State<MealFoodDetailsView> {
                     ),
                   ),
                 ),
-                SizedBox(height: media.width*0.01,),
+                SizedBox(height: media.width * 0.01),
                 SizedBox(
                   height: media.width * 0.57,
                   child: ListView.builder(
@@ -220,7 +224,8 @@ class _MealFoodDetailsViewState extends State<MealFoodDetailsView> {
                   ),
                 ),
                 SizedBox(height: media.width * 0.05),
-                Padding( // HERE
+                Padding(
+                  // HERE
                   padding: const EdgeInsets.symmetric(horizontal: 20.0),
                   child: Text(
                     "Popular",
