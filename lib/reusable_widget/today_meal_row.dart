@@ -20,18 +20,19 @@ class TodayMealRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var media = MediaQuery.of(context).size;
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 8, horizontal: 2),
-      padding: EdgeInsets.all(10),
+      margin: EdgeInsets.symmetric(vertical: 6, horizontal: 2),
+      padding: EdgeInsets.only(top: 10, bottom: 10, left:12, right: 6),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(15),
+        borderRadius: BorderRadius.circular(media.width * 0.05),
         boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 2)],
       ),
       child: Row(
         children: [
           ClipRRect(
-            borderRadius: BorderRadius.circular(30),
+            borderRadius: BorderRadius.circular(media.width*0.1),
             child: Image.asset(
               mObj["image"],
               width: 40,
@@ -41,29 +42,29 @@ class TodayMealRow extends StatelessWidget {
           ),
           SizedBox(width: 15),
           Expanded(
-            child: 
-            Column(
+            child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   mObj["name"].toString(),
                   style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 12,
-                    fontWeight: FontWeight.w500,
+                    fontSize: 15,
+                    fontWeight: FontWeight.w700,
+                    color: Colors.grey.shade900,
                   ),
                 ),
                 Text(
                   "${getDayTitle(mObj["time"].toString())} | ${getStringDateToOtherFormate(mObj["time"].toString(), outFormatStr: "h:mm aa")}",
-                  style: TextStyle(color: Colors.grey, fontSize: 10),
+                  style: TextStyle(
+                    fontSize: 13,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.grey.shade500,
+                  ),
                 ),
               ],
             ),
           ),
-          IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.notifications),
-          ),
+          IconButton(onPressed: () {}, icon: Icon(Icons.notifications)),
         ],
       ),
     );

@@ -6,21 +6,25 @@ class PopularMealRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var media = MediaQuery.of(context).size;
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 7, horizontal: 2),
       padding: const EdgeInsets.only(left: 10, top: 8, bottom: 8),
       decoration: BoxDecoration(
         color: Colors.grey.shade50,
-        borderRadius: BorderRadius.circular(15),
-        boxShadow: const [BoxShadow(color: Colors.black26, blurRadius: 1)],
+        borderRadius: BorderRadius.circular(media.width * 0.05),
+        boxShadow: const [BoxShadow(color: Colors.black26, blurRadius: 2)],
       ),
       child: Row(
         children: [
-          Image.asset(
-            mObj["image"].toString(),
-            width: 50,
-            height: 50,
-            fit: BoxFit.contain,
+          ClipRRect(
+            borderRadius: BorderRadiusGeometry.circular(media.width*0.1),
+            child: Image.asset(
+              mObj["image"].toString(),
+              width: 45,
+              height: 45,
+              fit: BoxFit.contain,
+            ),
           ),
           const SizedBox(width: 15),
           Expanded(
@@ -31,13 +35,17 @@ class PopularMealRow extends StatelessWidget {
                   mObj["name"].toString(),
                   style: TextStyle(
                     color: Colors.black,
-                    fontSize: 14,
+                    fontSize: 15,
                     fontWeight: FontWeight.w700,
                   ),
                 ),
                 Text(
                   "${mObj["size"]} | ${mObj["time"]} | ${mObj["kcal"]}",
-                  style: TextStyle(color: Colors.grey.shade600, fontSize: 12, fontWeight: FontWeight.w600),
+                  style: TextStyle(
+                    color: Colors.grey.shade600,
+                    fontSize: 13,
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
               ],
             ),

@@ -11,13 +11,14 @@ class MealFoodScheduleRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var media = MediaQuery.of(context).size;
     return Container(
       margin: EdgeInsets.only(top: 2, bottom: 12, left: 2, right: 2),
-      padding: EdgeInsets.only(left: 8, top: 8, bottom: 8),
+      padding: EdgeInsets.only(left: 10, top: 8, bottom: 8),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(14),
-        boxShadow: [BoxShadow(color: Colors.black26, blurRadius: 1)]
+        borderRadius: BorderRadius.circular(media.width*0.05),
+        boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 2)]
       ),
       child: Row(
         children: [
@@ -30,7 +31,7 @@ class MealFoodScheduleRow extends StatelessWidget {
                 color: index % 2 == 0
                     ? Colors.blue.shade50
                     : Colors.deepPurple.shade50,
-                borderRadius: BorderRadius.circular(10),
+                borderRadius: BorderRadius.circular(media.width*0.1),
               ),
               alignment: Alignment.center,
               child: Image.asset(
@@ -49,14 +50,18 @@ class MealFoodScheduleRow extends StatelessWidget {
                 Text(
                   mObj["name"].toString(),
                   style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 12,
+                    fontSize: 15,
                     fontWeight: FontWeight.w700,
+                    color: Colors.grey.shade900,
                   ),
                 ),
                 Text(
                   mObj["time"].toString(),
-                  style: TextStyle(color: Colors.grey.shade600, fontSize: 10),
+                  style: TextStyle(
+                    fontSize: 13,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.grey.shade500,
+                  ),
                 ),
               ],
             ),

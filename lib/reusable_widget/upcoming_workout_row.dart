@@ -42,8 +42,8 @@ class _UpcomingWorkoutRowState extends State<UpcomingWorkoutRow> {
                   widget.wObj['time'].toString(),
                   style: TextStyle(
                     fontSize: 13,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.grey.shade600,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.grey.shade500,
                   ),
                 ),
               ],
