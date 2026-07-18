@@ -14,8 +14,8 @@ class FindEatCell extends StatelessWidget {
       padding: EdgeInsets.only(left: 4, right: 4,),
       width: media.width * 0.5,
       decoration: BoxDecoration(
-        //color: isEvent? Colors.blue.shade100 : Colors.deepPurple.shade100,
-        color: Colors.grey.shade100,
+        //color: Colors.grey.shade100,
+        color: isEven? Colors.blue.shade50 : Colors.deepPurple.shade50,
         boxShadow: [BoxShadow(color: Colors.black26, blurRadius: 2)],
         // gradient: LinearGradient(
         //   colors: isEven
