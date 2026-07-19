@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:forge/screens/main_tab/maintab.dart';
+import 'package:forge/screens/tracker_screen/tracker.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();

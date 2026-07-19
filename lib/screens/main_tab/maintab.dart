@@ -3,6 +3,7 @@ import 'package:forge/reusable_widget/tab_button.dart';
 import 'package:forge/screens/home/blank.dart';
 import 'package:forge/screens/home/homepage.dart';
 import 'package:forge/profile/profile.dart';
+import 'package:forge/screens/tracker_screen/tracker.dart';
 import 'package:forge/workout/workout_tracker.dart';
 
 class MainTab extends StatefulWidget {
@@ -88,14 +89,14 @@ class _MainTabState extends State<MainTab> {
                     },
                   ),
                   const Spacer(),
-                  // 2. WORKOUT TRACKER
+                  // 2. TRACKER
                   TabButton(
                     icon: Icons.timer,
                     selectIcon: Icon(Icons.local_activity),
                     isActive: selectTab == 1,
                     onTap: () {
                       selectTab = 1;
-                      currentTab = const WorkoutTracker();
+                      currentTab = const Tracker();
                       if (mounted) {
                         setState(() {});
                       }
