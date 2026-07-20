@@ -790,60 +790,60 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ],
                 ),
-                SizedBox(height: media.width * 0.06),
-                Container(
-                  width: media.width,
-                  padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                  decoration: BoxDecoration(
-                    //color: Colors.blue.shade100.withValues(alpha: 0.2),
-                    color: Colors.grey.shade100.withValues(alpha: 0.75),
-                    borderRadius: BorderRadius.circular(media.width * 0.07),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "Meal Plan",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
-                      Container(
-                        height: 40,
-                        width: 75,
-                        decoration: BoxDecoration(
-                          color: Colors.blue,
-                          borderRadius: BorderRadius.circular(25),
-                        ),
-                        child: MaterialButton(
-                          padding: EdgeInsets.zero,
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => MealPlanner(),
-                              ),
-                            );
-                          },
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadiusGeometry.circular(25),
-                          ),
-                          textColor: Colors.white,
-                          child: Text(
-                            'Check',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w500,
-                              fontSize: 14,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                // SizedBox(height: media.width * 0.06),
+                // Container(
+                //   width: media.width,
+                //   padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                //   decoration: BoxDecoration(
+                //     //color: Colors.blue.shade100.withValues(alpha: 0.2),
+                //     color: Colors.grey.shade100.withValues(alpha: 0.75),
+                //     borderRadius: BorderRadius.circular(media.width * 0.07),
+                //   ),
+                //   child: Row(
+                //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //     children: [
+                //       Text(
+                //         "Meal Plan",
+                //         style: TextStyle(
+                //           color: Colors.black,
+                //           fontSize: 16,
+                //           fontWeight: FontWeight.w700,
+                //         ),
+                //       ),
+                //       Container(
+                //         height: 40,
+                //         width: 75,
+                //         decoration: BoxDecoration(
+                //           color: Colors.blue,
+                //           borderRadius: BorderRadius.circular(25),
+                //         ),
+                //         child: MaterialButton(
+                //           padding: EdgeInsets.zero,
+                //           onPressed: () {
+                //             Navigator.push(
+                //               context,
+                //               MaterialPageRoute(
+                //                 builder: (context) => MealPlanner(),
+                //               ),
+                //             );
+                //           },
+                //           shape: RoundedRectangleBorder(
+                //             borderRadius: BorderRadiusGeometry.circular(25),
+                //           ),
+                //           textColor: Colors.white,
+                //           child: Text(
+                //             'Check',
+                //             style: TextStyle(
+                //               color: Colors.white,
+                //               fontWeight: FontWeight.w500,
+                //               fontSize: 14,
+                //             ),
+                //           ),
+                //         ),
+                //       ),
+                //     ],
+                //   ),
+                // ),
                 SizedBox(height: media.width * 0.06),
                 // WORKOUT PROGRESS AND DURATION BUTTON
                 Padding(

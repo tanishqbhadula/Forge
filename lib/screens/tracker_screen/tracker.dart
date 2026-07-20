@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:forge/screens/meal_planner/meal_planner.dart';
+import 'package:forge/screens/sleep/sleep_tracker.dart';
 import 'package:forge/workout/workout_tracker.dart';
 
 class Tracker extends StatefulWidget {
@@ -264,7 +265,7 @@ class _TrackerState extends State<Tracker> {
                   onPressed: () {
                     Navigator.push(
                       context, 
-                      MaterialPageRoute(builder: (_) => MealPlanner())
+                      MaterialPageRoute(builder: (_) => SleepTracker())
                     );
                   },
                   child: Stack(
