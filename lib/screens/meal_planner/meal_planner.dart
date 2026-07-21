@@ -73,11 +73,23 @@ class _MealPlannerState extends State<MealPlanner> {
   // WORKOUT PROGRESS GRAPH LINE
   LineChartBarData get lineChartBarData1_2 => LineChartBarData(
     isCurved: true,
-    color: Colors.deepPurple.shade200,
+    color: Colors.deepPurple.shade600,
     barWidth: 2.2,
     isStrokeCapRound: true,
     dotData: const FlDotData(show: false),
-    belowBarData: BarAreaData(show: false),
+    belowBarData: BarAreaData(
+      show: true,
+      gradient: LinearGradient(
+        colors: [
+          Colors.deepPurple.shade500.withValues(alpha: 0.5),
+          Colors.deepPurple.shade200.withValues(alpha: 0.5),
+          Colors.white.withValues(alpha: 0.6),
+        ],
+        begin: Alignment.topCenter,
+        end: Alignment.bottomCenter,
+      ),
+      //color: Colors.blue.shad100,
+    ),
     spots: const [
       FlSpot(1, 80),
       FlSpot(2, 50),

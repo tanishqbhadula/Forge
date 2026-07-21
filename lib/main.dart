@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:forge/screens/main_tab/maintab.dart';
-import 'package:forge/screens/sleep/sleep_tracker.dart';
-import 'package:forge/screens/tracker_screen/tracker.dart';
-
+import 'package:forge/screens/progress/progress_photo.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
 

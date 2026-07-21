@@ -3,6 +3,7 @@ import 'package:forge/reusable_widget/tab_button.dart';
 import 'package:forge/screens/home/blank.dart';
 import 'package:forge/screens/home/homepage.dart';
 import 'package:forge/profile/profile.dart';
+import 'package:forge/screens/progress/progress_photo.dart';
 import 'package:forge/screens/tracker_screen/tracker.dart';
 import 'package:forge/workout/workout_tracker.dart';
 
@@ -104,13 +105,14 @@ class _MainTabState extends State<MainTab> {
                   ),
                   const SizedBox(width: 70),
                   const Spacer(),
+                  // PROGRESS PHOTO
                   TabButton(
                     icon: Icons.camera_alt,
                     selectIcon: Icon(Icons.camera_alt),
                     isActive: selectTab == 2,
                     onTap: () {
                       selectTab = 2;
-                      currentTab = const Blank();
+                      currentTab = const ProgressPhoto();
                       if (mounted) {
                         setState(() {});
                       }

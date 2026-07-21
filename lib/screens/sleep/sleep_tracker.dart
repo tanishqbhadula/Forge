@@ -94,15 +94,19 @@ class _SleepTrackerState extends State<SleepTracker> {
     isStrokeCapRound: true,
     dotData: const FlDotData(show: false),
     belowBarData: BarAreaData(
-          show: true,
-          gradient: LinearGradient(
-            colors: [Colors.blue.shade500.withValues(alpha: 0.5), Colors.blue.shade200.withValues(alpha: 0.5), Colors.white.withValues(alpha: 0.6)],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-          ),
-          //color: Colors.blue.shad100,
-        ),
-    
+      show: true,
+      gradient: LinearGradient(
+        colors: [
+          Colors.blue.shade500.withValues(alpha: 0.5),
+          Colors.blue.shade200.withValues(alpha: 0.5),
+          Colors.white.withValues(alpha: 0.6),
+        ],
+        begin: Alignment.topCenter,
+        end: Alignment.bottomCenter,
+      ),
+      //color: Colors.blue.shad100,
+    ),
+
     spots: const [
       FlSpot(1, 20),
       FlSpot(2, 80),
@@ -171,13 +175,13 @@ class _SleepTrackerState extends State<SleepTracker> {
     );
     Widget text;
     switch (value.toInt()) {
-      case 1:
+      case 1 || 8:
         text = const Text('Sun', style: style);
         break;
-      case 2:
+      case 2 || 9:
         text = const Text('Mon', style: style);
         break;
-      case 3:
+      case 3 || 10:
         text = const Text('Tue', style: style);
         break;
       case 4:

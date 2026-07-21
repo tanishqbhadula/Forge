@@ -82,33 +82,25 @@ class _WorkoutTrackerState extends State<WorkoutTracker> {
     //lineChartBarData1_1,
     lineChartBarData1_2,
   ];
-  // WORKOUT PROGRESS GRAPH LINE 1
-  // LineChartBarData get lineChartBarData1_1 => LineChartBarData(
-  //   isCurved: true,
-  //   //gradient: LinearGradient(colors: [Colors.blue.shade300, Colors.deepPurple.shade300]),
-  //   color: Colors.blue.shade600.withValues(alpha: 0.6),
-  //   barWidth: 2.5,
-  //   isStrokeCapRound: true,
-  //   dotData: const FlDotData(show: false),
-  //   belowBarData: BarAreaData(show: false),
-  //   spots: const [
-  //     FlSpot(1, 35),
-  //     FlSpot(2, 70),
-  //     FlSpot(3, 40),
-  //     FlSpot(4, 80),
-  //     FlSpot(5, 25),
-  //     FlSpot(6, 70),
-  //     FlSpot(7, 35),
-  //   ],
-  // );
-  // WORKOUT PROGRESS GRAPH LINE 2
+  // WORKOUT PROGRESS GRAPH LINE 
   LineChartBarData get lineChartBarData1_2 => LineChartBarData(
     isCurved: true,
     color: Colors.white,
     barWidth: 2.5,
     isStrokeCapRound: true,
     dotData: const FlDotData(show: false),
-    belowBarData: BarAreaData(show: false),
+    belowBarData: BarAreaData(
+      show: false,
+      // gradient: LinearGradient(
+      //   colors: [
+      //     Colors.black.withValues(alpha: 0.5),
+      //     Colors.black.withValues(alpha: 0.5),
+      //     Colors.white.withValues(alpha: 0.6),
+      //   ],
+      //   begin: Alignment.topCenter,
+      //   end: Alignment.bottomCenter,
+      // ),
+    ),
     spots: const [
       FlSpot(1, 80),
       FlSpot(2, 50),

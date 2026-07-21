@@ -31,7 +31,7 @@ class _NotificationState extends State<NotificationScreen> {
           style: TextStyle(
             color: Colors.black,
             fontWeight: FontWeight.w700,
-            fontSize: 18,
+            fontSize: 20,
           ),
         ),
         centerTitle: true,
