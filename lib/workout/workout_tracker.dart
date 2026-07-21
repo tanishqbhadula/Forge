@@ -250,16 +250,17 @@ class _WorkoutTrackerState extends State<WorkoutTracker> {
               ),
               centerTitle: true,
               elevation: 0,
-              leadingWidth: 0,
+              //leadingWidth: 0,
+              actionsPadding: EdgeInsets.only(right: 8),
               expandedHeight: media.width * 0.2,
-              // leading: IconButton(
-              //   color: Colors.white,
-              //   onPressed: () {
-              //     //print('back btn pressed');
-              //     Navigator.pop(context);
-              //   },
-              //   icon: Icon(Icons.arrow_back_ios_rounded, color: Colors.black),
-              // ),
+              leading: IconButton(
+                color: Colors.white,
+                onPressed: () {
+                  //print('back btn pressed');
+                  Navigator.pop(context);
+                },
+                icon: Icon(Icons.arrow_back_ios_rounded, color: Colors.black),
+              ),
               actions: [
                 InkWell(
                   onTap: () {},

@@ -17,9 +17,16 @@ class _TrackerState extends State<Tracker> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        shadowColor: Colors.black12,
+        shadowColor: Colors.black26,
         backgroundColor: Colors.white,
         surfaceTintColor: Colors.white,
+        elevation: 4,
+        scrolledUnderElevation: 8,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+            bottom: Radius.circular(media.width*0.06),
+          )
+        ),
         title: Text(
           'Tracker',
           style: TextStyle(
@@ -29,29 +36,28 @@ class _TrackerState extends State<Tracker> {
           ),
         ),
         centerTitle: true,
-        elevation: 0,
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: Icon(Icons.arrow_back_ios_rounded, color: Colors.black),
-        ),
-        actions: [
-          InkWell(
-            onTap: () {},
-            child: Container(
-              padding: EdgeInsets.only(right: 16),
-              width: 40,
-              height: 40,
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                color: Colors.transparent,
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Icon(Icons.more_horiz_rounded, color: Colors.black),
-            ),
-          ),
-        ],
+        // leading: IconButton(
+        //   onPressed: () {
+        //     Navigator.pop(context);
+        //   },
+        //   icon: Icon(Icons.arrow_back_ios_rounded, color: Colors.black),
+        // ),
+        // actions: [
+        //   InkWell(
+        //     onTap: () {},
+        //     child: Container(
+        //       padding: EdgeInsets.only(right: 16),
+        //       width: 40,
+        //       height: 40,
+        //       alignment: Alignment.center,
+        //       decoration: BoxDecoration(
+        //         color: Colors.transparent,
+        //         borderRadius: BorderRadius.circular(10),
+        //       ),
+        //       child: Icon(Icons.more_horiz_rounded, color: Colors.black),
+        //     ),
+        //   ),
+        // ],
       ),
       body: SafeArea(
         child: Padding(
@@ -60,15 +66,7 @@ class _TrackerState extends State<Tracker> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Text(
-                //   'Keep your progress updated everyday',
-                //   style: TextStyle(
-                //     color: Colors.black,
-                //     fontSize: 16,
-                //     fontWeight: FontWeight.w600,
-                //   ),
-                // ),
-                SizedBox(height: media.width * 0.04),
+                SizedBox(height: media.width * 0.06),
                 MaterialButton(
                   padding: EdgeInsets.zero,
                   // WORKOUT TRACKER
@@ -92,7 +90,7 @@ class _TrackerState extends State<Tracker> {
                           ),
                           color: Colors.blue.shade50,
                           boxShadow: [
-                            BoxShadow(color: Colors.black26, blurRadius: 2),
+                            BoxShadow(color: Colors.black26, blurRadius: 1),
                           ],
                         ),
                         child: Column(
@@ -187,7 +185,7 @@ class _TrackerState extends State<Tracker> {
                           ),
                           color: Colors.deepPurple.shade50,
                           boxShadow: [
-                            BoxShadow(color: Colors.black26, blurRadius: 2),
+                            BoxShadow(color: Colors.black26, blurRadius: 1),
                           ],
                         ),
                         child: Column(
@@ -280,9 +278,9 @@ class _TrackerState extends State<Tracker> {
                           borderRadius: BorderRadius.circular(
                             media.width * 0.05,
                           ),
-                          color: Colors.blue.shade50,
+                          color: Colors.green.shade50,
                           boxShadow: [
-                            BoxShadow(color: Colors.black26, blurRadius: 2),
+                            BoxShadow(color: Colors.black26, blurRadius: 1),
                           ],
                         ),
                         child: Column(
@@ -319,7 +317,7 @@ class _TrackerState extends State<Tracker> {
                                 ),
                                 width: media.width * 0.3,
                                 decoration: BoxDecoration(
-                                  color: Colors.blue,
+                                  color: Colors.green.shade700,
                                   borderRadius: BorderRadius.circular(
                                     media.width * 0.1,
                                   ),

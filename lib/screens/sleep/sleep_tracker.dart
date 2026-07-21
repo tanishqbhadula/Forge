@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:forge/reusable_widget/find_eat_cell.dart';
 import 'package:forge/reusable_widget/today_meal_row.dart';
+import 'package:forge/reusable_widget/today_sleep_schedule_row.dart';
 import 'package:forge/screens/meal_planner/meal_food_details.dart';
 import 'package:forge/screens/meal_planner/meal_schedule.dart';
 import 'package:forge/screens/sleep/sleep_schedule.dart';
@@ -14,22 +15,19 @@ class SleepTracker extends StatefulWidget {
 }
 
 class _SleepTrackerState extends State<SleepTracker> {
-  List todayMealArr = [
+  List todaySleepArr = [
     {
-      "name": "Salmon Nigiri",
-      "image": "images/m_1.png",
-      "time": "28/05/2023 07:00 AM",
+      "name": "Bedtime",
+      "image": "images/bed.png",
+      "time": "01/06/2023 09:00 PM",
+      "duration": "in 6hours 22minutes",
     },
     {
-      "name": "Lowfat Milk",
-      "image": "images/m_2.png",
-      "time": "28/05/2023 08:00 AM",
+      "name": "Alarm",
+      "image": "images/alarm.png",
+      "time": "02/06/2023 05:10 AM",
+      "duration": "in 14hours 30minutes",
     },
-  ];
-
-  List findEatArr = [
-    {"name": "Breakfast", "image": "images/m_3.png", "number": "120+ Foods"},
-    {"name": "Lunch", "image": "images/m_1.png", "number": "130+ Foods"},
   ];
 
   List<FlSpot> get allSpots => const [
@@ -70,23 +68,51 @@ class _SleepTrackerState extends State<SleepTracker> {
     //lineChartBarData1_1,
     lineChartBarData1_2,
   ];
-
+  // LineChartBarData get lineChartBarData1_1 => LineChartBarData(
+  //   isCurved: true,
+  //   //gradient: LinearGradient(colors: [Colors.blue.shade300, Colors.deepPurple.shade300]),
+  //   color: Colors.blue.shade600.withValues(alpha: 0.6),
+  //   barWidth: 2.5,
+  //   isStrokeCapRound: true,
+  //   dotData: const FlDotData(show: false),
+  //   belowBarData: BarAreaData(show: false),
+  //   spots: const [
+  //     FlSpot(1, 35),
+  //     FlSpot(2, 70),
+  //     FlSpot(3, 40),
+  //     FlSpot(4, 80),
+  //     FlSpot(5, 25),
+  //     FlSpot(6, 70),
+  //     FlSpot(7, 35),
+  //   ],
+  // );
   // WORKOUT PROGRESS GRAPH LINE
   LineChartBarData get lineChartBarData1_2 => LineChartBarData(
     isCurved: true,
-    color: Colors.deepPurple.shade200,
-    barWidth: 2.2,
+    color: Colors.blue.shade600,
+    barWidth: 2,
     isStrokeCapRound: true,
     dotData: const FlDotData(show: false),
-    belowBarData: BarAreaData(show: false),
+    belowBarData: BarAreaData(
+          show: true,
+          gradient: LinearGradient(
+            colors: [Colors.blue.shade500.withValues(alpha: 0.5), Colors.blue.shade200.withValues(alpha: 0.5), Colors.white.withValues(alpha: 0.6)],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
+          //color: Colors.blue.shad100,
+        ),
+    
     spots: const [
-      FlSpot(1, 80),
-      FlSpot(2, 50),
+      FlSpot(1, 20),
+      FlSpot(2, 80),
       FlSpot(3, 90),
-      FlSpot(4, 40),
-      FlSpot(5, 80),
-      FlSpot(6, 35),
-      FlSpot(7, 90),
+      FlSpot(4, 70),
+      FlSpot(5, 50),
+      FlSpot(6, 75),
+      FlSpot(7, 60),
+      FlSpot(8, 80),
+      FlSpot(9, 10),
     ],
   );
   // WORKOUT PROGRESS GRAPH PERCENTAGE TILES Y-AXIS
@@ -403,7 +429,7 @@ class _SleepTrackerState extends State<SleepTracker> {
                     gradient: LinearGradient(
                       colors: [Colors.indigo.shade400, Colors.indigo.shade600],
                       begin: AlignmentGeometry.topCenter,
-                      end: AlignmentGeometry.bottomCenter
+                      end: AlignmentGeometry.bottomCenter,
                     ),
                     borderRadius: BorderRadius.circular(media.width * 0.07),
                   ),
@@ -422,7 +448,12 @@ class _SleepTrackerState extends State<SleepTracker> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.only(left: 16, right: 16, top: 2, bottom: 4),
+                        padding: EdgeInsets.only(
+                          left: 16,
+                          right: 16,
+                          top: 2,
+                          bottom: 4,
+                        ),
                         child: Text(
                           '8h 10m',
                           style: TextStyle(
@@ -434,9 +465,7 @@ class _SleepTrackerState extends State<SleepTracker> {
                       ),
                       SizedBox(
                         width: media.width,
-                        child: Image.asset(
-                          'images/SleepGraph.png'
-                        ),
+                        child: Image.asset('images/SleepGraph.png'),
                       ),
                     ],
                   ),
@@ -473,7 +502,9 @@ class _SleepTrackerState extends State<SleepTracker> {
                           onPressed: () {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (_) => SleepSchedule()),
+                              MaterialPageRoute(
+                                builder: (_) => SleepSchedule(),
+                              ),
                             );
                           },
                           shape: RoundedRectangleBorder(
@@ -500,111 +531,25 @@ class _SleepTrackerState extends State<SleepTracker> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "Today's Meals",
+                        "Today's Schedule",
                         style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.w700,
                           color: Colors.black,
                         ),
                       ),
-                      // Container(
-                      //   height: media.width * 0.08,
-                      //   padding: const EdgeInsets.symmetric(horizontal: 8),
-                      //   decoration: BoxDecoration(
-                      //     color: Colors.blue,
-                      //     borderRadius: BorderRadius.circular(15),
-                      //   ),
-                      //   child: DropdownButtonHideUnderline(
-                      //     child: DropdownButton(
-                      //       items:
-                      //           [
-                      //                 "Breakfast",
-                      //                 "Lunch",
-                      //                 "Dinner",
-                      //                 "Snack",
-                      //                 "Dessert",
-                      //               ]
-                      //               .map(
-                      //                 (name) => DropdownMenuItem(
-                      //                   value: name,
-                      //                   child: Text(
-                      //                     name,
-                      //                     style: TextStyle(
-                      //                       color: Colors.grey,
-                      //                       fontSize: 14,
-                      //                     ),
-                      //                   ),
-                      //                 ),
-                      //               )
-                      //               .toList(),
-                      //       onChanged: (value) {},
-                      //       icon: Icon(
-                      //         Icons.expand_more_rounded,
-                      //         color: Colors.white,
-                      //       ),
-                      //       hint: Text(
-                      //         'Breakfast',
-                      //         textAlign: TextAlign.center,
-                      //         style: TextStyle(
-                      //           color: Colors.white,
-                      //           fontSize: 12,
-                      //         ),
-                      //       ),
-                      //     ),
-                      //   ),
-                      // ),
                     ],
                   ),
                 ),
-                SizedBox(height: media.width * 0.03),
                 ListView.builder(
                   padding: EdgeInsets.zero,
                   physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
-                  itemCount: todayMealArr.length,
+                  itemCount: todaySleepArr.length,
                   itemBuilder: (context, index) {
-                    var mObj = todayMealArr[index] as Map? ?? {};
-                    return TodayMealRow(mObj: mObj);
+                    var sObj = todaySleepArr[index] as Map? ?? {};
+                    return TodaySleepScheduleRow(sObj: sObj);
                   },
-                ),
-                SizedBox(height: media.width * 0.03),
-                Container(
-                  width: media.width,
-                  alignment: Alignment.centerLeft,
-                  padding: EdgeInsetsGeometry.symmetric(
-                    horizontal: media.width * 0.03,
-                  ),
-                  child: Text(
-                    'Find something to eat',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w700,
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: media.width * 0.45,
-                  child: ListView.builder(
-                    //padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                    scrollDirection: Axis.horizontal,
-                    itemCount: findEatArr.length,
-                    itemBuilder: (context, index) {
-                      var fObj = findEatArr[index] as Map? ?? {};
-                      return InkWell(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) =>
-                                  MealFoodDetailsView(eObj: fObj),
-                            ),
-                          );
-                        },
-                        child: FindEatCell(fObj: fObj, index: index),
-                      );
-                    },
-                  ),
                 ),
                 SizedBox(height: media.width * 0.05),
               ],

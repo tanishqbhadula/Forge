@@ -60,9 +60,14 @@ class _WorkoutDetailsState extends State<WorkoutDetails> {
           onPressed: () {
             Navigator.pop(context);
           },
-          icon: Icon(
-            Icons.arrow_back_ios_new_rounded,
-            color: Colors.grey.shade800,
+          icon: Icon(Icons.arrow_back_ios_new_rounded, color: Colors.black),
+        ),
+        title: Text(
+          'Fullbody',
+          style: TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.w900,
+            fontSize: 22,
           ),
         ),
         //elevation: 10,
@@ -90,8 +95,8 @@ class _WorkoutDetailsState extends State<WorkoutDetails> {
                     });
                   },
                   icon: _isFavorite
-                      ? Icon(Icons.favorite, color: Colors.red)
-                      : Icon(Icons.favorite_border, color: Colors.grey.shade800),
+                      ? Icon(Icons.favorite, color: Colors.red.shade600)
+                      : Icon(Icons.favorite_border, color: Colors.black),
                 ),
               ),
             ),
@@ -110,21 +115,22 @@ class _WorkoutDetailsState extends State<WorkoutDetails> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      'Fullbody workout',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.w900,
-                        fontSize: 22,
-                      ),
-                    ),
                     SizedBox(height: media.width * 0.01),
-                    Text(
-                      '11 Exercises | 60min | 520cals Burnt',
-                      style: TextStyle(
-                        color: Colors.grey,
-                        fontSize: 14,
-                        fontWeight: FontWeight.w600,
+                    Container(
+                      padding: EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+                      decoration: BoxDecoration(
+                        color: Colors.green.shade50,
+                        borderRadius: BorderRadius.circular(media.width * 0.1),
+                      ),
+                      child: Center(
+                        child: Text(
+                          '11 Exercises | 60min | 520cals Burnt',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
                       ),
                     ),
                   ],
