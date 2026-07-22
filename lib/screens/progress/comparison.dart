@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:forge/reusable_widget/icon_title_next_row.dart';
+import 'package:forge/screens/progress/result.dart';
 
 class Comparison extends StatefulWidget {
   const Comparison({super.key});
@@ -52,7 +53,7 @@ class _ComparisonState extends State<Comparison> {
               onPressed: () {},
               color: Colors.grey.shade100,
             ),
-            SizedBox(height: media.width*0.03),
+            SizedBox(height: media.width * 0.03),
             IconTitleNextRow(
               icon: Icons.date_range,
               title: "Select Month 2",
@@ -70,7 +71,17 @@ class _ComparisonState extends State<Comparison> {
               ),
               child: MaterialButton(
                 padding: EdgeInsets.zero,
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => ResultView(
+                        date1: DateTime(2023, 5, 1),
+                        date2: DateTime(2023, 6, 1),
+                      ),
+                    ),
+                  );
+                },
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadiusGeometry.circular(25),
                 ),
