@@ -11,10 +11,11 @@ class IconTitleNextRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var media = MediaQuery.of(context).size;
     return InkWell(
       onTap: onPressed,
       child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 15),
+        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
         decoration: BoxDecoration(
           color: color,
           borderRadius: BorderRadius.circular(15),
@@ -28,7 +29,7 @@ class IconTitleNextRow extends StatelessWidget {
               alignment: Alignment.center,
               child: Icon(icon)
             ),
-            const SizedBox(width: 8),
+            SizedBox(width: media.width*0.02,),
             Expanded(
               child: Text(
                 title ,
@@ -38,7 +39,7 @@ class IconTitleNextRow extends StatelessWidget {
             SizedBox(
               width: 120,
               child: Text(
-               time  ,
+               time ,
                 textAlign: TextAlign.right,
                 style: TextStyle(color: Colors.grey.shade700, fontSize: 12, fontWeight: FontWeight.w600),
               ),
