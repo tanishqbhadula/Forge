@@ -547,7 +547,9 @@ class _ResultViewState extends State<ResultView> {
                                 ),
                                 Expanded(
                                   child: Padding(
-                                    padding: const EdgeInsets.symmetric(horizontal: 15),
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 15,
+                                    ),
                                     child: Progresso(
                                       progressStrokeWidth: 16,
                                       backgroundStrokeWidth: 16,
