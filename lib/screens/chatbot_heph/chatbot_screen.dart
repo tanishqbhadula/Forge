@@ -30,9 +30,11 @@ class _ChatbotScreenState extends State<ChatbotScreen>
   @override
   void initState() {
     super.initState();
+    //_storage.clear();
     WidgetsBinding.instance.addObserver(this);
     //_loadApiKey();
     _loadMessages();
+    //_initializeChat();
     _geminiService = GeminiService();
     _scrollController.addListener(_handleScroll);
   }
@@ -83,21 +85,38 @@ class _ChatbotScreenState extends State<ChatbotScreen>
   }
 
   Future<void> _loadMessages() async {
-    final savedMessages = await _storage.load();
+    //final savedMessages = await _storage.load();
+    _storage.clear();
     if (!mounted) return;
 
     setState(() {
-      _messages = savedMessages;
-      if (_messages.isEmpty) {
-        _messages = [
-          ChatMessage(
-            role: 'assistant',
-            text:
-                'Hello, I am HEPH, your fitness coach. Ask me about workouts, nutrition, recovery, or staying consistent.',
-          ),
-        ];
-      }
+      //_messages = savedMessages;
+      //if (_messages.isEmpty) {
+      _messages = [
+        ChatMessage(
+          role: 'assistant',
+          text:
+              'Hello, I am HEPH, your fitness coach. Ask me about workouts, nutrition, recovery, or staying consistent.',
+        ),
+      ];
+      //}
     });
+
+    // Future<void> _initializeChat() async {
+    //   await _storage.clear();
+
+    //   setState(() {
+    //     _messages = [
+    //       ChatMessage(
+    //         role: 'assistant',
+    //         text:
+    //             'Hello, I am HEPH, your fitness coach. Ask me about workouts, nutrition, recovery, or staying consistent.',
+    //       ),
+    //     ];
+    //   });
+
+    //   _scrollController.addListener(_handleScroll);
+    // }
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _scrollToBottom();

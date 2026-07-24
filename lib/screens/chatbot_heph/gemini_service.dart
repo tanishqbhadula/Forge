@@ -73,7 +73,6 @@ class GeminiService {
               - Avoid tables unless explicitly requested.
               - Keep answers concise unless the user asks for more detail.
             ''',
-            //'You are a concise, supportive fitness coach. Keep replies short, motivational, and helpful. Focus on workout advice, nutrition, recovery, and habit building. Use a calm and encouraging tone.',
           },
         ],
       },
@@ -91,9 +90,6 @@ class GeminiService {
     if (response.statusCode != 200) {
       return 'Error ${response.statusCode}: ${response.body}';
     }
-    // if (response.statusCode != 200) {
-    //   return 'The assistant could not reply right now. Please check your internet connection or try again later.';
-    // }
 
     try {
       final data = jsonDecode(response.body) as Map<String, dynamic>;
