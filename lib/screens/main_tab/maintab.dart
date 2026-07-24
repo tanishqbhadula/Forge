@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:forge/reusable_widget/tab_button.dart';
+import 'package:forge/screens/chatbot_heph/chatbot_screen.dart';
 import 'package:forge/screens/home/blank.dart';
 import 'package:forge/screens/home/homepage.dart';
 import 'package:forge/profile/profile.dart';
@@ -25,11 +26,17 @@ class _MainTabState extends State<MainTab> {
       backgroundColor: Colors.white,
       body: PageStorage(bucket: pageBucket, child: currentTab),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      // HEPH - CHATBOT
       floatingActionButton: SizedBox(
         width: 70,
         height: 70,
         child: InkWell(
-          onTap: () {},
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const ChatbotScreen()),
+            );
+          },
           child: Container(
             width: 65,
             height: 65,
@@ -47,7 +54,7 @@ class _MainTabState extends State<MainTab> {
               //   BoxShadow(color: Colors.black12, blurRadius: 2, blurStyle: BlurStyle.outer),
               // ],
             ),
-            child: Icon(Icons.search, color: Colors.white, size: 35),
+            child: Icon(Icons.fitness_center_outlined, color: Colors.white, size: 35),
           ),
         ),
       ),

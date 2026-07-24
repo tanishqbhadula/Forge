@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:forge/screens/main_tab/maintab.dart';
-import 'package:forge/screens/progress/progress_photo.dart';
-void main() {
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+
+Future<void> main() async {
+  print('Main start');
   WidgetsFlutterBinding.ensureInitialized();
 
   SystemChrome.setSystemUIOverlayStyle(
@@ -13,9 +15,11 @@ void main() {
     ),
   );
   SystemChrome.setEnabledSystemUIMode(
-  SystemUiMode.manual,
-  overlays: SystemUiOverlay.values,
-);
+    SystemUiMode.manual,
+    overlays: SystemUiOverlay.values,
+  );
+  WidgetsFlutterBinding.ensureInitialized();
+  await dotenv.load(fileName: ".env");
   runApp(const MyApp());
 }
 
@@ -27,7 +31,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       //home: SignIn(),
-      home: MainTab()
+      home: MainTab(),
     );
   }
 }
