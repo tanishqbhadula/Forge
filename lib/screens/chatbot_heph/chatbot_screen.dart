@@ -53,10 +53,7 @@ class _ChatbotScreenState extends State<ChatbotScreen>
     if (state == AppLifecycleState.detached) {
       _storage.clear();
     }
-    // setState(() {
-    //   _messages.clear();
-    // });
-    // FIX : CHAT DOESN'T RESET WHEN USER CLOSES APP
+    // FIX : CHAT DOESN'T RESET WHEN USER CLOSES APP -> FIXED
   }
 
   // Future<void> _loadApiKey() async {
@@ -135,37 +132,6 @@ class _ChatbotScreenState extends State<ChatbotScreen>
         _showScrollButton = shouldShow;
       });
     }
-  }
-
-  void _showApiKeyDialog() {
-    showDialog<void>(
-      context: context,
-      builder: (dialogContext) {
-        return AlertDialog(
-          title: const Text('Gemini API key'),
-          content: TextField(
-            controller: _apiKeyController,
-            decoration: const InputDecoration(
-              hintText: 'Paste your Gemini API key',
-            ),
-          ),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(dialogContext),
-              child: const Text('Cancel'),
-            ),
-            FilledButton(
-              onPressed: () async {
-                await _saveApiKey();
-                if (!mounted) return;
-                Navigator.pop(dialogContext);
-              },
-              child: const Text('Save'),
-            ),
-          ],
-        );
-      },
-    );
   }
 
   Future<void> _sendMessage() async {
@@ -250,15 +216,6 @@ class _ChatbotScreenState extends State<ChatbotScreen>
             color: Colors.black,
           ),
         ),
-        // actions: [
-        //   IconButton(
-        //     onPressed: _showApiKeyDialog,
-        //     icon: Icon(
-        //       Icons.key_rounded,
-        //       color: _apiKey.isEmpty ? Colors.black54 : Colors.blue,
-        //     ),
-        //   ),
-        // ],
       ),
       body: Column(
         children: [
@@ -266,24 +223,6 @@ class _ChatbotScreenState extends State<ChatbotScreen>
             child: Stack(
               alignment: Alignment.bottomRight,
               children: [
-                // if (_apiKey.isEmpty)
-                //   Positioned(
-                //     top: 8,
-                //     left: 16,
-                //     right: 16,
-                //     child: Container(
-                //       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-                //       decoration: BoxDecoration(
-                //         color: Colors.blue.shade50,
-                //         borderRadius: BorderRadius.circular(12),
-                //         border: Border.all(color: Colors.blue.shade100),
-                //       ),
-                //       child: const Text(
-                //         'Add a Gemini API key to enable live answers.',
-                //         style: TextStyle(color: Colors.blue, fontSize: 12),
-                //       ),
-                //     ),
-                //   ),
                 ListView.builder(
                   controller: _scrollController,
                   padding: const EdgeInsets.fromLTRB(16, 16, 16, 90),
@@ -438,7 +377,7 @@ class _ChatbotScreenState extends State<ChatbotScreen>
                     textInputAction: TextInputAction.send,
                     onSubmitted: (_) => _sendMessage(),
                     decoration: InputDecoration(
-                      hintText: 'Ask Heph...',
+                      hintText: 'Ask coach Heph...',
                       hintStyle: TextStyle(color: Colors.grey.shade500),
                       filled: true,
                       fillColor: Colors.grey.shade100,
