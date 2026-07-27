@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:forge/profile/edit_profile.dart';
 
 class Profile extends StatefulWidget {
   const Profile({super.key});
@@ -109,7 +110,12 @@ class _ProfileState extends State<Profile> {
                       ),
                       child: MaterialButton(
                         padding: EdgeInsets.zero,
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                            context, 
+                            MaterialPageRoute(builder: (_) => EditProfile())
+                          );
+                        },
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadiusGeometry.circular(25),
                         ),
