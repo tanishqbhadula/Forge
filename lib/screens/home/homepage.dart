@@ -270,23 +270,23 @@ class _HomePageState extends State<HomePage> {
                 // ),
               ],
             ),
-            SizedBox(height: media.width*0.01,)
+            SizedBox(height: media.width * 0.01),
           ],
         ),
         actions: [
           InkWell(
             child: IconButton(
-                  padding: EdgeInsets.only(left: 4),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => NotificationScreen()),
-                    );
-                  },
-                  icon: Icon(Icons.notifications, color: Colors.grey.shade900,),
-                  iconSize: media.width * 0.08,
-                ),
-          )
+              padding: EdgeInsets.only(left: 4),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => NotificationScreen()),
+                );
+              },
+              icon: Icon(Icons.notifications, color: Colors.grey.shade900),
+              iconSize: media.width * 0.08,
+            ),
+          ),
         ],
       ),
       body: SingleChildScrollView(
@@ -474,15 +474,17 @@ class _HomePageState extends State<HomePage> {
                         borderRadius: BorderRadius.circular(media.width * 0.1),
                       ),
                       child: ClipRRect(
-                        borderRadius: BorderRadiusGeometry.circular(media.width*0.1),
+                        borderRadius: BorderRadiusGeometry.circular(
+                          media.width * 0.1,
+                        ),
                         child: Stack(
                           children: [
                             // LOAD GRAPH
                             SizedBox(
                               child: LineChart(
                                 LineChartData(
-                                  showingTooltipIndicators: showingTooltipOnSpots
-                                      .map((index) {
+                                  showingTooltipIndicators:
+                                      showingTooltipOnSpots.map((index) {
                                         return ShowingTooltipIndicators([
                                           LineBarSpot(
                                             tooltipsOnBar,
@@ -490,8 +492,7 @@ class _HomePageState extends State<HomePage> {
                                             tooltipsOnBar.spots[index],
                                           ),
                                         ]);
-                                      })
-                                      .toList(),
+                                      }).toList(),
                                   lineTouchData: LineTouchData(
                                     enabled: true,
                                     handleBuiltInTouches: false,
@@ -555,9 +556,8 @@ class _HomePageState extends State<HomePage> {
                                           }).toList();
                                         },
                                     touchTooltipData: LineTouchTooltipData(
-                                      tooltipBorderRadius: BorderRadius.circular(
-                                        2,
-                                      ),
+                                      tooltipBorderRadius:
+                                          BorderRadius.circular(2),
                                       //tooltipBgColor: TColor.secondaryColor1,
                                       //tooltipRoundedRadius: 20,
                                       getTooltipItems:
@@ -567,7 +567,7 @@ class _HomePageState extends State<HomePage> {
                                             ) {
                                               return LineTooltipItem(
                                                 "${lineBarSpot.x.toInt()} mins ago",
-                                                  const TextStyle(
+                                                const TextStyle(
                                                   color: Colors.white,
                                                   fontSize: 10,
                                                   fontWeight: FontWeight.bold,
@@ -584,7 +584,9 @@ class _HomePageState extends State<HomePage> {
                                   gridData: FlGridData(show: false),
                                   borderData: FlBorderData(
                                     show: true,
-                                    border: Border.all(color: Colors.transparent),
+                                    border: Border.all(
+                                      color: Colors.transparent,
+                                    ),
                                   ),
                                 ),
                               ),
@@ -592,10 +594,12 @@ class _HomePageState extends State<HomePage> {
                             Padding(
                               padding: const EdgeInsets.all(25),
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Text(
                                         'Heart Rate',
