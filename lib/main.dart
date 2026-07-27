@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:forge/screens/main_tab/maintab.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-
+import 'package:forge/screens/start%20screens/signin.dart';
+import 'package:forge/screens/start%20screens/splash.dart';
 Future<void> main() async {
   print('Main start');
   WidgetsFlutterBinding.ensureInitialized();
@@ -30,8 +31,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      //home: SignIn(),
-      home: MainTab(),
+      home: Splash(),
+      //home: MainTab(),
     );
   }
 }

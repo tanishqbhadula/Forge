@@ -17,7 +17,7 @@ class _SplashState extends State<Splash> {
   }
   @override
   Widget build(BuildContext context) {
-    //var media = MediaQuery.of(context).size;
+    var media = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.blue.shade100,
       body: Container(
@@ -30,6 +30,7 @@ class _SplashState extends State<Splash> {
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                Icon(Icons.fitness_center_outlined, color: Colors.black, size: media.width*0.45,),
                 Text(
                   'FORGE',
                   style: TextStyle(
@@ -41,10 +42,9 @@ class _SplashState extends State<Splash> {
                 Text(
                   'forge your fitness',
                   style: TextStyle(
-                    color: Colors.grey,
+                    color: Colors.grey.shade700,
                     fontSize: 18,
-                    
-                    //fontWeight: FontWeight.w700,
+                    fontWeight: FontWeight.w600,
                   ),
                 )
               ],

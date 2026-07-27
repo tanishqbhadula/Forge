@@ -43,7 +43,7 @@ class _SignUpState extends State<SignUp> {
               children: [
                 Text(
                   'Hey there',
-                  style: TextStyle(color: Colors.grey, fontSize: 16),
+                  style: TextStyle(color: Colors.grey, fontSize: 16, fontWeight: FontWeight.w600),
                 ),
                 Text(
                   'Create an Account',
@@ -229,7 +229,7 @@ class _SignUpState extends State<SignUp> {
                 SizedBox(height: media.width*0.02,),
                 TextButton(
                   onPressed: () {
-                    Navigator.push(
+                    Navigator.pushReplacement(
                       context, 
                       MaterialPageRoute(
                         builder: (context) => SignIn(),

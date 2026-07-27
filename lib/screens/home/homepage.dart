@@ -257,21 +257,37 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
                 Spacer(),
-                IconButton(
+                // IconButton(
+                //   padding: EdgeInsets.zero,
+                //   onPressed: () {
+                //     Navigator.push(
+                //       context,
+                //       MaterialPageRoute(builder: (context) => NotificationScreen()),
+                //     );
+                //   },
+                //   icon: Icon(Icons.notifications, color: Colors.grey.shade900,),
+                //   iconSize: media.width * 0.08,
+                // ),
+              ],
+            ),
+            SizedBox(height: media.width*0.01,)
+          ],
+        ),
+        actions: [
+          InkWell(
+            child: IconButton(
+                  padding: EdgeInsets.only(left: 4),
                   onPressed: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => NotificationScreen()),
                     );
                   },
-                  icon: Icon(Icons.notifications, color: Colors.grey.shade900),
+                  icon: Icon(Icons.notifications, color: Colors.grey.shade900,),
                   iconSize: media.width * 0.08,
                 ),
-              ],
-            ),
-            SizedBox(height: media.width*0.01,)
-          ],
-        ),
+          )
+        ],
       ),
       body: SingleChildScrollView(
         child: SafeArea(

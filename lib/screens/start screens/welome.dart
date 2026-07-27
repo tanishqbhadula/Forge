@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:forge/screens/home/homepage.dart';
+import 'package:forge/screens/main_tab/maintab.dart';
 
 class Welcome extends StatefulWidget {
   const Welcome({super.key});
@@ -53,7 +54,7 @@ class _WelcomeState extends State<Welcome> {
                   onPressed: () {
                     Navigator.pushReplacement(
                       context,
-                      MaterialPageRoute(builder: (context) => HomePage()),
+                      MaterialPageRoute(builder: (context) => MainTab()),
                     );
                   },
                   height: 50,

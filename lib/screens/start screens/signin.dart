@@ -19,6 +19,15 @@ class _SignInState extends State<SignIn> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pushReplacement(
+              context, 
+              MaterialPageRoute(builder: (_) => SignUp())
+            );
+          },
+          icon: Icon(Icons.arrow_back_ios_new_rounded, color: Colors.black),
+          ),
       ),
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
