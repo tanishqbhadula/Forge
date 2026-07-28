@@ -120,7 +120,7 @@ class _WorkoutDetailsState extends State<WorkoutDetails> {
                       padding: EdgeInsets.symmetric(horizontal: 8, vertical: 6),
                       decoration: BoxDecoration(
                         color: Colors.green.shade50,
-                        borderRadius: BorderRadius.circular(media.width * 0.1),
+                        borderRadius: BorderRadius.circular(media.width * 0.05),
                       ),
                       child: Center(
                         child: Text(
@@ -241,7 +241,7 @@ class _WorkoutDetailsState extends State<WorkoutDetails> {
                     Text(
                       "You'll Need",
                       style: TextStyle(
-                        fontSize: 20,
+                        fontSize: 18,
                         fontWeight: FontWeight.w600,
                         color: Colors.black,
                       ),
@@ -314,7 +314,7 @@ class _WorkoutDetailsState extends State<WorkoutDetails> {
                 Text(
                   'Exercises',
                   style: TextStyle(
-                    fontSize: 20,
+                    fontSize: 18,
                     fontWeight: FontWeight.w600,
                     color: Colors.black,
                   ),
