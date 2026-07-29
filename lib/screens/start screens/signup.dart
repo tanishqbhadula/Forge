@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:forge/reusable_widget/round_text_box.dart';
 import 'package:forge/screens/start%20screens/completeprofile.dart';
@@ -124,10 +126,12 @@ class _SignUpState extends State<SignUp> {
                     // },
                     onPressed: () {
                       if(isChecked) {
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(builder: (context) => CompleteProfile())
-                        );
+                        createNewUser();
+                        
+                        // Navigator.pushReplacement(
+                        //   context,
+                        //   MaterialPageRoute(builder: (context) => CompleteProfile())
+                        // );
                       }
                       else {
                         ScaffoldMessenger.of(context).showSnackBar(
@@ -263,5 +267,27 @@ class _SignUpState extends State<SignUp> {
         ),
       ),
     );
+  }
+  
+  void createNewUser() async {
+    try {
+      final userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: emailController.text.trim(), 
+        password: passwordController.text.trim(),
+      );
+
+      final user = userCredential.user!;
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(user.uid)
+          .set({
+        'firstName': firstnameController.text.trim(),
+        'lastName': lastnameController.text.trim(),
+        'email': emailController.text.trim(),
+        'createdAt': FieldValue.serverTimestamp(),
+      });
+    } on FirebaseAuthException catch(e) {
+      print(e.message);
+    }
   }
 }

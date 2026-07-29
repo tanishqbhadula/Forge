@@ -1,12 +1,17 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:forge/screens/main_tab/maintab.dart';
+import 'package:forge/firebase_options.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:forge/screens/start%20screens/signin.dart';
-import 'package:forge/screens/start%20screens/splash.dart';
+import 'package:forge/screens/start%20screens/signup.dart';
+
 Future<void> main() async {
-  print('Main start');
+  //print('Main start');
   WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
@@ -15,11 +20,12 @@ Future<void> main() async {
       statusBarBrightness: Brightness.light,
     ),
   );
+
   SystemChrome.setEnabledSystemUIMode(
     SystemUiMode.manual,
     overlays: SystemUiOverlay.values,
   );
-  WidgetsFlutterBinding.ensureInitialized();
+  
   await dotenv.load(fileName: ".env");
   runApp(const MyApp());
 }
@@ -32,7 +38,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       //home: Splash(),
-      home: MainTab(),
+      home: SignUp(),
     );
   }
 }
