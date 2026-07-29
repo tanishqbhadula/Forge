@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:forge/firebase_options.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:forge/screens/start%20screens/completeprofile.dart';
 import 'package:forge/screens/start%20screens/signup.dart';
 
 Future<void> main() async {
@@ -25,7 +26,7 @@ Future<void> main() async {
     SystemUiMode.manual,
     overlays: SystemUiOverlay.values,
   );
-  
+
   await dotenv.load(fileName: ".env");
   runApp(const MyApp());
 }
@@ -38,7 +39,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       //home: Splash(),
-      home: SignUp(),
+      home: CompleteProfile(),
     );
   }
 }
