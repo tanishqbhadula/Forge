@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:forge/screens/start%20screens/welome.dart';
 
@@ -113,20 +115,15 @@ class _GoalState extends State<Goal> {
                         color: Colors.blue.shade500,
                       ),
                       child: MaterialButton(
-                        onPressed: () {
-                          if (_selectedGoal == null) {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                content: Text('Please select a goal'),
-                              ),
-                            );
-                          }
-                          else {
+                        onPressed: () async {
+                          if (!mounted) return;
+                          bool success = await addUserGoal();
+                          if (success) {
                             Navigator.pushReplacement(
-                              context, 
+                              context,
                               MaterialPageRoute(
-                                builder: (context) => Welcome()
-                              )
+                                builder: (context) => Welcome(),
+                              ),
                             );
                           }
                         },
@@ -153,5 +150,29 @@ class _GoalState extends State<Goal> {
         ),
       ),
     );
+  }
+
+  Future<bool> addUserGoal() async {
+    final user = FirebaseAuth.instance.currentUser!;
+    if (_selectedGoal == null) {
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('Please select a goal')));
+      return false;
+    }
+    try {
+      //final userDetails =
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(user.uid)
+          .update({'goal': _selectedGoal});
+      return true;
+    } on FirebaseException catch (e) {
+      if (!mounted) return false;
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(e.message ?? "Database error")));
+      return false;
+    }
   }
 }
