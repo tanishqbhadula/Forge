@@ -45,7 +45,11 @@ class _SignUpState extends State<SignUp> {
               children: [
                 Text(
                   'Hey there',
-                  style: TextStyle(color: Colors.grey, fontSize: 16, fontWeight: FontWeight.w600),
+                  style: TextStyle(
+                    color: Colors.grey,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
                 Text(
                   'Create an Account',
@@ -124,22 +128,27 @@ class _SignUpState extends State<SignUp> {
                     //     "password" : passwordController.text,
                     //   });
                     // },
-                    onPressed: () {
-                      if(isChecked) {
-                        createNewUser();
-                        
-                        // Navigator.pushReplacement(
-                        //   context,
-                        //   MaterialPageRoute(builder: (context) => CompleteProfile())
-                        // );
-                      }
-                      else {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text("Please agree to terms and conditions"),
+                    onPressed: () async {
+                      //if (isChecked) {
+                      if (!mounted) return;
+                      final success = await createNewUser();
+                      if (success) {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => const CompleteProfile(),
                           ),
                         );
                       }
+                      // } else {
+                      //   ScaffoldMessenger.of(context).showSnackBar(
+                      //     const SnackBar(
+                      //       content: Text(
+                      //         "Please agree to terms and conditions",
+                      //       ),
+                      //     ),
+                      //   );
+                      // }
                     },
                     height: 50,
                     shape: RoundedRectangleBorder(
@@ -156,14 +165,14 @@ class _SignUpState extends State<SignUp> {
                     ),
                   ),
                 ),
-                SizedBox(height: media.width*0.05,),
+                SizedBox(height: media.width * 0.05),
                 Row(
                   children: [
                     Expanded(
                       child: Container(
                         height: 1,
-                        color: Colors.grey.withValues(alpha:0.5),
-                      )
+                        color: Colors.grey.withValues(alpha: 0.5),
+                      ),
                     ),
                     Text(
                       "  Or  ",
@@ -172,12 +181,12 @@ class _SignUpState extends State<SignUp> {
                     Expanded(
                       child: Container(
                         height: 1,
-                        color: Colors.grey.withValues(alpha:0.5),
-                      )
+                        color: Colors.grey.withValues(alpha: 0.5),
+                      ),
                     ),
                   ],
                 ),
-                SizedBox(height: media.width*0.04,),
+                SizedBox(height: media.width * 0.04),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -204,7 +213,7 @@ class _SignUpState extends State<SignUp> {
                         ),
                       ),
                     ),
-                    SizedBox(width: media.width*0.04,),
+                    SizedBox(width: media.width * 0.04),
                     GestureDetector(
                       onTap: () {},
                       child: Container(
@@ -230,14 +239,12 @@ class _SignUpState extends State<SignUp> {
                     ),
                   ],
                 ),
-                SizedBox(height: media.width*0.02,),
+                SizedBox(height: media.width * 0.02),
                 TextButton(
                   onPressed: () {
                     Navigator.pushReplacement(
-                      context, 
-                      MaterialPageRoute(
-                        builder: (context) => SignIn(),
-                      )
+                      context,
+                      MaterialPageRoute(builder: (context) => SignIn()),
                     );
                   },
                   child: Row(
@@ -245,10 +252,7 @@ class _SignUpState extends State<SignUp> {
                     children: [
                       Text(
                         'Already have an account? ',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 14,
-                        ),
+                        style: TextStyle(color: Colors.black, fontSize: 14),
                       ),
                       Text(
                         'Login',
@@ -268,26 +272,67 @@ class _SignUpState extends State<SignUp> {
       ),
     );
   }
-  
-  void createNewUser() async {
-    try {
-      final userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: emailController.text.trim(), 
-        password: passwordController.text.trim(),
-      );
 
+  /*
+
+    TODO
+    1. Ensure user only progresses to next tab when auth is sucessful --- DONE  
+    2. Fix snackbar not displaying issue (context) --- DONE
+    3. ensure user adds first name, last name optional --- DONE
+    
+  */
+  Future<bool> createNewUser() async {
+    if (firstnameController.text.trim().isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("First name can not be empty")),
+      );
+      return false;
+    }
+    if (!isChecked) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("Please agree to terms and conditions")),
+      );
+      return false;
+    }
+    if (emailController.text.trim().isEmpty) {
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text("Email can not be empty")));
+      return false;
+    }
+    if (passwordController.text.trim().isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("Password can not be empty")),
+      );
+      return false;
+    }
+    try {
+      final userCredential = await FirebaseAuth.instance
+          .createUserWithEmailAndPassword(
+            email: emailController.text.trim(),
+            password: passwordController.text.trim(),
+          );
       final user = userCredential.user!;
-      await FirebaseFirestore.instance
-          .collection('users')
-          .doc(user.uid)
-          .set({
+      await FirebaseFirestore.instance.collection('users').doc(user.uid).set({
         'firstName': firstnameController.text.trim(),
         'lastName': lastnameController.text.trim(),
         'email': emailController.text.trim(),
         'createdAt': FieldValue.serverTimestamp(),
       });
-    } on FirebaseAuthException catch(e) {
-      print(e.message);
+      return true;
+    } on FirebaseAuthException catch (e) {
+      if (!mounted) return false;
+      //String errorMessage = e.message.toString();
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(e.message ?? "Authentication error")),
+      );
+      return false;
+    } on FirebaseException catch (e) {
+      if (!mounted) return false;
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(e.message ?? "Database error")));
+      return false;
     }
   }
 }
