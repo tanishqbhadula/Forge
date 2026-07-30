@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:forge/profile/profile.dart';
+import 'package:forge/screens/profile/profile.dart';
 import 'package:forge/reusable_widget/round_text_box.dart';
 
 class EditProfile extends StatefulWidget {

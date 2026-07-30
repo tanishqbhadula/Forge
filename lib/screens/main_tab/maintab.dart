@@ -3,7 +3,7 @@ import 'package:forge/reusable_widget/tab_button.dart';
 import 'package:forge/screens/chatbot_heph/chatbot_screen.dart';
 import 'package:forge/screens/home/blank.dart';
 import 'package:forge/screens/home/homepage.dart';
-import 'package:forge/profile/profile.dart';
+import 'package:forge/screens/profile/profile.dart';
 import 'package:forge/screens/progress/progress_photo.dart';
 import 'package:forge/screens/tracker_screen/tracker.dart';
 import 'package:forge/workout/workout_tracker.dart';

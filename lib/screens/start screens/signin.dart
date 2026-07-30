@@ -213,10 +213,11 @@ class _SignInState extends State<SignIn> {
                 SizedBox(height: media.width * 0.02),
                 TextButton(
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => SignUp()),
-                    );
+                    // Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute(builder: (context) => SignUp()),
+                    // );
+                    Navigator.pop(context);
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,

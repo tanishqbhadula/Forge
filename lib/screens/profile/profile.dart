@@ -1,5 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:forge/profile/edit_profile.dart';
+import 'package:forge/screens/profile/edit_profile.dart';
 
 class Profile extends StatefulWidget {
   const Profile({super.key});
@@ -11,8 +13,34 @@ class Profile extends StatefulWidget {
 class _ProfileState extends State<Profile> {
   var _notificationsEnabled = true;
   var _darkModeEnabled = false;
+
+  @override
+  void initState() {
+    super.initState();
+    loadProfile();
+  }
+
+  Map<String, dynamic>? userData;
+  bool isLoading = true;
+
+  Future<void> loadProfile() async {
+    final user = FirebaseAuth.instance.currentUser!;
+    final doc = await FirebaseFirestore.instance
+        .collection('users')
+        .doc(user.uid)
+        .get();
+    if (!mounted) return;
+    setState(() {
+      userData = doc.data();
+      isLoading = false;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    if (isLoading) {
+      return const Center(child: CircularProgressIndicator());
+    }
     var media = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.white,
@@ -24,8 +52,8 @@ class _ProfileState extends State<Profile> {
         scrolledUnderElevation: 8,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(
-            bottom: Radius.circular(media.width*0.06),
-          )
+            bottom: Radius.circular(media.width * 0.06),
+          ),
         ),
         title: Text(
           'Profile',
@@ -82,7 +110,7 @@ class _ProfileState extends State<Profile> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'User Name',
+                            "${userData?['firstName']} ${userData?['lastName']}",
                             style: TextStyle(
                               fontSize: 16,
                               color: Colors.black,
@@ -90,7 +118,7 @@ class _ProfileState extends State<Profile> {
                             ),
                           ),
                           Text(
-                            'Lose Fat Program',
+                            "Goal: ${userData?['goal']}",
                             style: TextStyle(
                               fontSize: 13,
                               color: Colors.grey.shade600,
@@ -112,8 +140,8 @@ class _ProfileState extends State<Profile> {
                         padding: EdgeInsets.zero,
                         onPressed: () {
                           Navigator.push(
-                            context, 
-                            MaterialPageRoute(builder: (_) => EditProfile())
+                            context,
+                            MaterialPageRoute(builder: (_) => EditProfile()),
                           );
                         },
                         shape: RoundedRectangleBorder(
@@ -153,7 +181,7 @@ class _ProfileState extends State<Profile> {
                           child: Column(
                             children: [
                               Text(
-                                '180cm',
+                                "${userData?['height']}",
                                 style: TextStyle(
                                   color: Colors.blue.shade700,
                                   fontWeight: FontWeight.w600,
@@ -188,7 +216,7 @@ class _ProfileState extends State<Profile> {
                           child: Column(
                             children: [
                               Text(
-                                '65kg',
+                                "${userData?['weight']}",
                                 style: TextStyle(
                                   color: Colors.blue.shade700,
                                   fontWeight: FontWeight.w600,
@@ -269,11 +297,11 @@ class _ProfileState extends State<Profile> {
                             color: Colors.black,
                           ),
                         ),
-                        SizedBox(height: media.width*0.03,),
+                        SizedBox(height: media.width * 0.03),
                         Row(
                           children: [
-                            Icon(Icons.person, color: Colors.grey.shade900,),
-                            SizedBox(width: media.width*0.02,),
+                            Icon(Icons.person, color: Colors.grey.shade900),
+                            SizedBox(width: media.width * 0.02),
                             Expanded(
                               child: Text(
                                 'Personal Data',
@@ -282,16 +310,22 @@ class _ProfileState extends State<Profile> {
                                   fontWeight: FontWeight.w500,
                                   color: Colors.grey.shade800,
                                 ),
-                              )
+                              ),
                             ),
-                            Icon(Icons.navigate_next_rounded, color: Colors.black,),
+                            Icon(
+                              Icons.navigate_next_rounded,
+                              color: Colors.black,
+                            ),
                           ],
                         ),
-                        SizedBox(height: media.width*0.015,),
+                        SizedBox(height: media.width * 0.015),
                         Row(
                           children: [
-                            Icon(Icons.ballot_rounded, color: Colors.grey.shade900,),
-                            SizedBox(width: media.width*0.02,),
+                            Icon(
+                              Icons.ballot_rounded,
+                              color: Colors.grey.shade900,
+                            ),
+                            SizedBox(width: media.width * 0.02),
                             Expanded(
                               child: Text(
                                 'Achievement',
@@ -300,16 +334,19 @@ class _ProfileState extends State<Profile> {
                                   fontWeight: FontWeight.w500,
                                   color: Colors.grey.shade800,
                                 ),
-                              )
+                              ),
                             ),
-                            Icon(Icons.navigate_next_rounded, color: Colors.black,),
+                            Icon(
+                              Icons.navigate_next_rounded,
+                              color: Colors.black,
+                            ),
                           ],
                         ),
-                        SizedBox(height: media.width*0.015,),
+                        SizedBox(height: media.width * 0.015),
                         Row(
                           children: [
-                            Icon(Icons.timer, color: Colors.grey.shade900,),
-                            SizedBox(width: media.width*0.02,),
+                            Icon(Icons.timer, color: Colors.grey.shade900),
+                            SizedBox(width: media.width * 0.02),
                             Expanded(
                               child: Text(
                                 'Activity history',
@@ -318,16 +355,22 @@ class _ProfileState extends State<Profile> {
                                   fontWeight: FontWeight.w500,
                                   color: Colors.grey.shade800,
                                 ),
-                              )
+                              ),
                             ),
-                            Icon(Icons.navigate_next_rounded, color: Colors.black,),
+                            Icon(
+                              Icons.navigate_next_rounded,
+                              color: Colors.black,
+                            ),
                           ],
                         ),
-                        SizedBox(height: media.width*0.015,),
+                        SizedBox(height: media.width * 0.015),
                         Row(
                           children: [
-                            Icon(Icons.bar_chart_outlined, color: Colors.grey.shade900,),
-                            SizedBox(width: media.width*0.02,),
+                            Icon(
+                              Icons.bar_chart_outlined,
+                              color: Colors.grey.shade900,
+                            ),
+                            SizedBox(width: media.width * 0.02),
                             Expanded(
                               child: Text(
                                 'Workout progress',
@@ -336,9 +379,12 @@ class _ProfileState extends State<Profile> {
                                   fontWeight: FontWeight.w500,
                                   color: Colors.grey.shade800,
                                 ),
-                              )
+                              ),
                             ),
-                            Icon(Icons.navigate_next_rounded, color: Colors.black,),
+                            Icon(
+                              Icons.navigate_next_rounded,
+                              color: Colors.black,
+                            ),
                           ],
                         ),
                       ],
@@ -369,11 +415,14 @@ class _ProfileState extends State<Profile> {
                             color: Colors.black,
                           ),
                         ),
-                        SizedBox(height: media.width*0.03,),
+                        SizedBox(height: media.width * 0.03),
                         Row(
                           children: [
-                            Icon(Icons.notifications, color: Colors.grey.shade900,),
-                            SizedBox(width: media.width*0.02,),
+                            Icon(
+                              Icons.notifications,
+                              color: Colors.grey.shade900,
+                            ),
+                            SizedBox(width: media.width * 0.02),
                             Expanded(
                               child: Text(
                                 'Pop-up notifications',
@@ -382,20 +431,21 @@ class _ProfileState extends State<Profile> {
                                   fontWeight: FontWeight.w500,
                                   color: Colors.grey.shade800,
                                 ),
-                              )
+                              ),
                             ),
                             Switch(
                               activeThumbColor: Colors.white,
                               activeTrackColor: Colors.blue,
                               inactiveThumbColor: Colors.grey.shade700,
                               inactiveTrackColor: Colors.grey.shade100,
-                              value: _notificationsEnabled, 
+                              value: _notificationsEnabled,
                               onChanged: (bool value) {
                                 setState(() {
-                                  _notificationsEnabled = !_notificationsEnabled;
+                                  _notificationsEnabled =
+                                      !_notificationsEnabled;
                                 });
-                              } 
-                            )
+                              },
+                            ),
                           ],
                         ),
                       ],
@@ -426,11 +476,11 @@ class _ProfileState extends State<Profile> {
                             color: Colors.black,
                           ),
                         ),
-                        SizedBox(height: media.width*0.03,),
+                        SizedBox(height: media.width * 0.03),
                         Row(
                           children: [
-                            Icon(Icons.dark_mode, color: Colors.grey.shade900,),
-                            SizedBox(width: media.width*0.02,),
+                            Icon(Icons.dark_mode, color: Colors.grey.shade900),
+                            SizedBox(width: media.width * 0.02),
                             Expanded(
                               child: Text(
                                 'Dark Mode',
@@ -439,20 +489,20 @@ class _ProfileState extends State<Profile> {
                                   fontWeight: FontWeight.w500,
                                   color: Colors.grey.shade800,
                                 ),
-                              )
+                              ),
                             ),
                             Switch(
                               activeThumbColor: Colors.white,
                               activeTrackColor: Colors.blue,
                               inactiveThumbColor: Colors.grey.shade700,
                               inactiveTrackColor: Colors.grey.shade100,
-                              value: _darkModeEnabled, 
+                              value: _darkModeEnabled,
                               onChanged: (bool value) {
                                 setState(() {
                                   _darkModeEnabled = !_darkModeEnabled;
                                 });
-                              } 
-                            )
+                              },
+                            ),
                           ],
                         ),
                       ],
@@ -483,11 +533,11 @@ class _ProfileState extends State<Profile> {
                             color: Colors.black,
                           ),
                         ),
-                        SizedBox(height: media.width*0.03,),
+                        SizedBox(height: media.width * 0.03),
                         Row(
                           children: [
-                            Icon(Icons.mail, color: Colors.grey.shade900,),
-                            SizedBox(width: media.width*0.02,),
+                            Icon(Icons.mail, color: Colors.grey.shade900),
+                            SizedBox(width: media.width * 0.02),
                             Expanded(
                               child: Text(
                                 'Contact us',
@@ -496,16 +546,19 @@ class _ProfileState extends State<Profile> {
                                   fontWeight: FontWeight.w500,
                                   color: Colors.grey.shade800,
                                 ),
-                              )
+                              ),
                             ),
-                            Icon(Icons.navigate_next_rounded, color: Colors.black,),
+                            Icon(
+                              Icons.navigate_next_rounded,
+                              color: Colors.black,
+                            ),
                           ],
                         ),
-                        SizedBox(height: media.width*0.03,),
+                        SizedBox(height: media.width * 0.03),
                         Row(
                           children: [
-                            Icon(Icons.policy, color: Colors.grey.shade900,),
-                            SizedBox(width: media.width*0.02,),
+                            Icon(Icons.policy, color: Colors.grey.shade900),
+                            SizedBox(width: media.width * 0.02),
                             Expanded(
                               child: Text(
                                 'Private policy',
@@ -514,16 +567,19 @@ class _ProfileState extends State<Profile> {
                                   fontWeight: FontWeight.w500,
                                   color: Colors.grey.shade800,
                                 ),
-                              )
+                              ),
                             ),
-                            Icon(Icons.navigate_next_rounded, color: Colors.black,),
+                            Icon(
+                              Icons.navigate_next_rounded,
+                              color: Colors.black,
+                            ),
                           ],
                         ),
-                        SizedBox(height: media.width*0.03,),
+                        SizedBox(height: media.width * 0.03),
                         Row(
                           children: [
-                            Icon(Icons.settings, color: Colors.grey.shade900,),
-                            SizedBox(width: media.width*0.02,),
+                            Icon(Icons.settings, color: Colors.grey.shade900),
+                            SizedBox(width: media.width * 0.02),
                             Expanded(
                               child: Text(
                                 'Settings',
@@ -532,16 +588,19 @@ class _ProfileState extends State<Profile> {
                                   fontWeight: FontWeight.w500,
                                   color: Colors.grey.shade800,
                                 ),
-                              )
+                              ),
                             ),
-                            Icon(Icons.navigate_next_rounded, color: Colors.black,),
+                            Icon(
+                              Icons.navigate_next_rounded,
+                              color: Colors.black,
+                            ),
                           ],
                         ),
                       ],
                     ),
                   ),
                 ),
-                SizedBox(height: media.width*0.1,)
+                SizedBox(height: media.width * 0.1),
               ],
             ),
           ),

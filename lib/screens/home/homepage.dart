@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:forge/reusable_widget/workout_row.dart';
 import 'package:forge/screens/home/activity_tracker.dart';
@@ -192,7 +194,32 @@ class _HomePageState extends State<HomePage> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    loadProfile();
+  }
+
+  Map<String, dynamic>? userData;
+  bool isLoading = true;
+
+  Future<void> loadProfile() async {
+    final user = FirebaseAuth.instance.currentUser!;
+    final doc = await FirebaseFirestore.instance
+        .collection('users')
+        .doc(user.uid)
+        .get();
+    if (!mounted) return;
+    setState(() {
+      userData = doc.data();
+      isLoading = false;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
+    if (isLoading) {
+      return const Center(child: CircularProgressIndicator());
+    }
     var media = MediaQuery.of(context).size;
     final lineBarsData = [
       LineChartBarData(
@@ -247,7 +274,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                     SizedBox(width: media.width * 0.012),
                     Text(
-                      'Username',
+                      "${userData?['firstName']}",
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 21,
@@ -276,7 +303,7 @@ class _HomePageState extends State<HomePage> {
         actions: [
           InkWell(
             child: IconButton(
-              padding: EdgeInsets.only(left: 4),
+              padding: EdgeInsets.only(right: 4),
               onPressed: () {
                 Navigator.push(
                   context,
