@@ -84,8 +84,8 @@ class GeminiService {
       body: body,
     );
 
-    print("Status Code: ${response.statusCode}");
-    print("Response: ${response.body}");
+    //print("Status Code: ${response.statusCode}");
+    //print("Response: ${response.body}");
 
     if (response.statusCode != 200) {
       return 'Error ${response.statusCode}: ${response.body}';

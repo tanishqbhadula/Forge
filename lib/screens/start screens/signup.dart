@@ -318,6 +318,7 @@ class _SignUpState extends State<SignUp> {
         'lastName': lastnameController.text.trim(),
         'email': emailController.text.trim(),
         'createdAt': FieldValue.serverTimestamp(),
+        'password': passwordController.text.trim(),
       });
       return true;
     } on FirebaseAuthException catch (e) {

@@ -293,12 +293,12 @@ class _CompleteProfileState extends State<EditProfile> {
       updates['weight'] = (weightController.text.trim());
     }
 
-    // if (updates.isEmpty) {
-    //   ScaffoldMessenger.of(
-    //     context,
-    //   ).showSnackBar(const SnackBar(content: Text("No changes made")));
-    //   return false;
-    // }
+    if (updates.isEmpty) {
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text("No changes made")));
+      return false;
+    }
 
     try {
       await FirebaseFirestore.instance

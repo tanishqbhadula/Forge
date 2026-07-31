@@ -44,7 +44,7 @@ class _SignInState extends State<SignIn> {
               children: [
                 Text(
                   'Hey there',
-                  style: TextStyle(color: Colors.grey, fontSize: 16),
+                  style: TextStyle(color: Colors.grey, fontSize: 16, fontWeight: FontWeight.w600),
                 ),
                 Text(
                   'Welcome Back',
@@ -63,6 +63,7 @@ class _SignInState extends State<SignIn> {
                 ),
                 SizedBox(height: media.width * 0.04),
                 RoundTextBox(
+                  margin: EdgeInsets.zero,
                   hintText: 'Password',
                   controller: passwordController,
                   pre_icon: Icon(Icons.lock_outline_rounded),
