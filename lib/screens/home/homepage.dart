@@ -215,6 +215,21 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  double calculateBMI() {
+    double heightMeters = ((double.tryParse(userData?['height']) ?? 1.0) / 100);
+    return ((double.tryParse(userData?['weight']) ?? 0.0) /
+        (heightMeters * heightMeters));
+  }
+
+  String categorizeBMI(double bmi) {
+    return switch (bmi) {
+      < 18.5 => 'Underweight',
+      >= 18.5 && < 25.0 => 'Normal',
+      >= 25.0 && < 30.0 => 'Overweight',
+      _ => 'Obese',
+    };
+  }
+
   @override
   Widget build(BuildContext context) {
     if (isLoading) {
@@ -329,7 +344,7 @@ class _HomePageState extends State<HomePage> {
                 Container(
                   // bmi box
                   //padding: EdgeInsets.all(16),
-                  height: media.width * 0.41,
+                  //height: media.width * 0.41,
                   width: media.width,
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
@@ -339,82 +354,87 @@ class _HomePageState extends State<HomePage> {
                       ],
                     ),
                     borderRadius: BorderRadius.circular(media.width * 0.1),
+                    boxShadow: [
+                      BoxShadow(color: Colors.black26, blurRadius: 10),
+                    ],
                   ),
                   child: Stack(
                     children: [
-                      Image.asset(
-                        'images/bg_dots.png',
-                        fit: BoxFit.cover,
-                        width: double.maxFinite,
-                        height: media.width * 0.41,
-                      ),
+                      // Image.asset(
+                      //   'images/bg_dots.png',
+                      //   fit: BoxFit.cover,
+                      //   width: double.maxFinite,
+                      //   //height: media.width * 0.41,
+                      // ),
                       Container(
                         alignment: AlignmentGeometry.center,
                         child: Padding(
                           padding: const EdgeInsets.symmetric(
-                            horizontal: 16,
-                            vertical: 25,
+                            horizontal: 12,
+                            vertical: 12,
                           ),
                           child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
+                              Spacer(),
                               Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   Text(
                                     'BMI (Body Mass Index)',
                                     style: TextStyle(
                                       color: Colors.white,
-                                      fontSize: 16,
+                                      fontSize: 20,
                                       fontWeight: FontWeight.w700,
                                     ),
                                   ),
                                   Text(
-                                    'You have a normal weight',
+                                    'Your BMI is ${calculateBMI().toStringAsFixed(2)}',
                                     style: TextStyle(
-                                      color: Colors.white.withValues(
-                                        alpha: 0.7,
-                                      ),
+                                      color: Colors.grey.shade50,
                                       fontSize: 14,
+                                      fontWeight: FontWeight.w600,
                                     ),
                                   ),
-                                  SizedBox(height: media.width * 0.05),
+                                  SizedBox(height: media.width * 0.02),
                                   SizedBox(
                                     width: 120,
                                     height: 35,
                                     child: Container(
+                                      alignment: AlignmentGeometry.center,
                                       decoration: BoxDecoration(
                                         gradient: LinearGradient(
                                           colors: [
-                                            Colors.pink.shade400,
                                             Colors.deepPurple.shade400,
+                                            Colors.pink.shade400,
                                           ],
                                         ),
                                         borderRadius: BorderRadius.circular(25),
                                       ),
-                                      child: MaterialButton(
-                                        onPressed: () {},
-                                        height: 50,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadiusGeometry.circular(25),
-                                        ),
-                                        textColor: Colors.white,
-                                        child: Text(
-                                          'View More',
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: 14,
-                                          ),
+                                      // child: MaterialButton(
+                                      //   onPressed: () {},
+                                      //   height: 50,
+                                      //   shape: RoundedRectangleBorder(
+                                      //     borderRadius:
+                                      //         BorderRadiusGeometry.circular(25),
+                                      //   ),
+                                      //   textColor: Colors.white,
+                                      child: Text(
+                                        categorizeBMI(calculateBMI()),
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: 14,
                                         ),
                                       ),
+                                      //),
                                     ),
                                   ),
                                 ],
                               ),
+                              Spacer(),
                             ],
                           ),
                         ),
@@ -430,6 +450,9 @@ class _HomePageState extends State<HomePage> {
                     //color: Colors.blue.shade100.withValues(alpha: 0.2),
                     color: Colors.grey.shade100.withValues(alpha: 0.75),
                     borderRadius: BorderRadius.circular(media.width * 0.07),
+                    // boxShadow: [
+                    //   BoxShadow(color: Colors.black26, blurRadius: 1),
+                    // ],
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,

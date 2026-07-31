@@ -24,10 +24,10 @@ class _NotificationState extends State<NotificationScreen> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         surfaceTintColor: Colors.white,
-        shadowColor: Colors.black12,
+        //shadowColor: Colors.black12,
         backgroundColor: Colors.white,
         title: Text(
-          'Notification',
+          'Notifications',
           style: TextStyle(
             color: Colors.black,
             fontWeight: FontWeight.w700,
@@ -35,7 +35,7 @@ class _NotificationState extends State<NotificationScreen> {
           ),
         ),
         centerTitle: true,
-        elevation: 10,
+        //elevation: 10,
         leading: IconButton(
           padding: EdgeInsets.zero,
           onPressed: () {
@@ -43,22 +43,22 @@ class _NotificationState extends State<NotificationScreen> {
           },
           icon: Icon(Icons.arrow_back_ios_rounded,color: Colors.black,),
         ),
-        actions: [
-          InkWell(
-            onTap: () {},
-            child: Container(
-              padding: EdgeInsets.all(8),
-              width: 40,
-              height: 40,
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                color: Colors.transparent,
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Icon(Icons.more_horiz_rounded, color: Colors.black,),
-            ),
-          )
-        ],
+        // actions: [
+        //   InkWell(
+        //     onTap: () {},
+        //     child: Container(
+        //       padding: EdgeInsets.all(8),
+        //       width: 40,
+        //       height: 40,
+        //       alignment: Alignment.center,
+        //       decoration: BoxDecoration(
+        //         color: Colors.transparent,
+        //         borderRadius: BorderRadius.circular(10),
+        //       ),
+        //       child: Icon(Icons.more_horiz_rounded, color: Colors.black,),
+        //     ),
+        //   )
+        // ],
       ),
       body: Padding(
         padding: const EdgeInsets.only(top:8.0, bottom: 8, left: 8, right: 2),

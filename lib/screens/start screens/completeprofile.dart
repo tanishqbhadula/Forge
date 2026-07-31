@@ -13,10 +13,12 @@ class CompleteProfile extends StatefulWidget {
 }
 
 class _CompleteProfileState extends State<CompleteProfile> {
-  final TextEditingController dobController = TextEditingController();
+  //final TextEditingController dobController = TextEditingController();
   final TextEditingController weightController = TextEditingController();
   final TextEditingController heightController = TextEditingController();
   final TextEditingController genderController = TextEditingController();
+  final TextEditingController ageController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     var media = MediaQuery.of(context).size;
@@ -92,9 +94,10 @@ class _CompleteProfileState extends State<CompleteProfile> {
                 ),
                 SizedBox(height: media.width * 0.04),
                 RoundTextBox(
-                  hintText: 'Date of Birth',
-                  pre_icon: Icon(Icons.date_range),
-                  controller: dobController,
+                  hintText: 'Age',
+                  pre_icon: Icon(Icons.calendar_month_rounded),
+                  controller: ageController,
+                  inputType: TextInputType.number,
                 ),
                 SizedBox(height: media.width * 0.04),
                 Row(
@@ -104,6 +107,7 @@ class _CompleteProfileState extends State<CompleteProfile> {
                         hintText: 'Body Weight',
                         pre_icon: Icon(Icons.monitor_weight_outlined),
                         controller: weightController,
+                        inputType: TextInputType.number,
                       ),
                     ),
                     const SizedBox(width: 8),
@@ -130,6 +134,7 @@ class _CompleteProfileState extends State<CompleteProfile> {
                         hintText: 'Height',
                         pre_icon: Icon(Icons.height),
                         controller: heightController,
+                        inputType: TextInputType.number,
                       ),
                     ),
                     const SizedBox(width: 8),
@@ -148,6 +153,13 @@ class _CompleteProfileState extends State<CompleteProfile> {
                     ),
                   ],
                 ),
+                SizedBox(height: media.width * 0.04),
+                // RoundTextBox(
+                //     hintText: 'Age',
+                //     pre_icon: Icon(Icons.calendar_month_rounded),
+                //     controller: ageController,
+                //     inputType: TextInputType.number,
+                // ),
                 SizedBox(height: media.width * 0.06),
                 Container(
                   //margin: EdgeInsets.only(top:30),
@@ -192,9 +204,10 @@ class _CompleteProfileState extends State<CompleteProfile> {
 
   Future<bool> addUserDetails() async {
     final user = FirebaseAuth.instance.currentUser!;
-    if (heightController.text.trim().isEmpty ||
+    if ( heightController.text.trim().isEmpty ||
         weightController.text.trim().isEmpty ||
-        dobController.text.trim().isEmpty) {
+        ageController.text.trim().isEmpty
+      ) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text("Please fill all the fields")),
       );
@@ -202,16 +215,15 @@ class _CompleteProfileState extends State<CompleteProfile> {
     }
     try {
       //final userDetails =
-      await FirebaseFirestore.instance
-          .collection('users')
-          .doc(user.uid)
-          .update({
-            'height': heightController.text.trim(),
-            'weight': weightController.text.trim(),
-            'dateOfBirth': dobController.text.trim(),
-            //'age': age,
-            //'gender': gender,
-          });
+      await FirebaseFirestore.instance.collection('users').doc(user.uid).update(
+        {
+          'height': heightController.text.trim(),
+          'weight': weightController.text.trim(),
+          //'dateOfBirth': dobController.text.trim(),
+          'age': ageController.text,
+          //'gender': gender,
+        },
+      );
       return true;
     } on FirebaseException catch (e) {
       if (!mounted) return false;

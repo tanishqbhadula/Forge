@@ -251,7 +251,7 @@ class _ProfileState extends State<Profile> {
                           child: Column(
                             children: [
                               Text(
-                                '22yo',
+                                '${userData?['age']}yo',
                                 style: TextStyle(
                                   color: Colors.blue.shade700,
                                   fontWeight: FontWeight.w500,
