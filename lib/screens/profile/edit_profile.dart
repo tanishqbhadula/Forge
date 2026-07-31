@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:forge/screens/profile/profile.dart';
@@ -12,6 +14,48 @@ class EditProfile extends StatefulWidget {
 }
 
 class _CompleteProfileState extends State<EditProfile> {
+  final TextEditingController firstNameController = TextEditingController();
+  final TextEditingController lastNameController = TextEditingController();
+  final TextEditingController weightController = TextEditingController();
+  final TextEditingController heightController = TextEditingController();
+  final TextEditingController genderController = TextEditingController();
+  final TextEditingController ageController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    loadProfile();
+  }
+
+  Map<String, dynamic>? userData;
+  bool isLoading = true;
+  bool isChanged = false;
+
+  Future<void> loadProfile() async {
+    final user = FirebaseAuth.instance.currentUser!;
+
+    final doc = await FirebaseFirestore.instance
+        .collection('users')
+        .doc(user.uid)
+        .get();
+
+    if (!mounted) return;
+
+    final data = doc.data()!;
+
+    setState(() {
+      userData = data;
+
+      firstNameController.text = data['firstName'] ?? '';
+      lastNameController.text = data['lastName'] ?? '';
+      ageController.text = data['age'].toString();
+      heightController.text = data['height'].toString();
+      weightController.text = data['weight'].toString();
+
+      isLoading = false;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     var media = MediaQuery.of(context).size;
@@ -29,7 +73,11 @@ class _CompleteProfileState extends State<EditProfile> {
         ),
         leading: IconButton(
           onPressed: () {
-            Navigator.pop(context);
+            // final success = await updateUserDetails();
+            // if (!mounted) return;
+            // if (success) {
+            Navigator.pop(context, true);
+            //}
           },
           icon: Icon(Icons.arrow_back_ios_rounded, color: Colors.black),
         ),
@@ -68,64 +116,81 @@ class _CompleteProfileState extends State<EditProfile> {
                 //     color: Colors.grey,
                 //   ),
                 // ),
-                RoundTextBox(hintText: 'First Name', pre_icon: Icon(Icons.person)),
-                SizedBox(
-                  height: media.width*0.05,
+                RoundTextBox(
+                  hintText: 'First Name',
+                  pre_icon: Icon(Icons.person),
+                  controller: firstNameController,
                 ),
-                RoundTextBox(hintText: 'Last Name', pre_icon: Icon(Icons.person)),
-                SizedBox(
-                  height: media.width*0.05,
+                SizedBox(height: media.width * 0.05),
+                RoundTextBox(
+                  hintText: 'Last Name',
+                  pre_icon: Icon(Icons.person),
+                  controller: lastNameController,
                 ),
+                SizedBox(height: media.width * 0.05),
                 Container(
                   decoration: BoxDecoration(
                     color: Colors.grey.shade100,
                     borderRadius: BorderRadius.circular(15),
                   ),
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 4),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 15.0,
+                      vertical: 4,
+                    ),
                     child: Expanded(
                       child: DropdownButtonHideUnderline(
                         child: DropdownButton(
-                          items: ["Male","Female","Others"].map(
-                            (name) => DropdownMenuItem(
-                              value: name,
-                              child: Text(
-                                name,
-                                style: TextStyle(
-                                  color: Colors.grey,
-                                  fontSize: 16,
+                          items: ["Male", "Female", "Others"]
+                              .map(
+                                (name) => DropdownMenuItem(
+                                  value: name,
+                                  child: Text(
+                                    name,
+                                    style: TextStyle(
+                                      color: Colors.grey,
+                                      fontSize: 16,
+                                    ),
+                                  ),
                                 ),
-                              ),
-                            ),
-                          ).toList(), 
+                              )
+                              .toList(),
                           onChanged: (value) {},
                           isExpanded: true,
                           icon: Icon(Icons.people),
                           hint: Text(
-                            'Choose Gender', 
-                            style: TextStyle(color: Colors.grey, fontSize: 16, fontWeight: FontWeight.normal),
+                            'Choose Gender',
+                            style: TextStyle(
+                              color: Colors.grey,
+                              fontSize: 16,
+                              fontWeight: FontWeight.normal,
+                            ),
                           ),
-                        )
+                        ),
                       ),
                     ),
                   ),
                 ),
-                SizedBox(
-                  height: media.width*0.04,
+                SizedBox(height: media.width * 0.04),
+                RoundTextBox(
+                  hintText: 'Age',
+                  pre_icon: Icon(Icons.date_range),
+                  controller: ageController,
                 ),
-                RoundTextBox(hintText: 'Date of Birth', pre_icon: Icon(Icons.date_range)),
-                SizedBox(
-                  height: media.width*0.04,
-                ),
+                SizedBox(height: media.width * 0.04),
                 Row(
                   children: [
                     Expanded(
-                      child: 
-                        RoundTextBox(hintText: 'Body Weight', pre_icon: Icon(Icons.monitor_weight_outlined)),
+                      child: RoundTextBox(
+                        hintText: 'Body Weight',
+                        pre_icon: Icon(Icons.monitor_weight_outlined),
+                        controller: weightController,
+                      ),
                     ),
-                    const SizedBox(width: 8,),
+                    const SizedBox(width: 8),
                     Container(
-                      width: 45, height: 45,
+                      width: 45,
+                      height: 45,
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
                         color: Colors.blue.shade500,
@@ -133,26 +198,25 @@ class _CompleteProfileState extends State<EditProfile> {
                       ),
                       child: Text(
                         'kg',
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: Colors.white,
-                        ),
+                        style: TextStyle(fontSize: 14, color: Colors.white),
                       ),
                     ),
                   ],
                 ),
-                SizedBox(
-                  height: media.width*0.04,
-                ),
+                SizedBox(height: media.width * 0.04),
                 Row(
                   children: [
                     Expanded(
-                      child: 
-                        RoundTextBox(hintText: 'Height', pre_icon: Icon(Icons.height)),
+                      child: RoundTextBox(
+                        hintText: 'Height',
+                        pre_icon: Icon(Icons.height),
+                        controller: heightController,
+                      ),
                     ),
-                    const SizedBox(width: 8,),
+                    const SizedBox(width: 8),
                     Container(
-                      width: 45, height: 45,
+                      width: 45,
+                      height: 45,
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
                         color: Colors.blue.shade500,
@@ -160,17 +224,12 @@ class _CompleteProfileState extends State<EditProfile> {
                       ),
                       child: Text(
                         'cm',
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: Colors.white,
-                        ),
+                        style: TextStyle(fontSize: 14, color: Colors.white),
                       ),
                     ),
                   ],
                 ),
-                SizedBox(
-                  height: media.width*0.1,
-                ),
+                SizedBox(height: media.width * 0.1),
                 Container(
                   //margin: EdgeInsets.only(top:30),
                   width: media.width,
@@ -179,8 +238,12 @@ class _CompleteProfileState extends State<EditProfile> {
                     color: Colors.blue.shade500,
                   ),
                   child: MaterialButton(
-                    onPressed: () {
-                      Navigator.pop(context);
+                    onPressed: () async {
+                      final success = await updateUserDetails();
+                      if (!mounted) return;
+                      if (success) {
+                        Navigator.pop(context, true);
+                      }
                     },
                     height: 50,
                     shape: RoundedRectangleBorder(
@@ -199,9 +262,59 @@ class _CompleteProfileState extends State<EditProfile> {
                 ),
               ],
             ),
-          )
+          ),
         ),
       ),
     );
+  }
+
+  Future<bool> updateUserDetails() async {
+    final uid = FirebaseAuth.instance.currentUser!.uid;
+
+    Map<String, dynamic> updates = {};
+
+    if (firstNameController.text.trim() != userData?['firstName']) {
+      updates['firstName'] = firstNameController.text.trim();
+    }
+
+    if (lastNameController.text.trim() != userData?['lastName']) {
+      updates['lastName'] = lastNameController.text.trim();
+    }
+
+    if (ageController.text.trim() != userData?['age'].toString()) {
+      updates['age'] = (ageController.text.trim());
+    }
+
+    if (heightController.text.trim() != userData?['height'].toString()) {
+      updates['height'] = (heightController.text.trim());
+    }
+
+    if (weightController.text.trim() != userData?['weight'].toString()) {
+      updates['weight'] = (weightController.text.trim());
+    }
+
+    // if (updates.isEmpty) {
+    //   ScaffoldMessenger.of(
+    //     context,
+    //   ).showSnackBar(const SnackBar(content: Text("No changes made")));
+    //   return false;
+    // }
+
+    try {
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(uid)
+          .update(updates);
+
+      return true;
+    } on FirebaseException catch (e) {
+      if (!mounted) return false;
+
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(e.message ?? "Database error")));
+
+      return false;
+    }
   }
 }
