@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:forge/firebase_options.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:forge/screens/main_tab/floating_bottom_nav_bar.dart';
 import 'package:forge/screens/start%20screens/completeprofile.dart';
 import 'package:forge/screens/start%20screens/goal.dart';
 import 'package:forge/screens/start%20screens/signin.dart';
@@ -42,8 +43,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Splash(),
-      //home: CompleteProfile(),
+      //home: Splash(),
+      home: FloatingBottomNavBar(),
     );
   }
 }

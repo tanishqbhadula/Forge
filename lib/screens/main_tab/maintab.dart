@@ -78,7 +78,7 @@ class _MainTabState extends State<MainTab> {
             //shadowColor: Colors.black12,
             color: Colors.white,
             child: Container(
-              height: kToolbarHeight,
+              //height: kToolbarHeight,
               padding: EdgeInsets.symmetric(horizontal: 10),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
