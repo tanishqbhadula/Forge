@@ -19,6 +19,32 @@ class _FloatingBottomNavBarState extends State<FloatingBottomNavBar> {
   Widget build(BuildContext context) {
     var media = MediaQuery.of(context).size;
     return Scaffold(
+      // floatingActionButton: SizedBox(
+      //   width: 70,
+      //   height: 70,
+      //   child: InkWell(
+      //     onTap: () {},
+      //     child: Container(
+      //       width: 65,
+      //       height: 65,
+      //       decoration: BoxDecoration(
+      //         borderRadius: BorderRadius.circular(35),
+      //         //color: Colors.blue,
+      //         gradient: LinearGradient(
+      //           colors: [
+      //             Colors.lightBlue.shade300,
+      //             Colors.blue.shade400,
+      //             Colors.lightBlue.shade600,
+      //           ],
+      //         ),
+      //         // boxShadow: const [
+      //         //   BoxShadow(color: Colors.black12, blurRadius: 2, blurStyle: BlurStyle.outer),
+      //         // ],
+      //       ),
+      //       child: Icon(Icons.fitness_center_outlined, color: Colors.white, size: 35),
+      //     ),
+      //   ),
+      // ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
         child: Container(
@@ -68,10 +94,10 @@ class _FloatingBottomNavBarState extends State<FloatingBottomNavBar> {
                     ),
                     //const SizedBox(width: 70),
                     const Spacer(),
-                    // PROGRESS PHOTO
+                    // 3. chat bot heph
                     TabButton(
-                      icon: Icons.camera_alt,
-                      selectIcon: Icon(Icons.camera_alt),
+                      icon: Icons.fitness_center_outlined,
+                      selectIcon: Icon(Icons.fitness_center_outlined),
                       isActive: selectTab == 2,
                       onTap: () {
                         selectTab = 2;
@@ -82,13 +108,27 @@ class _FloatingBottomNavBarState extends State<FloatingBottomNavBar> {
                       },
                     ),
                     const Spacer(),
+                    // 4. PROGRESS PHOTO
                     TabButton(
-                      // PROFILE
-                      icon: Icons.person_2,
-                      selectIcon: Icon(Icons.person_2),
+                      icon: Icons.camera_alt,
+                      selectIcon: Icon(Icons.camera_alt),
                       isActive: selectTab == 3,
                       onTap: () {
                         selectTab = 3;
+                        //currentTab = const ProgressPhoto();
+                        if (mounted) {
+                          setState(() {});
+                        }
+                      },
+                    ),
+                    const Spacer(),
+                    TabButton(
+                      // 5. PROFILE
+                      icon: Icons.person_2,
+                      selectIcon: Icon(Icons.person_2),
+                      isActive: selectTab == 4,
+                      onTap: () {
+                        selectTab = 4;
                         //currentTab = const Profile();
                         if (mounted) {
                           setState(() {});

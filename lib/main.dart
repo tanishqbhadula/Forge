@@ -43,8 +43,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      //home: Splash(),
-      home: FloatingBottomNavBar(),
+      home: Splash(),
+      //home: FloatingBottomNavBar(),
     );
   }
 }
