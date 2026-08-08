@@ -1,149 +1,110 @@
 import 'package:flutter/material.dart';
-import 'package:forge/reusable_widget/tab_button.dart';
+
 import 'package:forge/screens/chatbot_heph/chatbot_screen.dart';
-import 'package:forge/screens/home/blank.dart';
 import 'package:forge/screens/home/homepage.dart';
+import 'package:forge/screens/main_tab/floating_bottom_nav_bar.dart';
 import 'package:forge/screens/profile/profile.dart';
 import 'package:forge/screens/progress/progress_photo.dart';
 import 'package:forge/screens/tracker_screen/tracker.dart';
-import 'package:forge/workout/workout_tracker.dart';
+
 
 class MainTab extends StatefulWidget {
   const MainTab({super.key});
-  State<MainTab> createState() {
-    return _MainTabState();
-  }
+
+  @override
+  State<MainTab> createState() => _MainTabState();
 }
 
 class _MainTabState extends State<MainTab> {
+  // --------------------------------------------------
+  // SELECTED TAB
+  // --------------------------------------------------
+
   int selectTab = 0;
-  Widget currentTab = const HomePage();
+
+  // --------------------------------------------------
+  // PAGE STORAGE
+  // --------------------------------------------------
+
   final PageStorageBucket pageBucket = PageStorageBucket();
+
+  // --------------------------------------------------
+  // MAIN PAGES
+  // --------------------------------------------------
+
+  final List<Widget> pages = const [
+    HomePage(),
+    Tracker(),
+    ProgressPhoto(),
+    Profile(),
+  ];
+
+  // --------------------------------------------------
+  // NAVIGATION
+  // --------------------------------------------------
+
+  void onTabSelected(int index) {
+    // HEPH
+    // Center button opens chatbot instead of changing tab.
+    if (index == 2) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const ChatbotScreen(),
+        ),
+      );
+
+      return;
+    }
+
+    // Because HEPH occupies index 2 visually,
+    // Progress and Profile need to map to the
+    // corresponding page indexes.
+    int pageIndex;
+
+    if (index > 2) {
+      pageIndex = index - 1;
+    } else {
+      pageIndex = index;
+    }
+
+    if (selectTab == pageIndex) {
+      return;
+    }
+
+    setState(() {
+      selectTab = pageIndex;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    var media = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.white,
-      body: PageStorage(bucket: pageBucket, child: currentTab),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      // HEPH - CHATBOT
-      floatingActionButton: SizedBox(
-        width: 70,
-        height: 70,
-        child: InkWell(
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (_) => const ChatbotScreen()),
-            );
-          },
-          child: Container(
-            width: 65,
-            height: 65,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(35),
-              //color: Colors.blue,
-              gradient: LinearGradient(
-                colors: [
-                  Colors.lightBlue.shade300,
-                  Colors.blue.shade400,
-                  Colors.lightBlue.shade600,
-                ],
-              ),
-              // boxShadow: const [
-              //   BoxShadow(color: Colors.black12, blurRadius: 2, blurStyle: BlurStyle.outer),
-              // ],
-            ),
-            child: Icon(Icons.fitness_center_outlined, color: Colors.white, size: 35),
-          ),
-        ),
-      ),
-      bottomNavigationBar: Container(
-        decoration: BoxDecoration(
-          //color: Colors.white,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withValues(alpha: 0.2),
-              blurRadius: 10,
-            ),
-          ],
-        ),
-        child: ClipRRect(
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(media.width*0.06),
-            topRight: Radius.circular(media.width*0.06),
-          ),
-          child: BottomAppBar(
-            //elevation: 2,
-            //shadowColor: Colors.black12,
-            color: Colors.white,
-            child: Container(
-              //height: kToolbarHeight,
-              padding: EdgeInsets.symmetric(horizontal: 10),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  // 1. HOME
-                  TabButton(
-                    icon: Icons.home_filled,
-                    selectIcon: Icon(Icons.home),
-                    isActive: selectTab == 0,
-                    onTap: () {
-                      selectTab = 0;
-                      currentTab = const HomePage();
-                      if (mounted) {
-                        setState(() {});
-                      }
-                    },
-                  ),
-                  const Spacer(),
-                  // 2. TRACKER
-                  TabButton(
-                    icon: Icons.timer,
-                    selectIcon: Icon(Icons.local_activity),
-                    isActive: selectTab == 1,
-                    onTap: () {
-                      selectTab = 1;
-                      currentTab = const Tracker();
-                      if (mounted) {
-                        setState(() {});
-                      }
-                    },
-                  ),
-                  const SizedBox(width: 70),
-                  const Spacer(),
-                  // PROGRESS PHOTO
-                  TabButton(
-                    icon: Icons.camera_alt,
-                    selectIcon: Icon(Icons.camera_alt),
-                    isActive: selectTab == 2,
-                    onTap: () {
-                      selectTab = 2;
-                      currentTab = const ProgressPhoto();
-                      if (mounted) {
-                        setState(() {});
-                      }
-                    },
-                  ),
-                  const Spacer(),
-                  TabButton(
-                    // PROFILE
-                    icon: Icons.person_2,
-                    selectIcon: Icon(Icons.person_2),
-                    isActive: selectTab == 3,
-                    onTap: () {
-                      selectTab = 3;
-                      currentTab = const Profile();
-                      if (mounted) {
-                        setState(() {});
-                      }
-                    },
-                  ),
-                ],
-              ),
+
+      body: Stack(
+        children: [
+
+          PageStorage(
+            bucket: pageBucket,
+            child: IndexedStack(
+              index: selectTab,
+              children: pages,
             ),
           ),
-        ),
+
+          Positioned(
+            left: 18,
+            right: 18,
+            bottom: 30,
+            child: FloatingBottomNavBar(
+              selectTab: selectTab >= 2
+                  ? selectTab + 1
+                  : selectTab,
+              onTabSelected: onTabSelected,
+            ),
+          ),
+        ],
       ),
     );
   }
